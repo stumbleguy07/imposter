@@ -9,158 +9,188 @@
 
 <style>
 
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0f1219;
-    color:white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f1219;
+    color: white;
+    padding-bottom: 75px;
 }
 
 header {
-    text-align:center;
-    background:#171c27;
-    padding:20px;
+    text-align: center;
+    background: #171c27;
+    padding: 20px;
 }
 
 .logo {
-    font-size:35px;
-    font-weight:bold;
-    color:#00aaff;
+    font-size: 35px;
+    font-weight: bold;
+    color: #00aaff;
+}
+
+header p {
+    margin-bottom: 0;
+    color: #aaa;
 }
 
 .page {
-    display:none;
-    padding:20px;
-    padding-bottom:90px;
+    display: none;
+    padding: 20px;
 }
 
 .page.active {
-    display:block;
+    display: block;
 }
 
 .card {
-    background:#1c2330;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:15px;
+    background: #1c2330;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
 }
 
 .shop-grid {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 .item {
-    background:#252e3d;
-    border-radius:15px;
-    padding:10px;
-    text-align:center;
+    background: #252e3d;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
 }
 
 .item img {
-    width:100%;
-    border-radius:12px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #151a23;
 }
 
-.price {
-    color:#00aaff;
-    font-weight:bold;
+.item h3 {
+    margin: 10px 0 5px;
+    font-size: 17px;
+}
+
+.item p {
+    margin: 5px 0;
 }
 
 .category {
-    color:#aaa;
-    font-size:14px;
+    color: #aaa;
+    font-size: 13px;
 }
 
-input, select {
-    width:90%;
-    padding:12px;
-    margin:8px;
-    border-radius:10px;
-    border:none;
-    background:#10131a;
-    color:white;
+.rarity {
+    color: #ddd;
+    font-size: 13px;
+}
+
+.price {
+    color: #00aaff;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0;
+    border-radius: 10px;
+    border: 1px solid #30394a;
+    background: #10131a;
+    color: white;
 }
 
 .add {
-    background:#00aaff;
-    color:white;
-    border:0;
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
+    width: 100%;
+    background: #00aaff;
+    color: white;
+    border: 0;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 7px;
 }
 
 .bottom-menu {
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#171c27;
-    display:flex;
-    justify-content:space-around;
-    padding:12px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #171c27;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    z-index: 1000;
 }
 
 .bottom-menu button {
-    background:none;
-    border:0;
-    color:white;
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 13px;
+    min-width: 60px;
 }
 
+.empty {
+    text-align: center;
+    color: #888;
+    padding: 30px 10px;
+}
+
+@media (max-width: 360px) {
+    .shop-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 </style>
 
+</head>
 
-<script type="module">
+<body>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+<header>
 
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<div class="logo">
+FN Tracker
+</div>
 
+<p>Fortnite Companion</p>
 
-const firebaseConfig = {
-
-apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
-
-authDomain: "fn-tracker-7ca77.firebaseapp.com",
-
-projectId: "fn-tracker-7ca77",
-
-storageBucket: "fn-tracker-7ca77.firebasestorage.app",
-
-messagingSenderId: "894926360582",
-
-appId: "1:894926360582:web:446c19751ef653b3fa7387"
-
-};
+</header>
 
 
-const app = initializeApp(firebaseConfig);
+<div id="shop" class="page active">
 
-const db = getFirestore(app);
-
-
-window.db = db;
-window.collection = collection;
-window.addDoc = addDoc;
-window.getDocs = get<div id="shop" class="page active">
+<div class="card">
 
 <h2>🛒 Sklep Fortnite</h2>
 
+<p>Dzisiejsza rotacja</p>
+
+</div>
+
 <div class="shop-grid" id="shopItems">
 
+<div class="empty">
+Ładowanie sklepu...
 </div>
 
 </div>
 
-
+</div>
 
 
 <div id="map" class="page">
@@ -170,26 +200,21 @@ window.getDocs = get<div id="shop" class="page active">
 <h2>🗺️ Mapa Fortnite</h2>
 
 <p>
-Tutaj dodamy:
-<br><br>
-✅ skrzynki
-<br>
-✅ reboot vany
-<br>
-✅ auta
-<br>
-✅ wędki
-<br>
-✅ miejscówki
-<br>
-✅ przybliżanie mapy
+Tutaj stworzymy interaktywną mapę Fortnite.
+</p>
+
+<p>
+📦 Skrzynki<br>
+🔄 Reboot Vany<br>
+🚗 Pojazdy<br>
+🎣 Wędki<br>
+📍 Miejscówki<br>
+🔍 Przybliżanie i oddalanie
 </p>
 
 </div>
 
 </div>
-
-
 
 
 <div id="settings" class="page">
@@ -202,247 +227,353 @@ Tutaj dodamy:
 FN Tracker - Fortnite Companion
 </p>
 
-</div>
+<p>
+Wersja: 1.0
+</p>
 
 </div>
 
-
-
-
-<div id="admin" class="page">
-
-<h2>👑 Panel Admina</h2>
-
+</div><div id="admin" class="page">
 
 <div class="card">
 
+<h2>👑 Panel Admina</h2>
 
-<input id="name" placeholder="Nazwa przedmiotu">
+<p>
+Dodaj przedmiot do sklepu.
+</p>
 
+<input
+id="name"
+type="text"
+placeholder="Nazwa przedmiotu"
+>
 
-<input id="price" placeholder="Cena V-dolców">
+<input
+id="price"
+type="number"
+placeholder="Cena V-dolców"
+>
 
-
-<input id="rarity" placeholder="Rzadkość">
-
-
+<input
+id="rarity"
+type="text"
+placeholder="Rzadkość"
+>
 
 <select id="category">
 
-<option value="Strój">👕 Strój</option>
+<option value="Strój">
+👕 Strój
+</option>
 
-<option value="Kilof">⛏️ Kilof</option>
+<option value="Kilof">
+⛏️ Kilof
+</option>
 
-<option value="Emotka">💃 Emotka</option>
+<option value="Emotka">
+💃 Emotka
+</option>
 
-<option value="Plecak">🎒 Plecak</option>
+<option value="Plecak">
+🎒 Plecak
+</option>
 
-<option value="Lotnia">🪂 Lotnia</option>
+<option value="Lotnia">
+🪂 Lotnia
+</option>
 
 </select>
 
+<input
+id="image"
+type="url"
+placeholder="Link do obrazka"
+>
 
-
-<input id="image" placeholder="Link do obrazka">
-
-
-
-<button class="add" onclick="addItem()">
-
-Dodaj przedmiot
-
+<button
+class="add"
+onclick="addItem()"
+>
+➕ Dodaj przedmiot
 </button>
-
 
 </div>
 
-</div><div class="bottom-menu">
+</div>
 
+
+<div class="bottom-menu">
 
 <button onclick="openPage('shop')">
 🛒<br>
 Sklep
 </button>
 
-
 <button onclick="openPage('map')">
 🗺️<br>
 Mapa
 </button>
-
 
 <button onclick="openPage('settings')">
 ⚙️<br>
 Ustawienia
 </button>
 
-
-<button onclick="openPage('admin')">
+<button
+id="adminButton"
+style="display:none;"
+onclick="openPage('admin')"
+>
 👑<br>
 Admin
 </button>
 
+</div><script type="module">
 
-</div>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+const firebaseConfig = {
 
+    apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
 
-<script>
+    authDomain: "fn-tracker-7ca77.firebaseapp.com",
 
+    projectId: "fn-tracker-7ca77",
 
-function openPage(id){
+    storageBucket: "fn-tracker-7ca77.firebasestorage.app",
 
+    messagingSenderId: "894926360582",
 
-let pages=document.querySelectorAll(".page");
+    appId: "1:894926360582:web:446c19751ef653b3fa7387"
 
+};
 
-pages.forEach(function(page){
 
-page.classList.remove("active");
+const app = initializeApp(firebaseConfig);
 
-});
+const db = getFirestore(app);
 
 
-document.getElementById(id).classList.add("active");
+window.db = db;
 
+window.collection = collection;
 
-}
+window.addDoc = addDoc;
 
+window.getDocs = getDocs;
 
 
+/* ZMIANA ZAKŁADEK */
 
+window.openPage = function(id) {
 
-async function addItem(){
+    const pages = document.querySelectorAll(".page");
 
+    pages.forEach(function(page) {
 
-let name=document.getElementById("name").value;
+        page.classList.remove("active");
 
-let price=document.getElementById("price").value;
+    });
 
-let rarity=document.getElementById("rarity").value;
 
-let category=document.getElementById("category").value;
+    const selectedPage = document.getElementById(id);
 
-let image=document.getElementById("image").value;
+    if (selectedPage) {
 
+        selectedPage.classList.add("active");
 
+    }
 
-if(name==="" || price===""){
+};
 
-alert("Wpisz nazwę i cenę!");
 
-return;
+/* DODAWANIE PRZEDMIOTU */
 
-}
+window.addItem = async function() {
 
+    const name =
+        document.getElementById("name").value.trim();
 
+    const price =
+        document.getElementById("price").value.trim();
 
-await addDoc(collection(db,"shop"),{
+    const rarity =
+        document.getElementById("rarity").value.trim();
 
+    const category =
+        document.getElementById("category").value;
 
-name:name,
+    const image =
+        document.getElementById("image").value.trim();
 
-price:price,
 
-rarity:rarity,
+    if (name === "" || price === "") {
 
-category:category,
+        alert("Wpisz nazwę i cenę!");
 
-image:image
+        return;
 
+    }
 
-});
 
+    try {
 
+        await addDoc(
+            collection(db, "shop"),
+            {
+                name: name,
+                price: price,
+                rarity: rarity || "Brak rzadkości",
+                category: category,
+                image: image
+            }
+        );
 
-alert("Dodano do sklepu!");
 
+        document.getElementById("name").value = "";
 
+        document.getElementById("price").value = "";
 
-loadShop();
+        document.getElementById("rarity").value = "";
 
+        document.getElementById("image").value = "";
 
-}
 
+        alert("✅ Dodano przedmiot!");
 
+        loadShop();
 
 
+    } catch (error) {
 
+        console.error(error);
 
-async function loadShop(){
+        alert("❌ Nie udało się dodać przedmiotu.");
 
+    }
 
-let shop=document.getElementById("shopItems");
+};
 
 
-shop.innerHTML="";
+/* WCZYTYWANIE SKLEPU */
 
+async function loadShop() {
 
-let items=await getDocs(collection(db,"shop"));
+    const shop =
+        document.getElementById("shopItems");
 
 
+    shop.innerHTML =
+        '<div class="empty">Ładowanie sklepu...</div>';
 
-items.forEach(function(doc){
 
+    try {
 
-let data=doc.data();
+        const items =
+            await getDocs(
+                collection(db, "shop")
+            );
 
 
+        shop.innerHTML = "";
 
-shop.innerHTML += `
+
+        if (items.empty) {
+
+            shop.innerHTML =
+                '<div class="empty">Sklep jest pusty.</div>';
+
+            return;
+
+        }
+
+
+        items.forEach(function(doc) {
+
+            const data = doc.data();
+
+
+            const image =
+                data.image ||
+                "https://via.placeholder.com/500x500?text=FN+Tracker";
+
+
+            shop.innerHTML += `
 
 <div class="item">
 
+<img
+src="${image}"
+alt="${data.name || "Przedmiot"}"
+>
 
-<img src="${data.image || 'https://via.placeholder.com/300'}">
-
-
-<h3>${data.name}</h3>
-
+<h3>
+${data.name || "Bez nazwy"}
+</h3>
 
 <p class="category">
-
 ${data.category || "Brak kategorii"}
-
 </p>
 
-
-<p>
-
-${data.rarity}
-
+<p class="rarity">
+${data.rarity || "Brak rzadkości"}
 </p>
-
 
 <div class="price">
-
-${data.price} V-dolców
-
+${data.price || "0"} V-dolców
 </div>
-
 
 </div>
 
 `;
 
+        });
 
 
-});
+    } catch (error) {
 
+        console.error(error);
+
+        shop.innerHTML = `
+<div class="empty">
+❌ Nie można załadować sklepu.
+</div>
+`;
+
+    }
 
 }
 
 
+/* HASŁO ADMINA */
+
+const password =
+    prompt("🔐 Hasło administratora:");
+
+
+if (password === "FNTRACKER2026") {
+
+    document
+        .getElementById("adminButton")
+        .style.display = "block";
+
+}
+
+
+/* URUCHOMIENIE SKLEPU */
 
 loadShop();
 
-
-
 </script>
-
-
 
 </body>
 </html>
