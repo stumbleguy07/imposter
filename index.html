@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,80 +8,75 @@
 
 <title>FN Tracker</title>
 
+
 <style>
 
-* {
+*{
 box-sizing:border-box;
 }
 
-body {
+
+body{
+
 margin:0;
 font-family:Arial,sans-serif;
 background:#0f1219;
 color:white;
 padding-bottom:80px;
+
 }
 
 
-header {
+
+header{
+
 text-align:center;
 background:#171c27;
 padding:20px;
+
 }
 
 
-.logo {
+
+.logo{
+
 font-size:35px;
 font-weight:bold;
 color:#00aaff;
+
 }
 
 
-.page {
+
+.page{
+
 display:none;
 padding:20px;
+
 }
 
 
-.page.active {
+
+.page.active{
+
 display:block;
+
 }
 
 
-.card {
+
+.card{
+
 background:#1c2330;
 padding:20px;
 border-radius:15px;
 margin-bottom:15px;
-}
-
-
-
-.categories {
-
-display:flex;
-gap:8px;
-overflow-x:auto;
-margin-bottom:15px;
 
 }
 
 
 
-.categories button {
-
-background:#252e3d;
-color:white;
-border:0;
-padding:10px;
-border-radius:10px;
-white-space:nowrap;
-
-}
-
-
-
-.shop-grid {
+.shop-grid{
 
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -90,18 +86,18 @@ gap:15px;
 
 
 
-.item {
+.item{
 
 background:#252e3d;
-border-radius:15px;
 padding:10px;
+border-radius:15px;
 text-align:center;
 
 }
 
 
 
-.item img {
+.item img{
 
 width:100%;
 border-radius:12px;
@@ -110,7 +106,7 @@ border-radius:12px;
 
 
 
-.price {
+.price{
 
 color:#00aaff;
 font-weight:bold;
@@ -119,7 +115,7 @@ font-weight:bold;
 
 
 
-.category {
+.category{
 
 color:#aaa;
 
@@ -127,13 +123,13 @@ color:#aaa;
 
 
 
-input, select {
+input,select{
 
 width:100%;
 padding:12px;
 margin:7px 0;
 border-radius:10px;
-border:none;
+border:0;
 background:#10131a;
 color:white;
 
@@ -141,21 +137,21 @@ color:white;
 
 
 
-.add {
+.add{
 
 width:100%;
 padding:12px;
 background:#00aaff;
+color:white;
 border:0;
 border-radius:10px;
-color:white;
 font-weight:bold;
 
 }
 
 
 
-.bottom-menu {
+.bottom-menu{
 
 position:fixed;
 bottom:0;
@@ -170,7 +166,7 @@ padding:10px;
 
 
 
-.bottom-menu button {
+.bottom-menu button{
 
 background:none;
 border:0;
@@ -180,39 +176,29 @@ color:white;
 
 
 
-.empty {
+.map-box{
 
-text-align:center;
-color:#888;
-
-}
-
-
-
-
-.map-box {
-
-width:100%;
 height:500px;
+position:relative;
 overflow:hidden;
 border-radius:15px;
 background:#111;
-position:relative;
 
 }
 
 
 
-.map-box img {
+.map-box img{
 
 width:100%;
-height:auto;
+height:100%;
+object-fit:cover;
 
 }
 
 
 
-.marker {
+.marker{
 
 position:absolute;
 font-size:28px;
@@ -222,38 +208,18 @@ transform:translate(-50%,-50%);
 }
 
 
-.marker:hover {
 
-scale:1.2;
+.empty{
 
-}
-
-
-
-.map-buttons {
-
-display:flex;
-gap:10px;
-margin-top:15px;
-
-}
-
-
-
-.map-buttons button {
-
-flex:1;
-padding:10px;
-border:0;
-border-radius:10px;
-background:#00aaff;
-color:white;
+text-align:center;
+color:#888;
 
 }
 
 
 
 </style>
+
 
 </head>
 
@@ -285,37 +251,6 @@ FN Tracker
 Dzisiejsza rotacja
 </h3>
 
-</div>
-
-
-
-<div class="categories">
-
-
-<button onclick="filterShop('Wszystko')">
-🔥 Wszystko
-</button>
-
-
-<button onclick="filterShop('Strój')">
-👕 Stroje
-</button>
-
-
-<button onclick="filterShop('Kilof')">
-⛏️ Kilofy
-</button>
-
-
-<button onclick="filterShop('Emotka')">
-💃 Emotki
-</button>
-
-
-<button onclick="filterShop('Plecak')">
-🎒 Plecaki
-</button>
-
 
 </div>
 
@@ -325,14 +260,18 @@ Dzisiejsza rotacja
 
 
 <div class="empty">
+
 Ładowanie...
-</div>
-
 
 </div>
 
 
 </div>
+
+
+</div>
+
+
 
 
 
@@ -346,62 +285,111 @@ Dzisiejsza rotacja
 <h2>🗺️ Mapa Fortnite</h2>
 
 
-<div class="map-box" id="mapBox">
+
+<div class="map-box">
 
 
-<img 
-id="fortniteMap"
-src="https://via.placeholder.com/1200x800?text=Fortnite+Map"
->
+<img src="https://via.placeholder.com/1200x800?text=Fortnite+Map">
+
 
 
 <div class="marker"
 style="left:30%;top:40%;"
 onclick="showMarker('📦 Skrzynka')">
+
 📦
+
 </div>
+
 
 
 <div class="marker"
 style="left:60%;top:55%;"
 onclick="showMarker('🔄 Reboot Van')">
+
 🔄
+
 </div>
+
 
 
 <div class="marker"
 style="left:45%;top:70%;"
 onclick="showMarker('🚗 Pojazd')">
+
 🚗
+
 </div>
+
 
 
 <div class="marker"
 style="left:75%;top:30%;"
-onclick="<div id="settings" class="page">
+onclick="showMarker('🎣 Wędka')">
+
+🎣
+
+</div>
+
+
+
+<div class="marker"
+style="left:50%;top:50%;"
+onclick="showMarker('📍 Miejscówka')">
+
+📍
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="card" id="markerInfo">
+
+Kliknij marker
+
+</div>
+
+
+</div>
+
+
+</div><div id="settings" class="page">
+
 
 <div class="card">
 
+
 <h2>⚙️ Ustawienia</h2>
+
 
 <p>
 FN Tracker - Fortnite Companion
 </p>
 
+
 <p>
-Wersja: 1.1
+Wersja: 1.2
 </p>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 
 
 
 <div id="admin" class="page">
 
+
 <div class="card">
+
 
 <h2>👑 Panel Admina</h2>
 
@@ -409,93 +397,85 @@ Wersja: 1.1
 <input id="name" placeholder="Nazwa przedmiotu">
 
 
+
 <input id="price" placeholder="Cena V-dolców">
+
 
 
 <input id="rarity" placeholder="Rzadkość">
 
 
+
 <select id="category">
+
 
 <option value="Strój">
 👕 Strój
 </option>
 
+
 <option value="Kilof">
 ⛏️ Kilof
 </option>
+
 
 <option value="Emotka">
 💃 Emotka
 </option>
 
+
 <option value="Plecak">
 🎒 Plecak
 </option>
+
 
 <option value="Lotnia">
 🪂 Lotnia
 </option>
 
+
 </select>
+
+
 
 
 <input id="image" placeholder="Link do obrazka">
 
 
+
 <input id="date" placeholder="Data sklepu np. 07.08.2026">
 
 
+
 <button class="add" onclick="addItem()">
+
 ➕ Dodaj przedmiot
+
 </button>
 
 
+
 </div>
+
 
 
 <div class="card">
 
-<h2>📍 Dodaj marker mapy</h2>
+
+<h2>📍 Markery</h2>
 
 
-<input id="markerName" placeholder="Nazwa miejsca">
-
-
-<select id="markerType">
-
-<option value="📦">
-📦 Skrzynka
-</option>
-
-<option value="🔄">
-🔄 Reboot Van
-</option>
-
-<option value="🚗">
-🚗 Pojazd
-</option>
-
-<option value="🎣">
-🎣 Wędka
-</option>
-
-<option value="📍">
-📍 Miejscówka
-</option>
-
-</select>
-
-
-<button class="add">
-➕ Dodaj marker
-</button>
+<p>
+Tutaj później dodamy dodawanie własnych markerów.
+</p>
 
 
 </div>
 
 
+
 </div>
+
 
 
 
@@ -531,10 +511,7 @@ Ustawienia
 
 
 
-<button 
-id="adminButton"
-style="display:none"
-onclick="openPage('admin')">
+<button id="adminButton" style="display:none" onclick="openPage('admin')">
 
 👑<br>
 Admin
@@ -542,22 +519,38 @@ Admin
 </button>
 
 
-</div><script type="module">
+
+</div><
+        
+</body>
+  
+</html>
+<script type="module">
+
 
 import { initializeApp } 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
 import {
+
 getFirestore,
+
 collection,
+
 addDoc,
+
 getDocs
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
+
 const firebaseConfig = {
+
 
 apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
 
@@ -571,19 +564,16 @@ messagingSenderId: "894926360582",
 
 appId: "1:894926360582:web:446c19751ef653b3fa7387"
 
+
 };
+
 
 
 
 const app = initializeApp(firebaseConfig);
 
+
 const db = getFirestore(app);
-
-
-
-let allItems = [];
-
-let selectedCategory = "Wszystko";
 
 
 
@@ -591,7 +581,8 @@ let selectedCategory = "Wszystko";
 
 window.openPage = function(id){
 
-let pages=document.querySelectorAll(".page");
+
+let pages = document.querySelectorAll(".page");
 
 
 pages.forEach(page=>{
@@ -603,7 +594,10 @@ page.classList.remove("active");
 
 document.getElementById(id).classList.add("active");
 
+
 };
+
+
 
 
 
@@ -611,22 +605,14 @@ document.getElementById(id).classList.add("active");
 
 window.showMarker = function(text){
 
+
 document.getElementById("markerInfo").innerHTML =
+
 "📍 " + text;
 
-};
-
-
-
-
-
-window.filterShop = function(category){
-
-selectedCategory = category;
-
-showShop();
 
 };
+
 
 
 
@@ -636,55 +622,63 @@ showShop();
 window.addItem = async function(){
 
 
+
 let item = {
 
-name:
-document.getElementById("name").value,
+
+name: document.getElementById("name").value,
 
 
-price:
-document.getElementById("price").value,
+price: document.getElementById("price").value,
 
 
-rarity:
-document.getElementById("rarity").value,
+rarity: document.getElementById("rarity").value,
 
 
-category:
-document.getElementById("category").value,
+category: document.getElementById("category").value,
 
 
-image:
-document.getElementById("image").value,
+image: document.getElementById("image").value,
 
 
-date:
-document.getElementById("date").value
+date: document.getElementById("date").value
+
 
 };
 
 
 
+
 if(item.name==="" || item.price===""){
+
 
 alert("Wpisz nazwę i cenę!");
 
+
 return;
+
 
 }
 
 
 
+
 await addDoc(
+
 collection(db,"shop"),
+
 item
+
 );
 
 
 
-alert("Dodano do sklepu!");
+alert("✅ Dodano do sklepu!");
+
+
 
 loadShop();
+
 
 };
 
@@ -697,30 +691,118 @@ loadShop();
 async function loadShop(){
 
 
-let data =
-await getDocs(collection(db,"shop"));
+let shop = document.getElementById("shopItems");
 
 
-allItems=[];
+shop.innerHTML="";
 
 
-data.forEach(doc=>{
 
-allItems.push(doc.data());
+let items = await getDocs(
+
+collection(db,"shop")
+
+);
+
+
+
+
+let today = new Date().toLocaleDateString("pl-PL");
+
+
+
+let found=false;
+
+
+
+items.forEach(doc=>{
+
+
+let data = doc.data();
+
+
+
+
+if(data.date===today || data.date===""){
+
+
+found=true;
+
+
+
+shop.innerHTML += `
+
+
+<div class="item">
+
+
+<img src="${data.image || 'https://via.placeholder.com/300'}">
+
+
+
+<h3>
+
+${data.name}
+
+</h3>
+
+
+
+<p class="category">
+
+${data.category}
+
+</p>
+
+
+
+<p>
+
+${data.rarity}
+
+</p>
+
+
+
+<div class="price">
+
+${data.price} V-dolców
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
 
 });
 
 
-showShop();
-
-
-
-let today =
-new Date().toLocaleDateString("pl-PL");
 
 
 document.getElementById("shopDate").innerHTML =
+
 "🗓️ Sklep: " + today;
+
+
+
+if(!found){
+
+
+shop.innerHTML =
+
+'<div class="empty">Brak przedmiotów na dziś</div>';
+
+
+}
+
 
 
 }
@@ -731,33 +813,31 @@ document.getElementById("shopDate").innerHTML =
 
 
 
-
-function showShop(){
-
-
-let shop =
-document.getElementById("shopItems");
-
-
-shop.innerHTML="";
+const password = prompt("🔐 Hasło administratora:");
 
 
 
-let today =
-new Date().toLocaleDateString("pl-PL");
+if(password==="FNTRACKER2026"){
 
 
-let found=false;
+document.getElementById("adminButton").style.display="block";
 
 
-
-allItems.forEach(item=>{
-
-
-
-if(item.date===today || item.date===""){
+}
 
 
 
-if(
-selectedCategory
+
+
+
+
+loadShop();
+
+
+
+</script>
+
+
+</body>
+
+</html>
