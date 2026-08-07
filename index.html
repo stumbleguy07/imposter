@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FN Tracker</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0f19;
+            color: white;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: #111827;
+            border-bottom: 1px solid #273244;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            color: #9ca3af;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .search {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #374151;
+            background: #111827;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #273244;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            background: #0b0f19;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .stat span {
+            display: block;
+            color: #9ca3af;
+            margin-bottom: 5px;
+        }
+
+        .stat strong {
+            font-size: 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>FN Tracker</h1>
+    <p>Sprawdź statystyki gracza Fortnite</p>
+</header>
+
+<div class="container">
+
+    <div class="search">
+        <input id="username" type="text" placeholder="Wpisz nick Fortnite...">
+        <button onclick="searchPlayer()">Szukaj</button>
+    </div>
+
+    <div class="card">
+        <h2 id="playerName">Przykładowy gracz</h2>
+
+        <div class="stats">
+            <div class="stat">
+                <span>Rozegrane mecze</span>
+                <strong>0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Zwycięstwa</span>
+                <strong>0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Zabójstwa</span>
+                <strong>0</strong>
+            </div>
+
+            <div class="stat">
+                <span>K/D</span>
+                <strong>0.00</strong>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    FN Tracker © 2026
+</footer>
+
+<script>
+    function searchPlayer() {
+        const username = document.getElementById("username").value;
+
+        if (username.trim() === "") {
+            alert("Wpisz nick gracza!");
+            return;
+        }
+
+        document.getElementById("playerName").textContent = username;
+    }
+</script>
+
+</body>
+</html>
