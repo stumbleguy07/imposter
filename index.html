@@ -28,18 +28,15 @@ header {
     color:#00aaff;
 }
 
-
 .page {
     display:none;
     padding:20px;
     padding-bottom:90px;
 }
 
-
 .page.active {
     display:block;
 }
-
 
 .card {
     background:#1c2330;
@@ -48,121 +45,84 @@ header {
     margin-bottom:15px;
 }
 
-
-
 .shop-grid {
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
 }
-
-
 
 .item {
-
-background:#252e3d;
-border-radius:15px;
-padding:10px;
-text-align:center;
-
+    background:#252e3d;
+    border-radius:15px;
+    padding:10px;
+    text-align:center;
 }
-
-
 
 .item img {
-
-width:100%;
-border-radius:12px;
-
+    width:100%;
+    border-radius:12px;
 }
-
-
 
 .price {
-
-color:#00aaff;
-font-weight:bold;
-
+    color:#00aaff;
+    font-weight:bold;
 }
-
-
 
 .category {
-
-font-size:13px;
-color:#aaa;
-
+    color:#aaa;
+    font-size:14px;
 }
-
-
 
 input, select {
-
-width:90%;
-padding:12px;
-margin:8px;
-border-radius:10px;
-border:none;
-background:#10131a;
-color:white;
-
+    width:90%;
+    padding:12px;
+    margin:8px;
+    border-radius:10px;
+    border:none;
+    background:#10131a;
+    color:white;
 }
-
-
 
 .add {
-
-background:#00aaff;
-color:white;
-border:0;
-padding:12px;
-border-radius:10px;
-font-weight:bold;
-
+    background:#00aaff;
+    color:white;
+    border:0;
+    padding:12px;
+    border-radius:10px;
+    font-weight:bold;
 }
-
-
 
 .bottom-menu {
-
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#171c27;
-display:flex;
-justify-content:space-around;
-padding:12px 0;
-
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#171c27;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
 }
-
-
 
 .bottom-menu button {
-
-background:none;
-border:0;
-color:white;
-
+    background:none;
+    border:0;
+    color:white;
 }
 
-</style>
 
+</style>
 
 
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { 
+import {
 getFirestore,
 collection,
 addDoc,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 
 const firebaseConfig = {
@@ -182,35 +142,15 @@ appId: "1:894926360582:web:446c19751ef653b3fa7387"
 };
 
 
-
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
 
-window.db=db;
-window.collection=collection;
-window.addDoc=addDoc;
-window.getDocs=getDocs;
-
-
-</script>
-
-</head>
-
-
-<body>
-
-
-<header>
-
-<div class="logo">
-FN Tracker
-</div>
-
-<p>Fortnite Companion</p>
-
-</header><div id="shop" class="page active">
+window.db = db;
+window.collection = collection;
+window.addDoc = addDoc;
+window.getDocs = get<div id="shop" class="page active">
 
 <h2>🛒 Sklep Fortnite</h2>
 
@@ -242,7 +182,7 @@ Tutaj dodamy:
 <br>
 ✅ miejscówki
 <br>
-✅ zoom mapy
+✅ przybliżanie mapy
 </p>
 
 </div>
@@ -286,6 +226,7 @@ FN Tracker - Fortnite Companion
 <input id="rarity" placeholder="Rzadkość">
 
 
+
 <select id="category">
 
 <option value="Strój">👕 Strój</option>
@@ -301,25 +242,21 @@ FN Tracker - Fortnite Companion
 </select>
 
 
+
 <input id="image" placeholder="Link do obrazka">
+
 
 
 <button class="add" onclick="addItem()">
 
-Dodaj do sklepu
+Dodaj przedmiot
 
 </button>
 
 
 </div>
 
-</div>
-
-
-
-
-
-<div class="bottom-menu">
+</div><div class="bottom-menu">
 
 
 <button onclick="openPage('shop')">
@@ -328,4 +265,184 @@ Sklep
 </button>
 
 
-<button onclick="openPage('
+<button onclick="openPage('map')">
+🗺️<br>
+Mapa
+</button>
+
+
+<button onclick="openPage('settings')">
+⚙️<br>
+Ustawienia
+</button>
+
+
+<button onclick="openPage('admin')">
+👑<br>
+Admin
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function openPage(id){
+
+
+let pages=document.querySelectorAll(".page");
+
+
+pages.forEach(function(page){
+
+page.classList.remove("active");
+
+});
+
+
+document.getElementById(id).classList.add("active");
+
+
+}
+
+
+
+
+
+async function addItem(){
+
+
+let name=document.getElementById("name").value;
+
+let price=document.getElementById("price").value;
+
+let rarity=document.getElementById("rarity").value;
+
+let category=document.getElementById("category").value;
+
+let image=document.getElementById("image").value;
+
+
+
+if(name==="" || price===""){
+
+alert("Wpisz nazwę i cenę!");
+
+return;
+
+}
+
+
+
+await addDoc(collection(db,"shop"),{
+
+
+name:name,
+
+price:price,
+
+rarity:rarity,
+
+category:category,
+
+image:image
+
+
+});
+
+
+
+alert("Dodano do sklepu!");
+
+
+
+loadShop();
+
+
+}
+
+
+
+
+
+
+async function loadShop(){
+
+
+let shop=document.getElementById("shopItems");
+
+
+shop.innerHTML="";
+
+
+let items=await getDocs(collection(db,"shop"));
+
+
+
+items.forEach(function(doc){
+
+
+let data=doc.data();
+
+
+
+shop.innerHTML += `
+
+<div class="item">
+
+
+<img src="${data.image || 'https://via.placeholder.com/300'}">
+
+
+<h3>${data.name}</h3>
+
+
+<p class="category">
+
+${data.category || "Brak kategorii"}
+
+</p>
+
+
+<p>
+
+${data.rarity}
+
+</p>
+
+
+<div class="price">
+
+${data.price} V-dolców
+
+</div>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+}
+
+
+
+loadShop();
+
+
+
+</script>
+
+
+
+</body>
+</html>
