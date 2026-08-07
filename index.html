@@ -119,7 +119,26 @@ input {
 
 
 </style>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
+  authDomain: "fn-tracker-7ca77.firebaseapp.com",
+  projectId: "fn-tracker-7ca77",
+  storageBucket: "fn-tracker-7ca77.firebasestorage.app",
+  messagingSenderId: "894926360582",
+  appId: "1:894926360582:web:446c19751ef653b3fa7387"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+</script>
 </head>
 
 
