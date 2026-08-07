@@ -1,174 +1,129 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FN Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>FN Tracker</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b0f19;
-            color: white;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #10131a;
+    color: white;
+}
 
-        header {
-            padding: 20px;
-            text-align: center;
-            background: #111827;
-            border-bottom: 1px solid #273244;
-        }
+header {
+    text-align: center;
+    padding: 20px;
+    background: #181d28;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
+.logo {
+    font-size: 35px;
+    font-weight: bold;
+    color: #00aaff;
+}
 
-        header p {
-            color: #9ca3af;
-        }
+.page {
+    display: none;
+    padding: 20px;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+.active {
+    display: block;
+}
 
-        .search {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
+.card {
+    background: #1c2330;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
 
-        input {
-            flex: 1;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #374151;
-            background: #111827;
-            color: white;
-            font-size: 16px;
-        }
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #181d28;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+}
 
-        button {
-            padding: 15px 22px;
-            border: none;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.bottom-menu button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        .card {
-            background: #111827;
-            border: 1px solid #273244;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .card h2 {
-            margin-top: 0;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .stat {
-            background: #0b0f19;
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .stat span {
-            display: block;
-            color: #9ca3af;
-            margin-bottom: 5px;
-        }
-
-        .stat strong {
-            font-size: 24px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #6b7280;
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>FN Tracker</h1>
-    <p>Sprawdź statystyki gracza Fortnite</p>
+<div class="logo">FN Tracker</div>
+<p>Fortnite Companion</p>
 </header>
 
-<div class="container">
 
-    <div class="search">
-        <input id="username" type="text" placeholder="Wpisz nick Fortnite...">
-        <button onclick="searchPlayer()">Szukaj</button>
-    </div>
-
-    <div class="card">
-        <h2 id="playerName">Przykładowy gracz</h2>
-
-        <div class="stats">
-            <div class="stat">
-                <span>Rozegrane mecze</span>
-                <strong>0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Zwycięstwa</span>
-                <strong>0</strong>
-            </div>
-
-            <div class="stat">
-                <span>Zabójstwa</span>
-                <strong>0</strong>
-            </div>
-
-            <div class="stat">
-                <span>K/D</span>
-                <strong>0.00</strong>
-            </div>
-        </div>
-    </div>
-
+<div id="shop" class="page active">
+<div class="card">
+<h2>🛒 Sklep Fortnite</h2>
+<p>Tu będzie codzienna rotacja sklepu.</p>
+</div>
 </div>
 
-<footer>
-    FN Tracker © 2026
-</footer>
+
+<div id="map" class="page">
+<div class="card">
+<h2>🗺️ Mapa Fortnite</h2>
+<p>Tu dodamy interaktywną mapę.</p>
+</div>
+</div>
+
+
+<div id="settings" class="page">
+<div class="card">
+<h2>⚙️ Ustawienia</h2>
+<p>Opcje aplikacji.</p>
+</div>
+</div>
+
+
+<div id="admin" class="page">
+<div class="card">
+<h2>👑 Panel Admina</h2>
+<p>Tylko dla właściciela.</p>
+</div>
+</div>
+
+
+<div class="bottom-menu">
+<button onclick="openPage('shop')">🛒<br>Sklep</button>
+<button onclick="openPage('map')">🗺️<br>Mapa</button>
+<button onclick="openPage('settings')">⚙️<br>Ustawienia</button>
+<button onclick="openPage('admin')">👑<br>Admin</button>
+</div>
+
 
 <script>
-    function searchPlayer() {
-        const username = document.getElementById("username").value;
+function openPage(page) {
 
-        if (username.trim() === "") {
-            alert("Wpisz nick gracza!");
-            return;
-        }
+let pages = document.querySelectorAll(".page");
 
-        document.getElementById("playerName").textContent = username;
-    }
+pages.forEach(p => {
+p.classList.remove("active");
+});
+
+document.getElementById(page).classList.add("active");
+
+}
 </script>
+
 
 </body>
 </html>
