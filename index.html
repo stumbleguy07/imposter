@@ -121,6 +121,42 @@ p.classList.remove("active");
 
 document.getElementById(page).classList.add("active");
 
+function addItem(){
+
+let name = document.getElementById("itemName").value;
+let price = document.getElementById("itemPrice").value;
+let rarity = document.getElementById("itemRarity").value;
+
+
+if(name === "" || price === ""){
+    alert("Uzupełnij dane!");
+    return;
+}
+
+
+let shop = document.querySelector(".shop-grid");
+
+
+let item = document.createElement("div");
+
+item.className = "item-card";
+
+item.innerHTML = `
+<img src="https://via.placeholder.com/300">
+<h3>${name}</h3>
+<p>${rarity}</p>
+<strong>${price} V-dolców</strong>
+`;
+
+
+shop.appendChild(item);
+
+
+document.getElementById("itemName").value="";
+document.getElementById("itemPrice").value="";
+document.getElementById("itemRarity").value="";
+
+alert("Dodano do sklepu!");
 }
 </script>
 
