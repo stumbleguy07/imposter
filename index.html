@@ -12,15 +12,17 @@
 body {
     margin:0;
     font-family:Arial,sans-serif;
-    background:#0b0e14;
+    background:#0f1219;
     color:white;
 }
 
+
 header {
     text-align:center;
-    background:#151a25;
+    background:#171c27;
     padding:20px;
 }
+
 
 .logo {
     font-size:35px;
@@ -36,18 +38,17 @@ header {
 }
 
 
-.active {
+.page.active {
     display:block;
 }
 
 
 .card {
     background:#1c2330;
-    border-radius:20px;
     padding:20px;
-    margin-bottom:20px;
+    border-radius:15px;
+    margin-bottom:15px;
 }
-
 
 
 .shop-grid {
@@ -67,7 +68,7 @@ header {
 
 .item img {
     width:100%;
-    border-radius:12px;
+    border-radius:10px;
 }
 
 
@@ -75,7 +76,6 @@ header {
     color:#00aaff;
     font-weight:bold;
 }
-
 
 
 input {
@@ -92,35 +92,29 @@ input {
 .add {
     background:#00aaff;
     color:white;
+    border:0;
     padding:12px;
-    border:none;
     border-radius:10px;
     font-weight:bold;
 }
 
 
-
 .bottom-menu {
-
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#151a25;
-display:flex;
-justify-content:space-around;
-padding:12px 0;
-
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#171c27;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
 }
 
 
 .bottom-menu button {
-
-background:none;
-border:none;
-color:white;
-font-size:14px;
-
+    background:none;
+    border:0;
+    color:white;
 }
 
 
@@ -144,20 +138,17 @@ FN Tracker
 
 
 
-<!-- SKLEP -->
-
 <div id="shop" class="page active">
 
 <h2>🛒 Sklep Fortnite</h2>
 
 <div class="shop-grid">
 
-
 <div class="item">
 
 <img src="https://via.placeholder.com/300">
 
-<h3>Skin przykładowy</h3>
+<h3>Skin testowy</h3>
 
 <p>Legendarny</p>
 
@@ -167,15 +158,12 @@ FN Tracker
 
 </div>
 
-
 </div>
 
 </div>
 
 
 
-
-<!-- MAPA -->
 
 <div id="map" class="page">
 
@@ -196,7 +184,7 @@ Tutaj dodamy:
 <br>
 ✅ miejscówki
 <br>
-✅ przybliżanie mapy
+✅ zoom mapy
 </p>
 
 </div>
@@ -204,9 +192,6 @@ Tutaj dodamy:
 </div>
 
 
-
-
-<!-- USTAWIENIA -->
 
 
 <div id="settings" class="page">
@@ -216,7 +201,7 @@ Tutaj dodamy:
 <h2>⚙️ Ustawienia</h2>
 
 <p>
-Tryb aplikacji i ustawienia FN Tracker.
+Ustawienia FN Tracker.
 </p>
 
 </div>
@@ -224,9 +209,6 @@ Tryb aplikacji i ustawienia FN Tracker.
 </div>
 
 
-
-
-<!-- ADMIN -->
 
 
 <div id="admin" class="page">
@@ -240,22 +222,18 @@ Tryb aplikacji i ustawienia FN Tracker.
 <input id="name" placeholder="Nazwa przedmiotu">
 
 
-<input id="price" placeholder="Cena">
+<input id="price" placeholder="Cena V-dolców">
 
 
 <input id="rarity" placeholder="Rzadkość">
 
 
-
 <button class="add" onclick="addItem()">
-
-Dodaj do sklepu
-
+Dodaj przedmiot
 </button>
 
 
 </div>
-
 
 </div>
 
@@ -265,33 +243,27 @@ Dodaj do sklepu
 
 <div class="bottom-menu">
 
-
 <button onclick="openPage('shop')">
-🛒<br>
-Sklep
+🛒<br>Sklep
 </button>
 
 
 <button onclick="openPage('map')">
-🗺️<br>
-Mapa
+🗺️<br>Mapa
 </button>
 
 
 <button onclick="openPage('settings')">
-⚙️<br>
-Ustawienia
+⚙️<br>Ustawienia
 </button>
 
 
 <button onclick="openPage('admin')">
-👑<br>
-Admin
+👑<br>Admin
 </button>
 
 
 </div>
-
 
 
 
@@ -301,11 +273,9 @@ Admin
 
 function openPage(id){
 
-
 let pages=document.querySelectorAll(".page");
 
-
-pages.forEach(page=>{
+pages.forEach(function(page){
 
 page.classList.remove("active");
 
@@ -314,14 +284,11 @@ page.classList.remove("active");
 
 document.getElementById(id).classList.add("active");
 
-
 }
 
 
 
-
 function addItem(){
-
 
 let name=document.getElementById("name").value;
 
@@ -330,22 +297,16 @@ let price=document.getElementById("price").value;
 let rarity=document.getElementById("rarity").value;
 
 
-
 if(name==="" || price===""){
 
-alert("Wpisz nazwę i cenę!");
+alert("Wpisz nazwę i cenę");
 
 return;
 
 }
 
 
-
-let shop=document.querySelector(".shop-grid");
-
-
-
-shop.innerHTML += `
+document.querySelector(".shop-grid").innerHTML += `
 
 <div class="item">
 
@@ -356,18 +317,15 @@ shop.innerHTML += `
 <p>${rarity}</p>
 
 <div class="price">
-
 ${price} V-dolców
-
 </div>
 
 </div>
 
 `;
 
+alert("Dodano do sklepu");
 
-
-alert("Dodano!");
 
 }
 
