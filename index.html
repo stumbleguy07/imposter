@@ -7,62 +7,119 @@
 <title>FN Tracker</title>
 
 <style>
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #10131a;
-    color: white;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#10131a;
+    color:white;
 }
 
 header {
-    text-align: center;
-    padding: 20px;
-    background: #181d28;
+    text-align:center;
+    padding:20px;
+    background:#181d28;
 }
 
 .logo {
-    font-size: 35px;
-    font-weight: bold;
-    color: #00aaff;
+    font-size:35px;
+    font-weight:bold;
+    color:#00aaff;
 }
 
 .page {
-    display: none;
-    padding: 20px;
+    display:none;
+    padding:20px;
+    padding-bottom:80px;
 }
 
 .active {
-    display: block;
+    display:block;
 }
 
 .card {
-    background: #1c2330;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 15px;
+    background:#1c2330;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
 }
+
+
+.shop-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+
+.item-card {
+    background:#252e3d;
+    border-radius:15px;
+    padding:10px;
+    text-align:center;
+}
+
+
+.item-card img {
+    width:100%;
+    border-radius:12px;
+}
+
+
+.item-card strong {
+    color:#00aaff;
+}
+
+
+input {
+    width:90%;
+    padding:12px;
+    margin:8px;
+    border-radius:10px;
+    border:none;
+    background:#10131a;
+    color:white;
+}
+
+
+button {
+    padding:12px;
+    border-radius:10px;
+    border:none;
+}
+
+
+.add {
+    background:#00aaff;
+    color:white;
+    font-weight:bold;
+}
+
 
 .bottom-menu {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #181d28;
-    display: flex;
-    justify-content: space-around;
-    padding: 12px 0;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#181d28;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
 }
+
 
 .bottom-menu button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 14px;
+    background:none;
+    color:white;
 }
 
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 <div class="logo">FN Tracker</div>
@@ -70,94 +127,171 @@ header {
 </header>
 
 
+
 <div id="shop" class="page active">
-<div class="card">
+
 <h2>🛒 Sklep Fortnite</h2>
-<p>Tu będzie codzienna rotacja sklepu.</p>
+
+<div class="shop-grid">
+
+<div class="item-card">
+<img src="https://via.placeholder.com/300">
+<h3>Przykładowy Skin</h3>
+<p>Legendarny</p>
+<strong>1500 V-dolców</strong>
 </div>
+
 </div>
+
+</div>
+
+
 
 
 <div id="map" class="page">
+
 <div class="card">
+
 <h2>🗺️ Mapa Fortnite</h2>
-<p>Tu dodamy interaktywną mapę.</p>
+
+<p>
+Interaktywna mapa będzie tutaj.
+Dodamy skrzynki, reboot vany, auta, wędki i miejscówki.
+</p>
+
 </div>
+
 </div>
+
+
 
 
 <div id="settings" class="page">
+
 <div class="card">
+
 <h2>⚙️ Ustawienia</h2>
-<p>Opcje aplikacji.</p>
+
+<p>Ustawienia aplikacji FN Tracker.</p>
+
 </div>
+
 </div>
+
+
 
 
 <div id="admin" class="page">
-<div class="card">
+
 <h2>👑 Panel Admina</h2>
-<p>Tylko dla właściciela.</p>
+
+
+<div class="card">
+
+<input id="itemName" placeholder="Nazwa przedmiotu">
+
+<input id="itemPrice" placeholder="Cena V-dolców">
+
+<input id="itemRarity" placeholder="Rzadkość">
+
+
+<button class="add" onclick="addItem()">
+Dodaj do sklepu
+</button>
+
+
 </div>
+
+
 </div>
+
+
+
 
 
 <div class="bottom-menu">
-<button onclick="openPage('shop')">🛒<br>Sklep</button>
-<button onclick="openPage('map')">🗺️<br>Mapa</button>
-<button onclick="openPage('settings')">⚙️<br>Ustawienia</button>
-<button onclick="openPage('admin')">👑<br>Admin</button>
+
+<button onclick="openPage('shop')">
+🛒<br>Sklep
+</button>
+
+<button onclick="openPage('map')">
+🗺️<br>Mapa
+</button>
+
+<button onclick="openPage('settings')">
+⚙️<br>Ustawienia
+</button>
+
+<button onclick="openPage('admin')">
+👑<br>Admin
+</button>
+
 </div>
 
 
+
+
 <script>
-function openPage(page) {
 
-let pages = document.querySelectorAll(".page");
 
-pages.forEach(p => {
+function openPage(page){
+
+let pages=document.querySelectorAll(".page");
+
+pages.forEach(p=>{
 p.classList.remove("active");
 });
 
 document.getElementById(page).classList.add("active");
 
-function addItem(){
-
-let name = document.getElementById("itemName").value;
-let price = document.getElementById("itemPrice").value;
-let rarity = document.getElementById("itemRarity").value;
-
-
-if(name === "" || price === ""){
-    alert("Uzupełnij dane!");
-    return;
 }
 
 
-let shop = document.querySelector(".shop-grid");
+
+function addItem(){
+
+let name=document.getElementById("itemName").value;
+let price=document.getElementById("itemPrice").value;
+let rarity=document.getElementById("itemRarity").value;
 
 
-let item = document.createElement("div");
+if(name=="" || price==""){
+alert("Uzupełnij dane!");
+return;
+}
 
-item.className = "item-card";
 
-item.innerHTML = `
+let shop=document.querySelector(".shop-grid");
+
+
+let item=document.createElement("div");
+
+item.className="item-card";
+
+
+item.innerHTML=`
+
 <img src="https://via.placeholder.com/300">
+
 <h3>${name}</h3>
+
 <p>${rarity}</p>
+
 <strong>${price} V-dolców</strong>
+
 `;
 
 
 shop.appendChild(item);
 
 
-document.getElementById("itemName").value="";
-document.getElementById("itemPrice").value="";
-document.getElementById("itemRarity").value="";
+alert("Dodano przedmiot!");
 
-alert("Dodano do sklepu!");
 }
+
+
+
 </script>
 
 
