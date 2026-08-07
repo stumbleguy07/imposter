@@ -10,156 +10,256 @@
 <style>
 
 * {
-    box-sizing: border-box;
+box-sizing:border-box;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f1219;
-    color: white;
-    padding-bottom: 75px;
+margin:0;
+font-family:Arial,sans-serif;
+background:#0f1219;
+color:white;
+padding-bottom:80px;
 }
+
 
 header {
-    text-align: center;
-    background: #171c27;
-    padding: 20px;
+text-align:center;
+background:#171c27;
+padding:20px;
 }
+
 
 .logo {
-    font-size: 35px;
-    font-weight: bold;
-    color: #00aaff;
+font-size:35px;
+font-weight:bold;
+color:#00aaff;
 }
 
-header p {
-    margin-bottom: 0;
-    color: #aaa;
-}
 
 .page {
-    display: none;
-    padding: 20px;
+display:none;
+padding:20px;
 }
+
 
 .page.active {
-    display: block;
+display:block;
 }
+
 
 .card {
-    background: #1c2330;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
+background:#1c2330;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
 }
+
+
+
+.categories {
+
+display:flex;
+gap:8px;
+overflow-x:auto;
+margin-bottom:15px;
+
+}
+
+
+
+.categories button {
+
+background:#252e3d;
+color:white;
+border:0;
+padding:10px;
+border-radius:10px;
+white-space:nowrap;
+
+}
+
+
 
 .shop-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+
 }
+
+
 
 .item {
-    background: #252e3d;
-    border-radius: 15px;
-    padding: 10px;
-    text-align: center;
-    overflow: hidden;
+
+background:#252e3d;
+border-radius:15px;
+padding:10px;
+text-align:center;
+
 }
+
+
 
 .item img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 12px;
-    background: #151a23;
+
+width:100%;
+border-radius:12px;
+
 }
 
-.item h3 {
-    margin: 10px 0 5px;
-    font-size: 17px;
-}
 
-.item p {
-    margin: 5px 0;
-}
-
-.category {
-    color: #aaa;
-    font-size: 13px;
-}
-
-.rarity {
-    color: #ddd;
-    font-size: 13px;
-}
 
 .price {
-    color: #00aaff;
-    font-weight: bold;
-    margin-top: 8px;
+
+color:#00aaff;
+font-weight:bold;
+
 }
 
-input,
-select {
-    width: 100%;
-    padding: 13px;
-    margin: 7px 0;
-    border-radius: 10px;
-    border: 1px solid #30394a;
-    background: #10131a;
-    color: white;
+
+
+.category {
+
+color:#aaa;
+
 }
+
+
+
+input, select {
+
+width:100%;
+padding:12px;
+margin:7px 0;
+border-radius:10px;
+border:none;
+background:#10131a;
+color:white;
+
+}
+
+
 
 .add {
-    width: 100%;
-    background: #00aaff;
-    color: white;
-    border: 0;
-    padding: 13px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 7px;
+
+width:100%;
+padding:12px;
+background:#00aaff;
+border:0;
+border-radius:10px;
+color:white;
+font-weight:bold;
+
 }
+
+
 
 .bottom-menu {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #171c27;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    z-index: 1000;
+
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#171c27;
+display:flex;
+justify-content:space-around;
+padding:10px;
+
 }
+
+
 
 .bottom-menu button {
-    background: none;
-    border: 0;
-    color: white;
-    font-size: 13px;
-    min-width: 60px;
+
+background:none;
+border:0;
+color:white;
+
 }
+
+
 
 .empty {
-    text-align: center;
-    color: #888;
-    padding: 30px 10px;
+
+text-align:center;
+color:#888;
+
 }
 
-@media (max-width: 360px) {
-    .shop-grid {
-        grid-template-columns: 1fr;
-    }
+
+
+
+.map-box {
+
+width:100%;
+height:500px;
+overflow:hidden;
+border-radius:15px;
+background:#111;
+position:relative;
+
 }
+
+
+
+.map-box img {
+
+width:100%;
+height:auto;
+
+}
+
+
+
+.marker {
+
+position:absolute;
+font-size:28px;
+cursor:pointer;
+transform:translate(-50%,-50%);
+
+}
+
+
+.marker:hover {
+
+scale:1.2;
+
+}
+
+
+
+.map-buttons {
+
+display:flex;
+gap:10px;
+margin-top:15px;
+
+}
+
+
+
+.map-buttons button {
+
+flex:1;
+padding:10px;
+border:0;
+border-radius:10px;
+background:#00aaff;
+color:white;
+
+}
+
+
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -172,52 +272,113 @@ FN Tracker
 </header>
 
 
+
+
 <div id="shop" class="page active">
+
 
 <div class="card">
 
 <h2>🛒 Sklep Fortnite</h2>
 
-<p>Dzisiejsza rotacja</p>
+<h3 id="shopDate">
+Dzisiejsza rotacja
+</h3>
 
 </div>
+
+
+
+<div class="categories">
+
+
+<button onclick="filterShop('Wszystko')">
+🔥 Wszystko
+</button>
+
+
+<button onclick="filterShop('Strój')">
+👕 Stroje
+</button>
+
+
+<button onclick="filterShop('Kilof')">
+⛏️ Kilofy
+</button>
+
+
+<button onclick="filterShop('Emotka')">
+💃 Emotki
+</button>
+
+
+<button onclick="filterShop('Plecak')">
+🎒 Plecaki
+</button>
+
+
+</div>
+
+
 
 <div class="shop-grid" id="shopItems">
 
+
 <div class="empty">
-Ładowanie sklepu...
+Ładowanie...
 </div>
+
 
 </div>
 
+
 </div>
+
+
 
 
 <div id="map" class="page">
 
+
 <div class="card">
+
 
 <h2>🗺️ Mapa Fortnite</h2>
 
-<p>
-Tutaj stworzymy interaktywną mapę Fortnite.
-</p>
 
-<p>
-📦 Skrzynki<br>
-🔄 Reboot Vany<br>
-🚗 Pojazdy<br>
-🎣 Wędki<br>
-📍 Miejscówki<br>
-🔍 Przybliżanie i oddalanie
-</p>
+<div class="map-box" id="mapBox">
 
+
+<img 
+id="fortniteMap"
+src="https://via.placeholder.com/1200x800?text=Fortnite+Map"
+>
+
+
+<div class="marker"
+style="left:30%;top:40%;"
+onclick="showMarker('📦 Skrzynka')">
+📦
 </div>
 
+
+<div class="marker"
+style="left:60%;top:55%;"
+onclick="showMarker('🔄 Reboot Van')">
+🔄
 </div>
 
 
-<div id="settings" class="page">
+<div class="marker"
+style="left:45%;top:70%;"
+onclick="showMarker('🚗 Pojazd')">
+🚗
+</div>
+
+
+<div class="marker"
+style="left:75%;top:30%;"
+onclick="<div id="settings" class="page">
 
 <div class="card">
 
@@ -228,38 +389,31 @@ FN Tracker - Fortnite Companion
 </p>
 
 <p>
-Wersja: 1.0
+Wersja: 1.1
 </p>
 
 </div>
 
-</div><div id="admin" class="page">
+</div>
+
+
+
+
+<div id="admin" class="page">
 
 <div class="card">
 
 <h2>👑 Panel Admina</h2>
 
-<p>
-Dodaj przedmiot do sklepu.
-</p>
 
-<input
-id="name"
-type="text"
-placeholder="Nazwa przedmiotu"
->
+<input id="name" placeholder="Nazwa przedmiotu">
 
-<input
-id="price"
-type="number"
-placeholder="Cena V-dolców"
->
 
-<input
-id="rarity"
-type="text"
-placeholder="Rzadkość"
->
+<input id="price" placeholder="Cena V-dolców">
+
+
+<input id="rarity" placeholder="Rzadkość">
+
 
 <select id="category">
 
@@ -285,77 +439,140 @@ placeholder="Rzadkość"
 
 </select>
 
-<input
-id="image"
-type="url"
-placeholder="Link do obrazka"
->
 
-<button
-class="add"
-onclick="addItem()"
->
+<input id="image" placeholder="Link do obrazka">
+
+
+<input id="date" placeholder="Data sklepu np. 07.08.2026">
+
+
+<button class="add" onclick="addItem()">
 ➕ Dodaj przedmiot
 </button>
 
-</div>
 
 </div>
+
+
+<div class="card">
+
+<h2>📍 Dodaj marker mapy</h2>
+
+
+<input id="markerName" placeholder="Nazwa miejsca">
+
+
+<select id="markerType">
+
+<option value="📦">
+📦 Skrzynka
+</option>
+
+<option value="🔄">
+🔄 Reboot Van
+</option>
+
+<option value="🚗">
+🚗 Pojazd
+</option>
+
+<option value="🎣">
+🎣 Wędka
+</option>
+
+<option value="📍">
+📍 Miejscówka
+</option>
+
+</select>
+
+
+<button class="add">
+➕ Dodaj marker
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
 
 
 <div class="bottom-menu">
 
+
 <button onclick="openPage('shop')">
+
 🛒<br>
 Sklep
+
 </button>
+
+
 
 <button onclick="openPage('map')">
+
 🗺️<br>
 Mapa
+
 </button>
+
+
 
 <button onclick="openPage('settings')">
+
 ⚙️<br>
 Ustawienia
+
 </button>
 
-<button
+
+
+<button 
 id="adminButton"
-style="display:none;"
-onclick="openPage('admin')"
->
+style="display:none"
+onclick="openPage('admin')">
+
 👑<br>
 Admin
+
 </button>
+
 
 </div><script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+getFirestore,
+collection,
+addDoc,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
+apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
 
-    authDomain: "fn-tracker-7ca77.firebaseapp.com",
+authDomain: "fn-tracker-7ca77.firebaseapp.com",
 
-    projectId: "fn-tracker-7ca77",
+projectId: "fn-tracker-7ca77",
 
-    storageBucket: "fn-tracker-7ca77.firebasestorage.app",
+storageBucket: "fn-tracker-7ca77.firebasestorage.app",
 
-    messagingSenderId: "894926360582",
+messagingSenderId: "894926360582",
 
-    appId: "1:894926360582:web:446c19751ef653b3fa7387"
+appId: "1:894926360582:web:446c19751ef653b3fa7387"
 
 };
+
 
 
 const app = initializeApp(firebaseConfig);
@@ -363,217 +580,184 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-window.db = db;
 
-window.collection = collection;
+let allItems = [];
 
-window.addDoc = addDoc;
-
-window.getDocs = getDocs;
+let selectedCategory = "Wszystko";
 
 
-/* ZMIANA ZAKŁADEK */
-
-window.openPage = function(id) {
-
-    const pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
-
-        page.classList.remove("active");
-
-    });
 
 
-    const selectedPage = document.getElementById(id);
 
-    if (selectedPage) {
+window.openPage = function(id){
 
-        selectedPage.classList.add("active");
+let pages=document.querySelectorAll(".page");
 
-    }
+
+pages.forEach(page=>{
+
+page.classList.remove("active");
+
+});
+
+
+document.getElementById(id).classList.add("active");
 
 };
 
 
-/* DODAWANIE PRZEDMIOTU */
-
-window.addItem = async function() {
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const price =
-        document.getElementById("price").value.trim();
-
-    const rarity =
-        document.getElementById("rarity").value.trim();
-
-    const category =
-        document.getElementById("category").value;
-
-    const image =
-        document.getElementById("image").value.trim();
 
 
-    if (name === "" || price === "") {
 
-        alert("Wpisz nazwę i cenę!");
+window.showMarker = function(text){
 
-        return;
-
-    }
-
-
-    try {
-
-        await addDoc(
-            collection(db, "shop"),
-            {
-                name: name,
-                price: price,
-                rarity: rarity || "Brak rzadkości",
-                category: category,
-                image: image
-            }
-        );
-
-
-        document.getElementById("name").value = "";
-
-        document.getElementById("price").value = "";
-
-        document.getElementById("rarity").value = "";
-
-        document.getElementById("image").value = "";
-
-
-        alert("✅ Dodano przedmiot!");
-
-        loadShop();
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("❌ Nie udało się dodać przedmiotu.");
-
-    }
+document.getElementById("markerInfo").innerHTML =
+"📍 " + text;
 
 };
 
 
-/* WCZYTYWANIE SKLEPU */
-
-async function loadShop() {
-
-    const shop =
-        document.getElementById("shopItems");
 
 
-    shop.innerHTML =
-        '<div class="empty">Ładowanie sklepu...</div>';
+
+window.filterShop = function(category){
+
+selectedCategory = category;
+
+showShop();
+
+};
 
 
-    try {
-
-        const items =
-            await getDocs(
-                collection(db, "shop")
-            );
 
 
-        shop.innerHTML = "";
 
 
-        if (items.empty) {
-
-            shop.innerHTML =
-                '<div class="empty">Sklep jest pusty.</div>';
-
-            return;
-
-        }
+window.addItem = async function(){
 
 
-        items.forEach(function(doc) {
+let item = {
 
-            const data = doc.data();
-
-
-            const image =
-                data.image ||
-                "https://via.placeholder.com/500x500?text=FN+Tracker";
+name:
+document.getElementById("name").value,
 
 
-            shop.innerHTML += `
-
-<div class="item">
-
-<img
-src="${image}"
-alt="${data.name || "Przedmiot"}"
->
-
-<h3>
-${data.name || "Bez nazwy"}
-</h3>
-
-<p class="category">
-${data.category || "Brak kategorii"}
-</p>
-
-<p class="rarity">
-${data.rarity || "Brak rzadkości"}
-</p>
-
-<div class="price">
-${data.price || "0"} V-dolców
-</div>
-
-</div>
-
-`;
-
-        });
+price:
+document.getElementById("price").value,
 
 
-    } catch (error) {
+rarity:
+document.getElementById("rarity").value,
 
-        console.error(error);
 
-        shop.innerHTML = `
-<div class="empty">
-❌ Nie można załadować sklepu.
-</div>
-`;
+category:
+document.getElementById("category").value,
 
-    }
+
+image:
+document.getElementById("image").value,
+
+
+date:
+document.getElementById("date").value
+
+};
+
+
+
+if(item.name==="" || item.price===""){
+
+alert("Wpisz nazwę i cenę!");
+
+return;
 
 }
 
 
-/* HASŁO ADMINA */
 
-const password =
-    prompt("🔐 Hasło administratora:");
-
-
-if (password === "FNTRACKER2026") {
-
-    document
-        .getElementById("adminButton")
-        .style.display = "block";
-
-}
+await addDoc(
+collection(db,"shop"),
+item
+);
 
 
-/* URUCHOMIENIE SKLEPU */
+
+alert("Dodano do sklepu!");
 
 loadShop();
 
-</script>
+};
 
-</body>
-</html>
+
+
+
+
+
+
+async function loadShop(){
+
+
+let data =
+await getDocs(collection(db,"shop"));
+
+
+allItems=[];
+
+
+data.forEach(doc=>{
+
+allItems.push(doc.data());
+
+});
+
+
+showShop();
+
+
+
+let today =
+new Date().toLocaleDateString("pl-PL");
+
+
+document.getElementById("shopDate").innerHTML =
+"🗓️ Sklep: " + today;
+
+
+}
+
+
+
+
+
+
+
+
+function showShop(){
+
+
+let shop =
+document.getElementById("shopItems");
+
+
+shop.innerHTML="";
+
+
+
+let today =
+new Date().toLocaleDateString("pl-PL");
+
+
+let found=false;
+
+
+
+allItems.forEach(item=>{
+
+
+
+if(item.date===today || item.date===""){
+
+
+
+if(
+selectedCategory
