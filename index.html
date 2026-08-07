@@ -16,13 +16,11 @@ body {
     color:white;
 }
 
-
 header {
     text-align:center;
     background:#171c27;
     padding:20px;
 }
-
 
 .logo {
     font-size:35px;
@@ -30,18 +28,15 @@ header {
     color:#00aaff;
 }
 
-
 .page {
     display:none;
     padding:20px;
     padding-bottom:90px;
 }
 
-
 .page.active {
     display:block;
 }
-
 
 .card {
     background:#1c2330;
@@ -50,13 +45,11 @@ header {
     margin-bottom:15px;
 }
 
-
 .shop-grid {
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
-
 
 .item {
     background:#252e3d;
@@ -65,18 +58,15 @@ header {
     text-align:center;
 }
 
-
 .item img {
     width:100%;
     border-radius:10px;
 }
 
-
 .price {
     color:#00aaff;
     font-weight:bold;
 }
-
 
 input {
     width:90%;
@@ -88,7 +78,6 @@ input {
     color:white;
 }
 
-
 .add {
     background:#00aaff;
     color:white;
@@ -97,7 +86,6 @@ input {
     border-radius:10px;
     font-weight:bold;
 }
-
 
 .bottom-menu {
     position:fixed;
@@ -110,27 +98,41 @@ input {
     padding:12px 0;
 }
 
-
 .bottom-menu button {
     background:none;
     border:0;
     color:white;
 }
 
-
 </style>
+
+
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import { 
+getFirestore,
+collection,
+addDoc,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
-  authDomain: "fn-tracker-7ca77.firebaseapp.com",
-  projectId: "fn-tracker-7ca77",
-  storageBucket: "fn-tracker-7ca77.firebasestorage.app",
-  messagingSenderId: "894926360582",
-  appId: "1:894926360582:web:446c19751ef653b3fa7387"
+
+apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
+
+authDomain: "fn-tracker-7ca77.firebaseapp.com",
+
+projectId: "fn-tracker-7ca77",
+
+storageBucket: "fn-tracker-7ca77.firebasestorage.app",
+
+messagingSenderId: "894926360582",
+
+appId: "1:894926360582:web:446c19751ef653b3fa7387"
+
 };
 
 
@@ -138,7 +140,15 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+
+window.db = db;
+window.collection = collection;
+window.addDoc = addDoc;
+window.getDocs = getDocs;
+
+
 </script>
+
 </head>
 
 
@@ -153,29 +163,11 @@ FN Tracker
 
 <p>Fortnite Companion</p>
 
-</header>
-
-
-
-<div id="shop" class="page active">
+</header><div id="shop" class="page active">
 
 <h2>🛒 Sklep Fortnite</h2>
 
-<div class="shop-grid">
-
-<div class="item">
-
-<img src="https://via.placeholder.com/300">
-
-<h3>Skin testowy</h3>
-
-<p>Legendarny</p>
-
-<div class="price">
-1500 V-dolców
-</div>
-
-</div>
+<div class="shop-grid" id="shopItems">
 
 </div>
 
@@ -234,15 +226,11 @@ Ustawienia FN Tracker.
 
 <h2>👑 Panel Admina</h2>
 
-
 <div class="card">
-
 
 <input id="name" placeholder="Nazwa przedmiotu">
 
-
 <input id="price" placeholder="Cena V-dolców">
-
 
 <input id="rarity" placeholder="Rzadkość">
 
@@ -250,7 +238,6 @@ Ustawienia FN Tracker.
 <button class="add" onclick="addItem()">
 Dodaj przedmiot
 </button>
-
 
 </div>
 
@@ -281,7 +268,6 @@ Dodaj przedmiot
 👑<br>Admin
 </button>
 
-
 </div>
 
 
@@ -307,13 +293,15 @@ document.getElementById(id).classList.add("active");
 
 
 
-function addItem(){
+
+async function addItem(){
 
 let name=document.getElementById("name").value;
 
 let price=document.getElementById("price").value;
 
 let rarity=document.getElementById("rarity").value;
+
 
 
 if(name==="" || price===""){
@@ -325,31 +313,83 @@ return;
 }
 
 
-document.querySelector(".shop-grid").innerHTML += `
+
+await addDoc(collection(db,"shop"),{
+
+name:name,
+
+price:price,
+
+rarity:rarity
+
+});
+
+
+
+alert("Dodano do sklepu!");
+
+
+
+loadShop();
+
+}
+
+
+
+
+async function loadShop(){
+
+
+let shop=document.getElementById("shopItems");
+
+
+shop.innerHTML="";
+
+
+let items=await getDocs(collection(db,"shop"));
+
+
+
+items.forEach(function(doc){
+
+
+let data=doc.data();
+
+
+
+shop.innerHTML += `
 
 <div class="item">
 
 <img src="https://via.placeholder.com/300">
 
-<h3>${name}</h3>
+<h3>${data.name}</h3>
 
-<p>${rarity}</p>
+<p>${data.rarity}</p>
 
 <div class="price">
-${price} V-dolców
+
+${data.price} V-dolców
+
 </div>
 
 </div>
 
 `;
 
-alert("Dodano do sklepu");
+
+});
 
 
 }
 
 
+
+loadShop();
+
+
 </script>
+
 
 
 </body>
