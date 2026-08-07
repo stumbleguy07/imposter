@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,14 +12,14 @@
 body {
     margin:0;
     font-family:Arial,sans-serif;
-    background:#10131a;
+    background:#0b0e14;
     color:white;
 }
 
 header {
     text-align:center;
+    background:#151a25;
     padding:20px;
-    background:#181d28;
 }
 
 .logo {
@@ -27,22 +28,26 @@ header {
     color:#00aaff;
 }
 
+
 .page {
     display:none;
     padding:20px;
-    padding-bottom:80px;
+    padding-bottom:90px;
 }
+
 
 .active {
     display:block;
 }
 
+
 .card {
     background:#1c2330;
-    border-radius:15px;
+    border-radius:20px;
     padding:20px;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
+
 
 
 .shop-grid {
@@ -52,7 +57,7 @@ header {
 }
 
 
-.item-card {
+.item {
     background:#252e3d;
     border-radius:15px;
     padding:10px;
@@ -60,15 +65,17 @@ header {
 }
 
 
-.item-card img {
+.item img {
     width:100%;
     border-radius:12px;
 }
 
 
-.item-card strong {
+.price {
     color:#00aaff;
+    font-weight:bold;
 }
+
 
 
 input {
@@ -82,34 +89,38 @@ input {
 }
 
 
-button {
-    padding:12px;
-    border-radius:10px;
-    border:none;
-}
-
-
 .add {
     background:#00aaff;
     color:white;
+    padding:12px;
+    border:none;
+    border-radius:10px;
     font-weight:bold;
 }
 
 
+
 .bottom-menu {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#181d28;
-    display:flex;
-    justify-content:space-around;
-    padding:12px 0;
+
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#151a25;
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+
 }
 
 
 .bottom-menu button {
-    background:none;
-    color:white;
+
+background:none;
+border:none;
+color:white;
+font-size:14px;
+
 }
 
 
@@ -122,11 +133,18 @@ button {
 
 
 <header>
-<div class="logo">FN Tracker</div>
+
+<div class="logo">
+FN Tracker
+</div>
+
 <p>Fortnite Companion</p>
+
 </header>
 
 
+
+<!-- SKLEP -->
 
 <div id="shop" class="page active">
 
@@ -134,19 +152,30 @@ button {
 
 <div class="shop-grid">
 
-<div class="item-card">
+
+<div class="item">
+
 <img src="https://via.placeholder.com/300">
-<h3>Przykładowy Skin</h3>
+
+<h3>Skin przykładowy</h3>
+
 <p>Legendarny</p>
-<strong>1500 V-dolców</strong>
+
+<div class="price">
+1500 V-dolców
 </div>
 
 </div>
 
+
+</div>
+
 </div>
 
 
 
+
+<!-- MAPA -->
 
 <div id="map" class="page">
 
@@ -155,8 +184,19 @@ button {
 <h2>🗺️ Mapa Fortnite</h2>
 
 <p>
-Interaktywna mapa będzie tutaj.
-Dodamy skrzynki, reboot vany, auta, wędki i miejscówki.
+Tutaj dodamy:
+<br><br>
+✅ skrzynki
+<br>
+✅ reboot vany
+<br>
+✅ auta
+<br>
+✅ wędki
+<br>
+✅ miejscówki
+<br>
+✅ przybliżanie mapy
 </p>
 
 </div>
@@ -166,19 +206,27 @@ Dodamy skrzynki, reboot vany, auta, wędki i miejscówki.
 
 
 
+<!-- USTAWIENIA -->
+
+
 <div id="settings" class="page">
 
 <div class="card">
 
 <h2>⚙️ Ustawienia</h2>
 
-<p>Ustawienia aplikacji FN Tracker.</p>
+<p>
+Tryb aplikacji i ustawienia FN Tracker.
+</p>
 
 </div>
 
 </div>
 
 
+
+
+<!-- ADMIN -->
 
 
 <div id="admin" class="page">
@@ -188,15 +236,21 @@ Dodamy skrzynki, reboot vany, auta, wędki i miejscówki.
 
 <div class="card">
 
-<input id="itemName" placeholder="Nazwa przedmiotu">
 
-<input id="itemPrice" placeholder="Cena V-dolców">
+<input id="name" placeholder="Nazwa przedmiotu">
 
-<input id="itemRarity" placeholder="Rzadkość">
+
+<input id="price" placeholder="Cena">
+
+
+<input id="rarity" placeholder="Rzadkość">
+
 
 
 <button class="add" onclick="addItem()">
+
 Dodaj do sklepu
+
 </button>
 
 
@@ -211,23 +265,33 @@ Dodaj do sklepu
 
 <div class="bottom-menu">
 
+
 <button onclick="openPage('shop')">
-🛒<br>Sklep
+🛒<br>
+Sklep
 </button>
+
 
 <button onclick="openPage('map')">
-🗺️<br>Mapa
+🗺️<br>
+Mapa
 </button>
+
 
 <button onclick="openPage('settings')">
-⚙️<br>Ustawienia
+⚙️<br>
+Ustawienia
 </button>
+
 
 <button onclick="openPage('admin')">
-👑<br>Admin
+👑<br>
+Admin
 </button>
 
+
 </div>
+
 
 
 
@@ -235,42 +299,55 @@ Dodaj do sklepu
 <script>
 
 
-function openPage(page){
+function openPage(id){
+
 
 let pages=document.querySelectorAll(".page");
 
-pages.forEach(p=>{
-p.classList.remove("active");
+
+pages.forEach(page=>{
+
+page.classList.remove("active");
+
 });
 
-document.getElementById(page).classList.add("active");
+
+document.getElementById(id).classList.add("active");
+
 
 }
+
 
 
 
 function addItem(){
 
-let name=document.getElementById("itemName").value;
-let price=document.getElementById("itemPrice").value;
-let rarity=document.getElementById("itemRarity").value;
+
+let name=document.getElementById("name").value;
+
+let price=document.getElementById("price").value;
+
+let rarity=document.getElementById("rarity").value;
 
 
-if(name=="" || price==""){
-alert("Uzupełnij dane!");
+
+if(name==="" || price===""){
+
+alert("Wpisz nazwę i cenę!");
+
 return;
+
 }
+
 
 
 let shop=document.querySelector(".shop-grid");
 
 
-let item=document.createElement("div");
 
-item.className="item-card";
+shop.innerHTML += `
 
-
-item.innerHTML=`
+<div class="item">
 
 <img src="https://via.placeholder.com/300">
 
@@ -278,37 +355,25 @@ item.innerHTML=`
 
 <p>${rarity}</p>
 
-<strong>${price} V-dolców</strong>
+<div class="price">
+
+${price} V-dolców
+
+</div>
+
+</div>
 
 `;
 
 
-shop.appendChild(item);
 
-
-alert("Dodano przedmiot!");
+alert("Dodano!");
 
 }
 
-
-
-
-
-<script>
-
-function openPage(page){
-
-let pages=document.querySelectorAll(".page");
-
-pages.forEach(p=>{
-p.classList.remove("active");
-});
-
-document.getElementById(page).classList.add("active");
-
-}
 
 </script>
-    
+
+
 </body>
 </html>
