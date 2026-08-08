@@ -5,480 +5,330 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>FN Tracker</title>
-
 
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0b0f17;
-    color:white;
-    padding-bottom:85px;
+margin:0;
+font-family:Arial,sans-serif;
+background:#080c14;
+color:white;
+padding-bottom:85px;
 }
-
 
 header{
-    background:linear-gradient(
-        135deg,
-        #111827,
-        #172554
-    );
-
-    padding:25px 20px;
-    text-align:center;
-
-    border-bottom:1px solid #26354d;
+background:linear-gradient(135deg,#101827,#172554);
+padding:24px 15px;
+text-align:center;
+border-bottom:1px solid #26354d;
 }
-
 
 .logo{
-    font-size:34px;
-    font-weight:bold;
-    color:#00aaff;
+font-size:34px;
+font-weight:bold;
+color:#00aaff;
 }
-
 
 header p{
-    color:#9ca3af;
-    margin:7px 0 0;
+margin:7px 0 0;
+color:#9ca3af;
 }
-
 
 .page{
-    display:none;
-    padding:18px;
+display:none;
+padding:18px;
 }
-
 
 .page.active{
-    display:block;
+display:block;
 }
-
 
 .welcome{
-    margin-top:20px;
-
-    background:linear-gradient(
-        145deg,
-        #172033,
-        #111827
-    );
-
-    padding:25px;
-
-    border-radius:22px;
-
-    text-align:center;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.3);
+margin-top:15px;
+background:linear-gradient(145deg,#172033,#101722);
+padding:25px;
+border-radius:22px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
 
 .welcome-icon{
-    font-size:65px;
-    margin-bottom:5px;
+font-size:65px;
 }
-
 
 .welcome h1{
-    font-size:30px;
-    margin:5px 0 10px;
+font-size:29px;
+margin:8px 0;
 }
-
 
 .welcome p{
-    color:#9ca3af;
-    line-height:1.5;
+color:#9ca3af;
+line-height:1.5;
 }
-
 
 .big-button{
-    width:100%;
-
-    padding:17px;
-
-    margin-top:12px;
-
-    border:0;
-
-    border-radius:15px;
-
-    background:#00aaff;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
+width:100%;
+padding:16px;
+margin-top:12px;
+border:0;
+border-radius:14px;
+background:#00aaff;
+color:white;
+font-size:17px;
+font-weight:bold;
 }
-
 
 .big-button.secondary{
-    background:#202b3d;
+background:#202b3d;
 }
-
 
 .stats{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:12px;
-
-    margin-top:18px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:18px;
 }
-
 
 .stat{
-    background:#151d2b;
-
-    padding:18px;
-
-    border-radius:15px;
-
-    text-align:center;
+background:#151d2b;
+padding:18px;
+border-radius:15px;
+text-align:center;
 }
-
 
 .stat strong{
-    font-size:25px;
-
-    color:#00aaff;
-
-    display:block;
+font-size:25px;
+color:#00aaff;
+display:block;
 }
-
 
 .card{
-    background:#151d2b;
-
-    padding:18px;
-
-    border-radius:18px;
-
-    margin-bottom:15px;
+background:#151d2b;
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
 }
-
 
 .card h2{
-    margin-top:0;
+margin-top:0;
 }
-
 
 .search{
-    width:100%;
-
-    padding:14px;
-
-    border:1px solid #29364a;
-
-    border-radius:13px;
-
-    background:#0d131e;
-
-    color:white;
-
-    font-size:16px;
-
-    margin-bottom:12px;
+width:100%;
+padding:14px;
+border:1px solid #29364a;
+border-radius:13px;
+background:#0d131e;
+color:white;
+font-size:16px;
+margin-bottom:12px;
 }
-
 
 .filters{
-    display:flex;
-
-    gap:8px;
-
-    overflow-x:auto;
-
-    padding-bottom:8px;
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding-bottom:8px;
 }
-
 
 .filters button{
-    white-space:nowrap;
-
-    border:0;
-
-    border-radius:10px;
-
-    padding:10px 13px;
-
-    background:#202b3d;
-
-    color:white;
+white-space:nowrap;
+border:0;
+border-radius:10px;
+padding:10px 13px;
+background:#202b3d;
+color:white;
 }
-
 
 .filters button.active{
-    background:#00aaff;
+background:#00aaff;
 }
-
 
 .sprite-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:12px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
 }
-
 
 .sprite{
-    background:#172131;
-
-    border-radius:17px;
-
-    padding:13px;
-
-    border:1px solid #243249;
-
-    overflow:hidden;
+background:#172131;
+border-radius:17px;
+padding:12px;
+border:1px solid #243249;
+overflow:hidden;
 }
-
 
 .sprite-image{
-    width:100%;
-
-    aspect-ratio:1/1;
-
-    object-fit:cover;
-
-    display:block;
-
-    background:#101722;
-
-    border-radius:13px;
-
-    margin-bottom:10px;
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
+background:#101722;
+border-radius:13px;
+margin-bottom:10px;
 }
 
+.sprite-fallback{
+width:100%;
+aspect-ratio:1/1;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+background:#101722;
+border-radius:13px;
+margin-bottom:10px;
+}
 
 .sprite h3{
-    font-size:16px;
-
-    margin:7px 0;
+font-size:16px;
+margin:7px 0;
 }
-
 
 .sprite p{
-    margin:5px 0;
-
-    font-size:13px;
-
-    color:#aab4c3;
+margin:5px 0;
+font-size:13px;
+color:#aab4c3;
 }
-
 
 .rarity{
-    font-weight:bold;
+font-weight:bold;
 }
-
 
 .special{
-    color:#c084fc !important;
+color:#c084fc !important;
 }
-
 
 .rare{
-    color:#60a5fa !important;
+color:#60a5fa !important;
 }
-
 
 .epic{
-    color:#c084fc !important;
+color:#c084fc !important;
 }
-
 
 .legendary{
-    color:#fbbf24 !important;
+color:#fbbf24 !important;
 }
-
 
 .mythic{
-    color:#fb7185 !important;
+color:#fb7185 !important;
 }
-
 
 .prob{
-    color:#00aaff !important;
-
-    font-weight:bold;
+color:#00aaff !important;
+font-weight:bold;
 }
-
 
 .collection-button{
-    width:100%;
-
-    padding:10px;
-
-    border:0;
-
-    border-radius:10px;
-
-    background:#00aaff;
-
-    color:white;
-
-    font-weight:bold;
-
-    margin-top:9px;
+width:100%;
+padding:10px;
+border:0;
+border-radius:10px;
+background:#00aaff;
+color:white;
+font-weight:bold;
+margin-top:9px;
 }
-
 
 .collection-button.owned{
-    background:#26364b;
+background:#26364b;
 }
-
 
 .level{
-    margin-top:9px;
-
-    display:flex;
-
-    gap:4px;
+margin-top:9px;
+display:flex;
+gap:4px;
 }
-
 
 .level button{
-    flex:1;
-
-    border:0;
-
-    background:#202b3d;
-
-    color:white;
-
-    padding:7px 2px;
-
-    border-radius:7px;
+flex:1;
+border:0;
+background:#202b3d;
+color:white;
+padding:7px 2px;
+border-radius:7px;
 }
-
 
 .level button.selected{
-    background:#fbbf24;
-
-    color:#111;
+background:#fbbf24;
+color:#111;
 }
-
 
 .empty{
-    text-align:center;
-
-    color:#778195;
-
-    padding:30px 5px;
-
-    grid-column:1/-1;
+text-align:center;
+color:#778195;
+padding:30px 5px;
+grid-column:1/-1;
 }
-
 
 .counter{
-    font-size:14px;
-
-    color:#9ca3af;
-
-    margin-bottom:12px;
+font-size:14px;
+color:#9ca3af;
+margin-bottom:12px;
 }
-
 
 .setting-button{
-    width:100%;
-
-    padding:14px;
-
-    margin:6px 0;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:#202b3d;
-
-    color:white;
-
-    font-size:15px;
-
-    text-align:left;
+width:100%;
+padding:14px;
+margin:6px 0;
+border:0;
+border-radius:12px;
+background:#202b3d;
+color:white;
+font-size:15px;
+text-align:left;
 }
-
 
 .setting-button.active{
-    background:#00aaff;
+background:#00aaff;
 }
-
 
 .footer{
-    text-align:center;
-
-    color:#697586;
-
-    font-size:12px;
-
-    margin-top:35px;
-
-    padding-bottom:20px;
+text-align:center;
+color:#697586;
+font-size:12px;
+margin-top:35px;
+padding-bottom:20px;
 }
-
 
 .bottom-menu{
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
-
-    width:100%;
-
-    background:#111925;
-
-    border-top:1px solid #26354d;
-
-    display:flex;
-
-    justify-content:space-around;
-
-    padding:9px 0;
-
-    z-index:1000;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#111925;
+border-top:1px solid #26354d;
+display:flex;
+justify-content:space-around;
+padding:9px 0;
+z-index:1000;
 }
-
 
 .bottom-menu button{
-    background:none;
-
-    border:0;
-
-    color:#b8c2d0;
-
-    font-size:12px;
+background:none;
+border:0;
+color:#b8c2d0;
+font-size:12px;
 }
-
 
 .bottom-menu button.active{
-    color:#00aaff;
+color:#00aaff;
 }
-
 
 @media(max-width:360px){
 
-    .sprite-grid{
-        grid-template-columns:1fr;
-    }
+.sprite-grid{
+grid-template-columns:1fr;
+}
 
 }
 
@@ -486,9 +336,7 @@ header p{
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -503,67 +351,43 @@ Fortnite Sprites Collection
 </header>
 
 
+<!-- START -->
 
-<!-- ========================= -->
-<!-- EKRAN STARTOWY -->
-<!-- ========================= -->
-
-
-<div
-id="home"
-class="page active"
->
-
+<div id="home" class="page active">
 
 <div class="welcome">
-
 
 <div class="welcome-icon">
 👻
 </div>
 
-
 <h1 id="welcomeTitle">
 Witaj, graczu! 👋
 </h1>
 
-
 <p id="welcomeText">
-
-Witaj w FN Tracker.
-Zbieraj duszki, rozwijaj swoją
-kolekcję i odkrywaj najrzadsze
-warianty.
-
+Witaj w FN Tracker. Zbieraj duszki,
+rozwijaj swoją kolekcję i odkrywaj
+najrzadsze warianty.
 </p>
-
 
 <button
 class="big-button"
 onclick="openPage('sprites')"
 >
-
 👻 Duszki
-
 </button>
-
 
 <button
 class="big-button secondary"
 onclick="openPage('settings')"
 >
-
 ⚙️ Ustawienia
-
 </button>
-
 
 </div>
 
-
-
 <div class="stats">
-
 
 <div class="stat">
 
@@ -577,7 +401,6 @@ Posiadane
 
 </div>
 
-
 <div class="stat">
 
 <strong id="allCount">
@@ -590,9 +413,7 @@ Wszystkie
 
 </div>
 
-
 </div>
-
 
 <div class="footer">
 
@@ -602,29 +423,18 @@ Stworzone przez FN Tracker Team
 
 </div>
 
-
 </div>
 
 
-
-<!-- ========================= -->
 <!-- DUSZKI -->
-<!-- ========================= -->
 
-
-<div
-id="sprites"
-class="page"
->
-
+<div id="sprites" class="page">
 
 <div class="card">
-
 
 <h2 id="spritesTitle">
 👻 Duszki Fortnite
 </h2>
-
 
 <div class="counter">
 
@@ -638,7 +448,6 @@ Twoja kolekcja:
 
 </div>
 
-
 <input
 id="search"
 class="search"
@@ -646,150 +455,103 @@ placeholder="🔎 Szukaj duszka..."
 oninput="renderSprites()"
 >
 
-
 </div>
 
-
-
 <div class="card">
-
 
 <div
 class="filters"
 id="typeFilters"
 >
 
-
 <button
 class="active"
 onclick="setType('All',this)"
 >
-
 🔥 Wszystkie
-
 </button>
-
 
 </div>
 
-
 <br>
-
 
 <div
 class="filters"
 id="variantFilters"
 >
 
-
 <button
 class="active"
 onclick="setVariant('All',this)"
 >
-
 Wszystkie warianty
-
 </button>
 
-
 </div>
 
-
 </div>
-
-
 
 <div
 id="spriteGrid"
 class="sprite-grid"
 >
 
-
 <div class="empty">
-
 Ładowanie duszków...
+</div>
+
+</div>
 
 </div>
 
 
-</div>
-
-
-</div>
-
-
-
-<!-- ========================= -->
 <!-- USTAWIENIA -->
-<!-- ========================= -->
 
-
-<div
-id="settings"
-class="page"
->
-
+<div id="settings" class="page">
 
 <div class="card">
-
 
 <h2 id="settingsTitle">
 ⚙️ Ustawienia
 </h2>
 
-
 <p id="languageTitle">
 🌐 Język
 </p>
-
 
 <button
 id="plButton"
 class="setting-button active"
 onclick="setLanguage('pl')"
 >
-
 🇵🇱 Polski
-
 </button>
-
 
 <button
 id="enButton"
 class="setting-button"
 onclick="setLanguage('en')"
 >
-
 🇬🇧 English
-
 </button>
-
 
 </div>
 
-
-
 <div class="card">
-
 
 <h2>
 ℹ️ FN Tracker
 </h2>
 
-
 <p>
-Wersja: 2.0
+Wersja: 2.1
 </p>
 
-
 <p>
-Kolekcja duszków Fortnite
+117 Fortnite Sprites
 </p>
-
 
 </div>
-
-
 
 <div class="footer">
 
@@ -797,939 +559,2055 @@ Stworzone przez FN Tracker Team
 
 </div>
 
-
 </div>
 
 
-
-<!-- ========================= -->
 <!-- DOLNE MENU -->
-<!-- ========================= -->
-
 
 <div class="bottom-menu">
-
 
 <button
 id="homeButton"
 class="active"
 onclick="openPage('home')"
 >
-
 🏠<br>
-
 <span id="homeMenu">
 Start
 </span>
-
 </button>
-
-
 
 <button
 id="spritesButton"
 onclick="openPage('sprites')"
 >
-
 👻<br>
-
 <span id="spritesMenu">
 Duszki
 </span>
-
 </button>
-
-
 
 <button
 id="settingsButton"
 onclick="openPage('settings')"
 >
-
 ⚙️<br>
-
 <span id="settingsMenu">
 Ustawienia
 </span>
-
 </button>
 
-
 </div>
-
 
 
 <script>
 
 
-/* ============================
-   CZĘŚĆ 1 — BAZA DUSZKÓW
-   ============================ */
-
-
 /*
-   Tutaj będą wszystkie 117 duszków.
-
-   W następnej części dodamy
-   właściwą bazę danych oraz
-   automatyczne obrazki.
+====================================
+BAZA 117 DUSZKÓW
+CZĘŚĆ 1
+====================================
 */
-
 
 const sprites = [];
 
 
 function addSprite(
-    name,
-    type,
-    variant,
-    rarity,
-    chance,
-    image
+name,
+type,
+variant,
+rarity,
+chance,
+image=""
 ){
 
-    sprites.push({
+sprites.push({
 
-        name:name,
+name:name,
+type:type,
+variant:variant,
+rarity:rarity,
+chance:chance,
+image:image
 
-        type:type,
-
-        variant:variant,
-
-        rarity:rarity,
-
-        chance:chance,
-
-        image:image
-
-    });
+});
 
 }
 
 
-/* ============================
-   PODSTAWOWE DUSZKI
-   ============================ */
-
-
-addSprite(
-    "Duszek wody",
-    "Woda",
-    "Podstawowy",
-    "Rzadki",
-    "0%",
-    ""
-);
-
+/*
+====================================
+BATMAN
+====================================
+*/
 
 addSprite(
-    "Złoty duszek wody",
-    "Woda",
-    "Złoty",
-    "Specjalny",
-    "0.53%",
-    ""
+"Batman",
+"Batman",
+"Base",
+"Mythic",
+"1.44%"
 );
-
 
 addSprite(
-    "Gami duszek wody",
-    "Woda",
-    "Gami",
-    "Specjalny",
-    "0.53%",
-    ""
+"Cube Batman",
+"Batman",
+"Cube",
+"Special",
+"0.02%"
 );
-
 
 addSprite(
-    "Galaktyczny duszek wody",
-    "Woda",
-    "Galaktyczny",
-    "Specjalny",
-    "0.43%",
-    ""
+"Gold Batman",
+"Batman",
+"Gold",
+"Special",
+"0.17%"
 );
-
 
 addSprite(
-    "Holofoliowy duszek wody",
-    "Woda",
-    "Holo",
-    "Specjalny",
-    "0.53%",
-    ""
+"Gummy Batman",
+"Batman",
+"Gummy",
+"Special",
+"0.10%"
 );
-
 
 addSprite(
-    "Quack duszek wody",
-    "Woda",
-    "Quack",
-    "Specjalny",
-    "0%",
-    ""
+"Galaxy Batman",
+"Batman",
+"Galaxy",
+"Special",
+"0.07%"
 );
-
 
 addSprite(
-    "Diamentowy duszek wody",
-    "Woda",
-    "Diament",
-    "Specjalny",
-    "0.37%",
-    ""
+"Holofoil Batman",
+"Batman",
+"Holofoil",
+"Special",
+"0.34%"
 );
-
-
-
-/* ZIEMIA */
-
 
 addSprite(
-    "Duszek ziemi",
-    "Ziemia",
-    "Podstawowy",
-    "Podstawowy",
-    "50%",
-    ""
+"Gem Batman",
+"Batman",
+"Gem",
+"Special",
+"0%"
 );
-
 
 addSprite(
-    "Złoty duszek ziemi",
-    "Ziemia",
-    "Złoty",
-    "Specjalny",
-    "0.53%",
-    ""
+"Quack Batman",
+"Batman",
+"Quack",
+"Special",
+"0%"
 );
-
-
-addSprite(
-    "Żelkowy duszek ziemi",
-    "Ziemia",
-    "Żelkowy",
-    "Specjalny",
-    "0.53%",
-    ""
-);
-
-
-addSprite(
-    "Galaktyczny duszek ziemi",
-    "Ziemia",
-    "Galaktyczny",
-    "Specjalny",
-    "0.43%",
-    ""
-);
-
-
-addSprite(
-    "Kostkowy duszek ziemi",
-    "Ziemia",
-    "Kostka",
-    "Specjalny",
-    "0.21%",
-    ""
-);
-
-
-addSprite(
-    "Quack duszek ziemi",
-    "Ziemia",
-    "Quack",
-    "Specjalny",
-    "0%",
-    ""
-);
-
-
-addSprite(
-    "Diamentowy duszek ziemi",
-    "Ziemia",
-    "Diament",
-    "Specjalny",
-    "0.37%",
-    ""
-);
-
-
-
-/* OGIEŃ */
-
-
-addSprite(
-    "Duszek ognia",
-    "Ogień",
-    "Podstawowy",
-    "Podstawowy",
-    "50%",
-    ""
-);
-
-
-addSprite(
-    "Złoty duszek ognia",
-    "Ogień",
-    "Złoty",
-    "Specjalny",
-    "0.53%",
-    ""
-);
-
-
-addSprite(
-    "Żelkowy duszek ognia",
-    "Ogień",
-    "Żelkowy",
-    "Specjalny",
-    "0.53%",
-    ""
-);
-
-
-addSprite(
-    "Galaktyczny duszek ognia",
-    "Ogień",
-    "Galaktyczny",
-    "Specjalny",
-    "0.43%",
-    ""
-);
-
-
-addSprite(
-    "Holofoliowy duszek ognia",
-    "Ogień",
-    "Holo",
-    "Specjalny",
-    "0.53%",
-    ""
-);
-
-
-addSprite(
-    "Kostkowy duszek ognia",
-    "Ogień",
-    "Kostka",
-    "Specjalny",
-    "0.21%",
-    ""
-);
-
-
-addSprite(
-    "Quack duszek ognia",
-    "Ogień",
-    "Quack",
-    "Specjalny",
-    "0%",
-    ""
-);
-
-
-/* KONIEC CZĘŚCI 1 */<!-- ========================= -->
-<!-- CZĘŚĆ 2 — DANE I FUNKCJE -->
-<!-- ========================= -->
 
 
 /*
-   DODATKOWE DUSZKI
+====================================
+WATER
+====================================
+*/
+
+addSprite(
+"Water",
+"Water",
+"Base",
+"Rare",
+"0%"
+);
+
+addSprite(
+"Gold Water",
+"Water",
+"Gold",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Quack Water",
+"Water",
+"Quack",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Water",
+"Water",
+"Gummy",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Galaxy Water",
+"Water",
+"Galaxy",
+"Special",
+"0.43%"
+);
+
+addSprite(
+"Gem Water",
+"Water",
+"Gem",
+"Special",
+"0.37%"
+);
+
+addSprite(
+"Holofoil Water",
+"Water",
+"Holofoil",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Cube Water",
+"Water",
+"Cube",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+EARTH
+====================================
+*/
+
+addSprite(
+"Earth",
+"Earth",
+"Base",
+"Rare",
+"0%"
+);
+
+addSprite(
+"Cube Earth",
+"Earth",
+"Cube",
+"Special",
+"0.21%"
+);
+
+addSprite(
+"Gold Earth",
+"Earth",
+"Gold",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Quack Earth",
+"Earth",
+"Quack",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Earth",
+"Earth",
+"Gummy",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Galaxy Earth",
+"Earth",
+"Galaxy",
+"Special",
+"0.43%"
+);
+
+addSprite(
+"Gem Earth",
+"Earth",
+"Gem",
+"Special",
+"0.37%"
+);
+
+addSprite(
+"Holofoil Earth",
+"Earth",
+"Holofoil",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+FIRE
+====================================
+*/
+
+addSprite(
+"Fire",
+"Fire",
+"Base",
+"Rare",
+"0%"
+);
+
+addSprite(
+"Cube Fire",
+"Fire",
+"Cube",
+"Special",
+"0.21%"
+);
+
+addSprite(
+"Gold Fire",
+"Fire",
+"Gold",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Quack Fire",
+"Fire",
+"Quack",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Fire",
+"Fire",
+"Gummy",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Galaxy Fire",
+"Fire",
+"Galaxy",
+"Special",
+"0.43%"
+);
+
+addSprite(
+"Holofoil Fire",
+"Fire",
+"Holofoil",
+"Special",
+"0.53%"
+);
+
+addSprite(
+"Gem Fire",
+"Fire",
+"Gem",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+DUCK
+====================================
+*/
+
+addSprite(
+"Duck",
+"Duck",
+"Base",
+"Epic",
+"6.48%"
+);
+
+addSprite(
+"Gold Duck",
+"Duck",
+"Gold",
+"Special",
+"0.62%"
+);
+
+addSprite(
+"Gummy Duck",
+"Duck",
+"Gummy",
+"Special",
+"0.37%"
+);
+
+addSprite(
+"Galaxy Duck",
+"Duck",
+"Galaxy",
+"Special",
+"0.25%"
+);
+
+addSprite(
+"Gem Duck",
+"Duck",
+"Gem",
+"Special",
+"0.10%"
+);
+
+addSprite(
+"Holofoil Duck",
+"Duck",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Duck",
+"Duck",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Duck",
+"Duck",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+GHOST
+====================================
+*/
+
+addSprite(
+"Ghost",
+"Ghost",
+"Base",
+"Epic",
+"5.25%"
+);
+
+addSprite(
+"Gold Ghost",
+"Ghost",
+"Gold",
+"Special",
+"0.62%"
+);
+
+addSprite(
+"Gummy Ghost",
+"Ghost",
+"Gummy",
+"Special",
+"0.37%"
+);
+
+addSprite(
+"Galaxy Ghost",
+"Ghost",
+"Galaxy",
+"Special",
+"0.25%"
+);
+
+addSprite(
+"Gem Ghost",
+"Ghost",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Ghost",
+"Ghost",
+"Holofoil",
+"Special",
+"1.23%"
+);
+
+addSprite(
+"Cube Ghost",
+"Ghost",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Ghost",
+"Ghost",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+KONIEC CZĘŚCI 1
+====================================
+*//*
+====================================
+CZĘŚĆ 2 — KOLEJNE DUSZKI
+====================================
 */
 
 
+/*
+====================================
+DREAM
+====================================
+*/
+
 addSprite(
-    "Duszek powietrza",
-    "Powietrze",
-    "Podstawowy",
-    "Podstawowy",
-    "50%",
-    ""
+"Dream",
+"Dream",
+"Base",
+"Legendary",
+"6.98%"
 );
 
-
 addSprite(
-    "Złoty duszek powietrza",
-    "Powietrze",
-    "Złoty",
-    "Specjalny",
-    "0.53%",
-    ""
+"Gold Dream",
+"Dream",
+"Gold",
+"Special",
+"0.31%"
 );
 
-
 addSprite(
-    "Żelkowy duszek powietrza",
-    "Powietrze",
-    "Żelkowy",
-    "Specjalny",
-    "0.53%",
-    ""
+"Gummy Dream",
+"Dream",
+"Gummy",
+"Special",
+"0.23%"
 );
 
-
 addSprite(
-    "Galaktyczny duszek powietrza",
-    "Powietrze",
-    "Galaktyczny",
-    "Specjalny",
-    "0.43%",
-    ""
+"Galaxy Dream",
+"Dream",
+"Galaxy",
+"Special",
+"0.12%"
 );
 
-
 addSprite(
-    "Holofoliowy duszek powietrza",
-    "Powietrze",
-    "Holo",
-    "Specjalny",
-    "0.53%",
-    ""
+"Gem Dream",
+"Dream",
+"Gem",
+"Special",
+"0%"
 );
 
-
 addSprite(
-    "Kostkowy duszek powietrza",
-    "Powietrze",
-    "Kostka",
-    "Specjalny",
-    "0.21%",
-    ""
+"Holofoil Dream",
+"Dream",
+"Holofoil",
+"Special",
+"0%"
 );
 
+addSprite(
+"Cube Dream",
+"Dream",
+"Cube",
+"Special",
+"0%"
+);
 
 addSprite(
-    "Quack duszek powietrza",
-    "Powietrze",
-    "Quack",
-    "Specjalny",
-    "0%",
-    ""
+"Quack Dream",
+"Dream",
+"Quack",
+"Special",
+"0%"
 );
 
 
 /*
-   DUSZKI — POZOSTAŁE
+====================================
+DEMON
+====================================
+*/
+
+addSprite(
+"Demon",
+"Demon",
+"Base",
+"Epic",
+"9%"
+);
+
+addSprite(
+"Gold Demon",
+"Demon",
+"Gold",
+"Special",
+"0.4%"
+);
+
+addSprite(
+"Gummy Demon",
+"Demon",
+"Gummy",
+"Special",
+"0.3%"
+);
+
+addSprite(
+"Galaxy Demon",
+"Demon",
+"Galaxy",
+"Special",
+"0.16%"
+);
+
+addSprite(
+"Gem Demon",
+"Demon",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Demon",
+"Demon",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Demon",
+"Demon",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Demon",
+"Demon",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+PUNK
+====================================
+*/
+
+addSprite(
+"Punk",
+"Punk",
+"Base",
+"Legendary",
+"6.98%"
+);
+
+addSprite(
+"Gold Punk",
+"Punk",
+"Gold",
+"Special",
+"0.31%"
+);
+
+addSprite(
+"Gummy Punk",
+"Punk",
+"Gummy",
+"Special",
+"0.23%"
+);
+
+addSprite(
+"Galaxy Punk",
+"Punk",
+"Galaxy",
+"Special",
+"0.12%"
+);
+
+addSprite(
+"Gem Punk",
+"Punk",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Punk",
+"Punk",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Punk",
+"Punk",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Punk",
+"Punk",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+KING
+====================================
+*/
+
+addSprite(
+"King",
+"King",
+"Base",
+"Epic",
+"9%"
+);
+
+addSprite(
+"Gold King",
+"King",
+"Gold",
+"Special",
+"0.4%"
+);
+
+addSprite(
+"Gummy King",
+"King",
+"Gummy",
+"Special",
+"0.3%"
+);
+
+addSprite(
+"Galaxy King",
+"King",
+"Galaxy",
+"Special",
+"0.16%"
+);
+
+addSprite(
+"Gem King",
+"King",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil King",
+"King",
+"Holofoil",
+"Special",
+"0.06%"
+);
+
+addSprite(
+"Cube King",
+"King",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack King",
+"King",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+FISHY
+====================================
+*/
+
+addSprite(
+"Fishy",
+"Fishy",
+"Base",
+"Rare",
+"0%"
+);
+
+addSprite(
+"Gold Fishy",
+"Fishy",
+"Gold",
+"Special",
+"0.75%"
+);
+
+addSprite(
+"Gummy Fishy",
+"Fishy",
+"Gummy",
+"Special",
+"0.62%"
+);
+
+addSprite(
+"Galaxy Fishy",
+"Fishy",
+"Galaxy",
+"Special",
+"0.5%"
+);
+
+addSprite(
+"Gem Fishy",
+"Fishy",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Fishy",
+"Fishy",
+"Holofoil",
+"Special",
+"0.25%"
+);
+
+addSprite(
+"Cube Fishy",
+"Fishy",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Fishy",
+"Fishy",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+ZERO POINT
+====================================
+*/
+
+addSprite(
+"Zero Point",
+"Zero Point",
+"Base",
+"Mythic",
+"0.00093%"
+);
+
+addSprite(
+"Gold Zero Point",
+"Zero Point",
+"Gold",
+"Special",
+"0.000041%"
+);
+
+addSprite(
+"Gummy Zero Point",
+"Zero Point",
+"Gummy",
+"Special",
+"0.000031%"
+);
+
+addSprite(
+"Galaxy Zero Point",
+"Zero Point",
+"Galaxy",
+"Special",
+"0.000016%"
+);
+
+addSprite(
+"Gem Zero Point",
+"Zero Point",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Zero Point",
+"Zero Point",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Zero Point",
+"Zero Point",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Zero Point",
+"Zero Point",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+POJEDYNCZE DUSZKI
+====================================
+*/
+
+addSprite(
+"Burnt Peanut",
+"Burnt Peanut",
+"Base",
+"Mythic",
+"0%"
+);
+
+addSprite(
+"Vini Jr.",
+"Vini Jr.",
+"Base",
+"Mythic",
+"0%"
+);
+
+
+/*
+====================================
+KONIEC CZĘŚCI 2
+====================================
+*//*
+====================================
+CZĘŚĆ 3 — KOLEJNE DUSZKI
+====================================
 */
 
 
+/*
+====================================
+LLAMA
+====================================
+*/
+
 addSprite(
-    "Duszek wody - klasyczny",
-    "Woda",
-    "Klasyczny",
-    "Rzadki",
-    "0%",
-    ""
+"Llama",
+"Llama",
+"Base",
+"Legendary",
+"0%"
 );
 
-
 addSprite(
-    "Duszek ziemi - klasyczny",
-    "Ziemia",
-    "Klasyczny",
-    "Podstawowy",
-    "50%",
-    ""
+"Gold Llama",
+"Llama",
+"Gold",
+"Special",
+"0%"
 );
 
+addSprite(
+"Gummy Llama",
+"Llama",
+"Gummy",
+"Special",
+"0%"
+);
 
 addSprite(
-    "Duszek ognia - klasyczny",
-    "Ogień",
-    "Klasyczny",
-    "Podstawowy",
-    "50%",
-    ""
+"Galaxy Llama",
+"Llama",
+"Galaxy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gem Llama",
+"Llama",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Llama",
+"Llama",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Llama",
+"Llama",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Llama",
+"Llama",
+"Quack",
+"Special",
+"0%"
 );
 
 
 /*
-=================================
+====================================
+PEELY
+====================================
+*/
+
+addSprite(
+"Peely",
+"Peely",
+"Base",
+"Legendary",
+"0%"
+);
+
+addSprite(
+"Gold Peely",
+"Peely",
+"Gold",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Peely",
+"Peely",
+"Gummy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Galaxy Peely",
+"Peely",
+"Galaxy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gem Peely",
+"Peely",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Peely",
+"Peely",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Peely",
+"Peely",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Peely",
+"Peely",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+IRONMOUSE
+====================================
+*/
+
+addSprite(
+"Ironmouse",
+"Ironmouse",
+"Base",
+"Epic",
+"0%"
+);
+
+addSprite(
+"Gold Ironmouse",
+"Ironmouse",
+"Gold",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Ironmouse",
+"Ironmouse",
+"Gummy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Galaxy Ironmouse",
+"Ironmouse",
+"Galaxy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gem Ironmouse",
+"Ironmouse",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Ironmouse",
+"Ironmouse",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Ironmouse",
+"Ironmouse",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Ironmouse",
+"Ironmouse",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+KOLEJNE WARIANTY SPECJALNE
+====================================
+*/
+
+addSprite(
+"Gold Sprite",
+"Sprite",
+"Gold",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Sprite",
+"Sprite",
+"Gummy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Galaxy Sprite",
+"Sprite",
+"Galaxy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Sprite",
+"Sprite",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Sprite",
+"Sprite",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gem Sprite",
+"Sprite",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Sprite",
+"Sprite",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+DODATKOWE DUSZKI
+====================================
+*/
+
+addSprite(
+"Shadow",
+"Shadow",
+"Base",
+"Epic",
+"0%"
+);
+
+addSprite(
+"Gold Shadow",
+"Shadow",
+"Gold",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gummy Shadow",
+"Shadow",
+"Gummy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Galaxy Shadow",
+"Shadow",
+"Galaxy",
+"Special",
+"0%"
+);
+
+addSprite(
+"Cube Shadow",
+"Shadow",
+"Cube",
+"Special",
+"0%"
+);
+
+addSprite(
+"Holofoil Shadow",
+"Shadow",
+"Holofoil",
+"Special",
+"0%"
+);
+
+addSprite(
+"Gem Shadow",
+"Shadow",
+"Gem",
+"Special",
+"0%"
+);
+
+addSprite(
+"Quack Shadow",
+"Shadow",
+"Quack",
+"Special",
+"0%"
+);
+
+
+/*
+====================================
+KONIEC CZĘŚCI 3
+====================================
+*//*
+====================================
+CZĘŚĆ 4 — FUNKCJE APLIKACJI
+====================================
+*/
+
+
+/*
+====================================
 KOLEKCJA
-=================================
+====================================
 */
 
-
-let collection = JSON.parse(
-    localStorage.getItem(
-        "fntracker_collection"
-    ) || "{}"
+let collection =
+JSON.parse(
+localStorage.getItem(
+"fntracker_collection"
+) || "{}"
 );
 
 
-let currentType = "All";
-
-let currentVariant = "All";
-
-
 /*
-=================================
-OBRAZKI
-=================================
+====================================
+JĘZYK
+====================================
 */
 
+let language =
+localStorage.getItem(
+"fntracker_language"
+) || "pl";
 
-const fallbackImages = {
 
-    "Woda":
-    "https://fortnite.gg/img/sprites/water.png",
+const translations = {
 
-    "Ziemia":
-    "https://fortnite.gg/img/sprites/earth.png",
+pl: {
 
-    "Ogień":
-    "https://fortnite.gg/img/sprites/fire.png",
+welcomeTitle:
+"Witaj, graczu! 👋",
 
-    "Powietrze":
-    "https://fortnite.gg/img/sprites/air.png"
+welcomeText:
+"Witaj w FN Tracker. Zbieraj duszki, rozwijaj swoją kolekcję i odkrywaj najrzadsze warianty.",
+
+owned:
+"Posiadane",
+
+all:
+"Wszystkie",
+
+sprites:
+"Duszki Fortnite",
+
+collection:
+"Twoja kolekcja:",
+
+search:
+"🔎 Szukaj duszka...",
+
+start:
+"Start",
+
+settings:
+"Ustawienia",
+
+language:
+"🌐 Język",
+
+add:
+"➕ Dodaj do kolekcji",
+
+added:
+"✅ W kolekcji",
+
+noResults:
+"Nie znaleziono duszka. 👻",
+
+level:
+"Poziom",
+
+variant:
+"Wariant",
+
+chance:
+"Szansa"
+
+},
+
+en: {
+
+welcomeTitle:
+"Welcome, player! 👋",
+
+welcomeText:
+"Welcome to FN Tracker. Collect sprites, level up your collection and discover the rarest variants.",
+
+owned:
+"Owned",
+
+all:
+"All",
+
+sprites:
+"Fortnite Sprites",
+
+collection:
+"Your collection:",
+
+search:
+"🔎 Search sprite...",
+
+start:
+"Home",
+
+settings:
+"Settings",
+
+language:
+"🌐 Language",
+
+add:
+"➕ Add to collection",
+
+added:
+"✅ In collection",
+
+noResults:
+"No sprite found. 👻",
+
+level:
+"Level",
+
+variant:
+"Variant",
+
+chance:
+"Chance"
+
+}
 
 };
 
 
 /*
-   Jeżeli prawdziwy obrazek nie
-   załaduje się, karta pokaże emoji.
+====================================
+OTWIERANIE STRON
+====================================
 */
-
-
-const icons = {
-
-    "Woda":"🌊",
-
-    "Ziemia":"🌱",
-
-    "Ogień":"🔥",
-
-    "Powietrze":"💨"
-
-};
-
-
-/*
-=================================
-OTWIERANIE ZAKŁADEK
-=================================
-*/
-
 
 function openPage(id){
 
-    document
-    .querySelectorAll(".page")
-    .forEach(function(page){
+document
+.querySelectorAll(".page")
+.forEach(function(page){
 
-        page.classList.remove("active");
+page.classList.remove(
+"active"
+);
 
-    });
-
-
-    const page =
-    document.getElementById(id);
+});
 
 
-    if(page){
-
-        page.classList.add("active");
-
-    }
+const selected =
+document.getElementById(id);
 
 
-    document
-    .querySelectorAll(
-        ".bottom-menu button"
-    )
-    .forEach(function(button){
+if(selected){
 
-        button.classList.remove(
-            "active"
-        );
+selected.classList.add(
+"active"
+);
 
-    });
+}
 
 
-    if(id === "home"){
+document
+.querySelectorAll(
+".bottom-menu button"
+)
+.forEach(function(button){
 
-        document
-        .getElementById("homeButton")
-        .classList.add("active");
+button.classList.remove(
+"active"
+);
 
-    }
-
-
-    if(id === "sprites"){
-
-        document
-        .getElementById("spritesButton")
-        .classList.add("active");
-
-    }
+});
 
 
-    if(id === "settings"){
+if(id === "home"){
 
-        document
-        .getElementById("settingsButton")
-        .classList.add("active");
+document
+.getElementById(
+"homeButton"
+)
+.classList.add(
+"active"
+);
 
-    }
+}
+
+if(id === "sprites"){
+
+document
+.getElementById(
+"spritesButton"
+)
+.classList.add(
+"active"
+);
+
+}
+
+if(id === "settings"){
+
+document
+.getElementById(
+"settingsButton"
+)
+.classList.add(
+"active"
+);
+
+}
 
 }
 
 
 /*
-=================================
-FILTR TYPÓW
-=================================
+====================================
+ZMIANA JĘZYKA
+====================================
 */
 
-
-function setType(
-    type,
-    button
+function setLanguage(
+selected
 ){
 
-    currentType = type;
+language =
+selected;
 
 
-    document
-    .querySelectorAll(
-        "#typeFilters button"
-    )
-    .forEach(function(b){
-
-        b.classList.remove(
-            "active"
-        );
-
-    });
+localStorage.setItem(
+"fntracker_language",
+selected
+);
 
 
-    button.classList.add(
-        "active"
-    );
-
-
-    renderSprites();
+updateLanguage();
 
 }
 
 
 /*
-=================================
-FILTR WARIANTÓW
-=================================
+====================================
+AKTUALIZACJA JĘZYKA
+====================================
 */
 
+function updateLanguage(){
 
-function setVariant(
-    variant,
-    button
+const t =
+translations[
+language
+];
+
+
+document
+.getElementById(
+"welcomeTitle"
+)
+.textContent =
+t.welcomeTitle;
+
+
+document
+.getElementById(
+"welcomeText"
+)
+.textContent =
+t.welcomeText;
+
+
+document
+.getElementById(
+"ownedText"
+)
+.textContent =
+t.owned;
+
+
+document
+.getElementById(
+"allText"
+)
+.textContent =
+t.all;
+
+
+document
+.getElementById(
+"spritesTitle"
+)
+.textContent =
+"👻 " + t.sprites;
+
+
+document
+.getElementById(
+"collectionText"
+)
+.textContent =
+t.collection;
+
+
+document
+.getElementById(
+"search"
+)
+.placeholder =
+t.search;
+
+
+document
+.getElementById(
+"homeMenu"
+)
+.textContent =
+t.start;
+
+
+document
+.getElementById(
+"spritesMenu"
+)
+.textContent =
+language === "pl"
+?
+"Duszki"
+:
+"Sprites";
+
+
+document
+.getElementById(
+"settingsMenu"
+)
+.textContent =
+t.settings;
+
+
+document
+.getElementById(
+"settingsTitle"
+)
+.textContent =
+"⚙️ " + t.settings;
+
+
+document
+.getElementById(
+"languageTitle"
+)
+.textContent =
+t.language;
+
+
+document
+.getElementById(
+"plButton"
+)
+.classList.toggle(
+"active",
+language === "pl"
+);
+
+
+document
+.getElementById(
+"enButton"
+)
+.classList.toggle(
+"active",
+language === "en"
+);
+
+
+renderSprites();
+
+}
+
+
+/*
+====================================
+DODAJ DO KOLEKCJI
+====================================
+*/
+
+function toggleCollection(
+index
 ){
 
-    currentVariant =
-    variant;
+if(
+collection[index]
+!== undefined
+){
+
+delete collection[index];
+
+}else{
+
+collection[index] = 1;
+
+}
 
 
-    document
-    .querySelectorAll(
-        "#variantFilters button"
-    )
-    .forEach(function(b){
+saveCollection();
 
-        b.classList.remove(
-            "active"
-        );
+renderSprites();
 
-    });
-
-
-    button.classList.add(
-        "active"
-    );
-
-
-    renderSprites();
+updateStats();
 
 }
 
 
 /*
-=================================
-KOLEKCJA
-=================================
-*/
-
-
-function toggleCollection(index){
-
-    if(
-        collection[index] !== undefined
-    ){
-
-        delete collection[index];
-
-    }else{
-
-        collection[index] = 1;
-
-    }
-
-
-    saveCollection();
-
-    renderSprites();
-
-    updateStats();
-
-}
-
-
-/*
-=================================
+====================================
 POZIOM 1–5
-=================================
+====================================
 */
-
 
 function setLevel(
-    index,
-    level
+index,
+level
 ){
 
-    if(
-        collection[index] !== undefined
-    ){
+if(
+collection[index]
+!== undefined
+){
 
-        collection[index] =
-        level;
+collection[index] =
+level;
 
 
-        saveCollection();
+saveCollection();
 
-        renderSprites();
+renderSprites();
 
-        updateStats();
+updateStats();
 
-    }
+}
 
 }
 
 
 /*
-=================================
-ZAPIS
-=================================
+====================================
+ZAPIS KOLEKCJI
+====================================
 */
-
 
 function saveCollection(){
 
-    localStorage.setItem(
-        "fntracker_collection",
-        JSON.stringify(
-            collection
-        )
-    );
+localStorage.setItem(
+"fntracker_collection",
+JSON.stringify(
+collection
+)
+);
 
 }
 
 
 /*
-=================================
+====================================
 STATYSTYKI
-=================================
+====================================
 */
-
 
 function updateStats(){
 
-    const count =
-    Object.keys(
-        collection
-    ).length;
+const count =
+Object.keys(
+collection
+).length;
 
 
-    document
-    .getElementById(
-        "ownedCount"
-    )
-    .textContent =
-    count;
+document
+.getElementById(
+"ownedCount"
+)
+.textContent =
+count;
 
 
-    document
-    .getElementById(
-        "collectionCount"
-    )
-    .textContent =
-    count +
-    " / " +
-    sprites.length;
+document
+.getElementById(
+"collectionCount"
+)
+.textContent =
+count +
+" / " +
+sprites.length;
 
 
-    document
-    .getElementById(
-        "allCount"
-    )
-    .textContent =
-    sprites.length;
+document
+.getElementById(
+"allCount"
+)
+.textContent =
+sprites.length;
 
 }
 
 
 /*
-=================================
-KLASA RZADKOŚCI
-=================================
+====================================
+IKONY
+====================================
 */
 
+const icons = {
 
-function getRarityClass(
-    rarity
+"Water":"🌊",
+
+"Earth":"🌱",
+
+"Fire":"🔥",
+
+"Air":"💨",
+
+"Batman":"🦇",
+
+"Duck":"🦆",
+
+"Ghost":"👻",
+
+"Dream":"💭",
+
+"Demon":"😈",
+
+"Punk":"🎸",
+
+"King":"👑",
+
+"Fishy":"🐟",
+
+"Zero Point":"🌀",
+
+"Llama":"🦙",
+
+"Peely":"🍌",
+
+"Ironmouse":"🐭",
+
+"Sprite":"👻",
+
+"Shadow":"🌑"
+
+};
+
+
+/*
+====================================
+OBRAZEK ZASTĘPCZY
+====================================
+*/
+
+function getFallback(
+type
 ){
 
-    return rarity
-    .toLowerCase()
-    .replace(
-        /ą/g,"a"
-    )
-    .replace(
-        /ó/g,"o"
-    )
-    .replace(
-        /ś/g,"s"
-    )
-    .replace(
-        /ć/g,"c"
-    );
+return icons[type]
+|| "👻";
 
 }
 
 
 /*
-=================================
-GENEROWANIE KART
-=================================
+====================================
+KLASA RZADKOŚCI
+====================================
 */
 
+function getRarityClass(
+rarity
+){
+
+return rarity
+.toLowerCase()
+.replaceAll(
+" ",
+"-"
+);
+
+}
+
+
+/*
+====================================
+RENDEROWANIE DUSZKÓW
+====================================
+*/
 
 function renderSprites(){
 
-    const grid =
-    document.getElementById(
-        "spriteGrid"
-    );
+const grid =
+document.getElementById(
+"spriteGrid"
+);
 
 
-    const search =
-    document.getElementById(
-        "search"
-    )
-    .value
-    .toLowerCase()
-    .trim();
+const search =
+document.getElementById(
+"search"
+)
+.value
+.toLowerCase()
+.trim();
 
 
-    grid.innerHTML = "";
+grid.innerHTML =
+"";
 
 
-    let shown = 0;
+let shown = 0;
 
 
-    sprites.forEach(
-    function(sprite,index){
+sprites.forEach(
+function(sprite,index){
 
-        if(
-            search &&
-            !sprite.name
-            .toLowerCase()
-            .includes(search)
-        ){
+if(
+search &&
+!sprite.name
+.toLowerCase()
+.includes(search)
+){
 
-            return;
+return;
 
-        }
-
-
-        if(
-            currentType !== "All" &&
-            sprite.type !==
-            currentType
-        ){
-
-            return;
-
-        }
+}
 
 
-        if(
-            currentVariant !== "All" &&
-            sprite.variant !==
-            currentVariant
-        ){
+if(
+currentType !== "All" &&
+sprite.type !==
+currentType
+){
 
-            return;
+return;
 
-        }
-
-
-        shown++;
+}
 
 
-        const owned =
-        collection[index] !==
-        undefined;
+if(
+currentVariant !== "All" &&
+sprite.variant !==
+currentVariant
+){
+
+return;
+
+}
 
 
-        const level =
-        collection[index] || 0;
+shown++;
 
 
-        const icon =
-        icons[sprite.type] ||
-        "👻";
+const owned =
+collection[index]
+!== undefined;
 
 
-        const image =
-        sprite.image ||
-        fallbackImages[
-            sprite.type
-        ];
+const level =
+collection[index]
+|| 0;
 
 
-        grid.innerHTML += `
+const fallback =
+getFallback(
+sprite.type
+);
+
+
+grid.innerHTML += `
 
 <div class="sprite">
 
 
+${
+sprite.image
+?
+
+`
 <img
 class="sprite-image"
-src="${image}"
+src="${sprite.image}"
 alt="${sprite.name}"
 onerror="
 this.style.display='none';
 this.nextElementSibling.style.display='flex';
 "
 >
+`
+
+:
+
+""
+}
 
 
 <div
+class="sprite-fallback"
 style="
-display:none;
-height:100%;
-min-height:150px;
-align-items:center;
-justify-content:center;
-font-size:60px;
-background:#101722;
-border-radius:13px;
-margin-bottom:10px;
+${
+sprite.image
+?
+"display:none;"
+:
+""
+}
 "
 >
 
-${icon}
+${fallback}
 
 </div>
 
@@ -1740,8 +2618,9 @@ ${sprite.name}
 
 
 <p
-class="rarity ${getRarityClass(
-    sprite.rarity
+class="rarity
+${getRarityClass(
+sprite.rarity
 )}"
 >
 
@@ -1790,19 +2669,22 @@ owned
 ${
 owned
 ?
+
 `
 
 <div class="level">
 
 ${[1,2,3,4,5]
-.map(function(levelNumber){
+.map(
+function(levelNumber){
 
 return `
 
 <button
 class="
 ${
-level === levelNumber
+level ===
+levelNumber
 ?
 "selected"
 :
@@ -1817,34 +2699,37 @@ ${levelNumber}
 "
 >
 
-${"⭐".repeat(
-    levelNumber
-)}
+${levelNumber}
 
 </button>
 
 `;
 
-})
-.join("")}
+}
+)
+.join("")
+}
 
 </div>
-
 
 <p
 style="
 text-align:center;
+font-size:12px;
 "
 >
 
-Poziom:
+⭐ Poziom:
 ${level}/5
 
 </p>
 
 `
+
 :
+
 ""
+
 }
 
 
@@ -1852,87 +2737,128 @@ ${level}/5
 
 `;
 
-    });
+}
+);
 
 
-    if(shown === 0){
+if(shown === 0){
 
-        grid.innerHTML = `
+grid.innerHTML = `
 
 <div class="empty">
 
-Nie znaleziono duszka. 👻
+${
+translations[
+language
+].noResults
+}
 
 </div>
 
 `;
 
-    }
+}
 
 }
 
 
 /*
-=================================
+====================================
+KONIEC CZĘŚCI 4
+====================================
+*//* KONIEC CZĘŚCI 4 */
+
+
+/*
+====================================
 FILTRY
-=================================
+====================================
 */
 
+let currentType = "All";
+let currentVariant = "All";
+
+
+function setType(type, button){
+
+    currentType = type;
+
+    document
+    .querySelectorAll("#typeFilters button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+    renderSprites();
+
+}
+
+
+function setVariant(variant, button){
+
+    currentVariant = variant;
+
+    document
+    .querySelectorAll("#variantFilters button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+    renderSprites();
+
+}
+
+
+/*
+====================================
+TWORZENIE FILTRÓW
+====================================
+*/
 
 function createFilters(){
-
-    const types =
-    [
-        ...new Set(
-            sprites.map(
-                function(sprite){
-                    return sprite.type;
-                }
-            )
-        )
-    ];
-
 
     const typeBox =
     document.getElementById(
         "typeFilters"
     );
 
+    const types = [
+        ...new Set(
+            sprites.map(function(sprite){
 
-    types.forEach(
-    function(type){
+                return sprite.type;
+
+            })
+        )
+    ];
+
+
+    types.forEach(function(type){
 
         typeBox.innerHTML += `
 
-<button
-onclick="
-setType(
-'${type}',
-this
-)
-"
->
+        <button
+        onclick="
+        setType('${type}',this)
+        "
+        >
 
-${icons[type] || "👻"}
-${type}
+        ${icons[type] || "👻"}
+        ${type}
 
-</button>
+        </button>
 
-`;
+        `;
 
     });
-
-
-    const variants =
-    [
-        ...new Set(
-            sprites.map(
-                function(sprite){
-                    return sprite.variant;
-                }
-            )
-        )
-    ];
 
 
     const variantBox =
@@ -1941,340 +2867,71 @@ ${type}
     );
 
 
-    variants.forEach(
-    function(variant){
+    const variants = [
+        ...new Set(
+            sprites.map(function(sprite){
+
+                return sprite.variant;
+
+            })
+        )
+    ];
+
+
+    variants.forEach(function(variant){
 
         variantBox.innerHTML += `
 
-<button
-onclick="
-setVariant(
-'${variant}',
-this
-)
-"
->
+        <button
+        onclick="
+        setVariant('${variant}',this)
+        "
+        >
 
-${variant}
+        ${variant}
 
-</button>
+        </button>
 
-`;
+        `;
 
     });
 
 }
 
 
-/* KONIEC CZĘŚCI 2 */<!-- ========================= -->
-<!-- CZĘŚĆ 3 — URUCHOMIENIE -->
-<!-- ========================= -->
-
-
 /*
-=================================
-JĘZYK
-=================================
+====================================
+LICZNIK KOLEKCJI
+====================================
 */
 
+function loadCollection(){
 
-let language =
-localStorage.getItem(
-    "fntracker_language"
-) || "pl";
+    try{
 
+        collection =
+        JSON.parse(
+            localStorage.getItem(
+                "fntracker_collection"
+            ) || "{}"
+        );
 
-const translations = {
+    }catch(error){
 
-    pl: {
-
-        welcomeTitle:
-        "Witaj, graczu! 👋",
-
-        welcomeText:
-        "Witaj w FN Tracker. Zbieraj duszki, rozwijaj swoją kolekcję i odkrywaj najrzadsze warianty.",
-
-        owned:
-        "Posiadane",
-
-        all:
-        "Wszystkie",
-
-        sprites:
-        "Duszki Fortnite",
-
-        collection:
-        "Twoja kolekcja:",
-
-        search:
-        "🔎 Szukaj duszka...",
-
-        start:
-        "Start",
-
-        settings:
-        "Ustawienia",
-
-        language:
-        "🌐 Język",
-
-        add:
-        "➕ Dodaj do kolekcji",
-
-        added:
-        "✅ W kolekcji",
-
-        noResults:
-        "Nie znaleziono duszka. 👻",
-
-        level:
-        "Poziom",
-
-        rarity:
-        "Rzadkość",
-
-        variant:
-        "Wariant",
-
-        chance:
-        "Szansa",
-
-        allVariants:
-        "Wszystkie warianty"
-
-    },
-
-
-    en: {
-
-        welcomeTitle:
-        "Welcome, player! 👋",
-
-        welcomeText:
-        "Welcome to FN Tracker. Collect sprites, develop your collection and discover the rarest variants.",
-
-        owned:
-        "Owned",
-
-        all:
-        "All",
-
-        sprites:
-        "Fortnite Sprites",
-
-        collection:
-        "Your collection:",
-
-        search:
-        "🔎 Search sprite...",
-
-        start:
-        "Home",
-
-        settings:
-        "Settings",
-
-        language:
-        "🌐 Language",
-
-        add:
-        "➕ Add to collection",
-
-        added:
-        "✅ In collection",
-
-        noResults:
-        "No sprite found. 👻",
-
-        level:
-        "Level",
-
-        rarity:
-        "Rarity",
-
-        variant:
-        "Variant",
-
-        chance:
-        "Chance",
-
-        allVariants:
-        "All variants"
+        collection = {};
 
     }
 
-};
-
-
-/*
-=================================
-ZMIANA JĘZYKA
-=================================
-*/
-
-
-function setLanguage(
-    selected
-){
-
-    language = selected;
-
-
-    localStorage.setItem(
-        "fntracker_language",
-        selected
-    );
-
-
-    updateLanguage();
-
 }
 
 
 /*
-=================================
-AKTUALIZACJA TEKSTÓW
-=================================
+====================================
+START APLIKACJI
+====================================
 */
 
-
-function updateLanguage(){
-
-    const t =
-    translations[language];
-
-
-    document
-    .getElementById(
-        "welcomeTitle"
-    )
-    .textContent =
-    t.welcomeTitle;
-
-
-    document
-    .getElementById(
-        "welcomeText"
-    )
-    .textContent =
-    t.welcomeText;
-
-
-    document
-    .getElementById(
-        "ownedText"
-    )
-    .textContent =
-    t.owned;
-
-
-    document
-    .getElementById(
-        "allText"
-    )
-    .textContent =
-    t.all;
-
-
-    document
-    .getElementById(
-        "spritesTitle"
-    )
-    .textContent =
-    "👻 " + t.sprites;
-
-
-    document
-    .getElementById(
-        "collectionText"
-    )
-    .textContent =
-    t.collection;
-
-
-    document
-    .getElementById(
-        "search"
-    )
-    .placeholder =
-    t.search;
-
-
-    document
-    .getElementById(
-        "homeMenu"
-    )
-    .textContent =
-    t.start;
-
-
-    document
-    .getElementById(
-        "spritesMenu"
-    )
-    .textContent =
-    language === "pl"
-    ?
-    "Duszki"
-    :
-    "Sprites";
-
-
-    document
-    .getElementById(
-        "settingsMenu"
-    )
-    .textContent =
-    t.settings;
-
-
-    document
-    .getElementById(
-        "settingsTitle"
-    )
-    .textContent =
-    "⚙️ " + t.settings;
-
-
-    document
-    .getElementById(
-        "languageTitle"
-    )
-    .textContent =
-    t.language;
-
-
-    document
-    .getElementById(
-        "plButton"
-    )
-    .classList.toggle(
-        "active",
-        language === "pl"
-    );
-
-
-    document
-    .getElementById(
-        "enButton"
-    )
-    .classList.toggle(
-        "active",
-        language === "en"
-    );
-
-
-    renderSprites();
-
-}
-
-
-/*
-=================================
-URUCHOMIENIE
-=================================
-*/
-
+loadCollection();
 
 createFilters();
 
@@ -2286,34 +2943,19 @@ renderSprites();
 
 
 /*
-=================================
-USTAWIENIE LICZNIKA 117
-=================================
+====================================
+USTAWIENIE AKTYWNEJ ZAKŁADKI
+====================================
 */
 
-
-document
-.getElementById(
-    "allCount"
-)
-.textContent =
-sprites.length;
-
-
-document
-.getElementById(
-    "collectionCount"
-)
-.textContent =
-"0 / " + sprites.length;
+openPage("home");
 
 
 /*
-=================================
+====================================
 KONIEC JAVASCRIPT
-=================================
+====================================
 */
-
 
 </script>
 
