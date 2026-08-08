@@ -4,7 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
 <title>FN Tracker</title>
 
@@ -12,214 +16,473 @@
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
-
 
 body{
-
-margin:0;
-font-family:Arial,sans-serif;
-background:#0f1219;
-color:white;
-padding-bottom:80px;
-
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0b0f17;
+    color:white;
+    padding-bottom:85px;
 }
-
 
 
 header{
+    background:linear-gradient(
+        135deg,
+        #111827,
+        #172554
+    );
 
-text-align:center;
-background:#171c27;
-padding:20px;
+    padding:25px 20px;
+    text-align:center;
 
+    border-bottom:1px solid #26354d;
 }
-
 
 
 .logo{
-
-font-size:35px;
-font-weight:bold;
-color:#00aaff;
-
+    font-size:34px;
+    font-weight:bold;
+    color:#00aaff;
 }
 
+
+header p{
+    color:#9ca3af;
+    margin:7px 0 0;
+}
 
 
 .page{
-
-display:none;
-padding:20px;
-
+    display:none;
+    padding:18px;
 }
-
 
 
 .page.active{
-
-display:block;
-
+    display:block;
 }
 
+
+.welcome{
+    margin-top:20px;
+
+    background:linear-gradient(
+        145deg,
+        #172033,
+        #111827
+    );
+
+    padding:25px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.3);
+}
+
+
+.welcome-icon{
+    font-size:65px;
+    margin-bottom:5px;
+}
+
+
+.welcome h1{
+    font-size:30px;
+    margin:5px 0 10px;
+}
+
+
+.welcome p{
+    color:#9ca3af;
+    line-height:1.5;
+}
+
+
+.big-button{
+    width:100%;
+
+    padding:17px;
+
+    margin-top:12px;
+
+    border:0;
+
+    border-radius:15px;
+
+    background:#00aaff;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+}
+
+
+.big-button.secondary{
+    background:#202b3d;
+}
+
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+
+    margin-top:18px;
+}
+
+
+.stat{
+    background:#151d2b;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    text-align:center;
+}
+
+
+.stat strong{
+    font-size:25px;
+
+    color:#00aaff;
+
+    display:block;
+}
 
 
 .card{
+    background:#151d2b;
 
-background:#1c2330;
-padding:20px;
-border-radius:15px;
-margin-bottom:15px;
+    padding:18px;
 
+    border-radius:18px;
+
+    margin-bottom:15px;
 }
 
 
-
-.shop-grid{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-
+.card h2{
+    margin-top:0;
 }
 
 
+.search{
+    width:100%;
 
-.item{
+    padding:14px;
 
-background:#252e3d;
-padding:10px;
-border-radius:15px;
-text-align:center;
+    border:1px solid #29364a;
 
+    border-radius:13px;
+
+    background:#0d131e;
+
+    color:white;
+
+    font-size:16px;
+
+    margin-bottom:12px;
 }
 
 
+.filters{
+    display:flex;
 
-.item img{
+    gap:8px;
 
-width:100%;
-border-radius:12px;
+    overflow-x:auto;
 
+    padding-bottom:8px;
 }
 
 
+.filters button{
+    white-space:nowrap;
 
-.price{
+    border:0;
 
-color:#00aaff;
-font-weight:bold;
+    border-radius:10px;
 
+    padding:10px 13px;
+
+    background:#202b3d;
+
+    color:white;
 }
 
 
-
-.category{
-
-color:#aaa;
-
+.filters button.active{
+    background:#00aaff;
 }
 
 
+.sprite-grid{
+    display:grid;
 
-input,select{
+    grid-template-columns:
+        repeat(2,1fr);
 
-width:100%;
-padding:12px;
-margin:7px 0;
-border-radius:10px;
-border:0;
-background:#10131a;
-color:white;
-
+    gap:12px;
 }
 
 
+.sprite{
+    background:#172131;
 
-.add{
+    border-radius:17px;
 
-width:100%;
-padding:12px;
-background:#00aaff;
-color:white;
-border:0;
-border-radius:10px;
-font-weight:bold;
+    padding:13px;
 
+    border:1px solid #243249;
+
+    overflow:hidden;
 }
 
 
+.sprite-image{
+    width:100%;
 
-.bottom-menu{
+    aspect-ratio:1/1;
 
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#171c27;
-display:flex;
-justify-content:space-around;
-padding:10px;
+    object-fit:cover;
 
+    display:block;
+
+    background:#101722;
+
+    border-radius:13px;
+
+    margin-bottom:10px;
 }
 
 
+.sprite h3{
+    font-size:16px;
 
-.bottom-menu button{
-
-background:none;
-border:0;
-color:white;
-
+    margin:7px 0;
 }
 
 
+.sprite p{
+    margin:5px 0;
 
-.map-box{
+    font-size:13px;
 
-height:500px;
-position:relative;
-overflow:hidden;
-border-radius:15px;
-background:#111;
-
+    color:#aab4c3;
 }
 
 
-
-.map-box img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
+.rarity{
+    font-weight:bold;
 }
 
 
-
-.marker{
-
-position:absolute;
-font-size:28px;
-cursor:pointer;
-transform:translate(-50%,-50%);
-
+.special{
+    color:#c084fc !important;
 }
 
+
+.rare{
+    color:#60a5fa !important;
+}
+
+
+.epic{
+    color:#c084fc !important;
+}
+
+
+.legendary{
+    color:#fbbf24 !important;
+}
+
+
+.mythic{
+    color:#fb7185 !important;
+}
+
+
+.prob{
+    color:#00aaff !important;
+
+    font-weight:bold;
+}
+
+
+.collection-button{
+    width:100%;
+
+    padding:10px;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:#00aaff;
+
+    color:white;
+
+    font-weight:bold;
+
+    margin-top:9px;
+}
+
+
+.collection-button.owned{
+    background:#26364b;
+}
+
+
+.level{
+    margin-top:9px;
+
+    display:flex;
+
+    gap:4px;
+}
+
+
+.level button{
+    flex:1;
+
+    border:0;
+
+    background:#202b3d;
+
+    color:white;
+
+    padding:7px 2px;
+
+    border-radius:7px;
+}
+
+
+.level button.selected{
+    background:#fbbf24;
+
+    color:#111;
+}
 
 
 .empty{
+    text-align:center;
 
-text-align:center;
-color:#888;
+    color:#778195;
 
+    padding:30px 5px;
+
+    grid-column:1/-1;
 }
 
 
+.counter{
+    font-size:14px;
+
+    color:#9ca3af;
+
+    margin-bottom:12px;
+}
+
+
+.setting-button{
+    width:100%;
+
+    padding:14px;
+
+    margin:6px 0;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:#202b3d;
+
+    color:white;
+
+    font-size:15px;
+
+    text-align:left;
+}
+
+
+.setting-button.active{
+    background:#00aaff;
+}
+
+
+.footer{
+    text-align:center;
+
+    color:#697586;
+
+    font-size:12px;
+
+    margin-top:35px;
+
+    padding-bottom:20px;
+}
+
+
+.bottom-menu{
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    background:#111925;
+
+    border-top:1px solid #26354d;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    padding:9px 0;
+
+    z-index:1000;
+}
+
+
+.bottom-menu button{
+    background:none;
+
+    border:0;
+
+    color:#b8c2d0;
+
+    font-size:12px;
+}
+
+
+.bottom-menu button.active{
+    color:#00aaff;
+}
+
+
+@media(max-width:360px){
+
+    .sprite-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 
 </style>
-
 
 </head>
 
@@ -233,223 +496,156 @@ color:#888;
 FN Tracker
 </div>
 
-<p>Fortnite Companion</p>
+<p>
+Fortnite Sprites Collection
+</p>
 
 </header>
 
 
 
-
-<div id="shop" class="page active">
-
-
-<div class="card">
-
-<h2>🛒 Sklep Fortnite</h2>
-
-<h3 id="shopDate">
-Dzisiejsza rotacja
-</h3>
+<!-- ========================= -->
+<!-- EKRAN STARTOWY -->
+<!-- ========================= -->
 
 
+<div
+id="home"
+class="page active"
+>
+
+
+<div class="welcome">
+
+
+<div class="welcome-icon">
+👻
 </div>
 
 
+<h1 id="welcomeTitle">
+Witaj, graczu! 👋
+</h1>
 
-<div class="shop-grid" id="shopItems">
 
+<p id="welcomeText">
 
-<div class="empty">
+Witaj w FN Tracker.
+Zbieraj duszki, rozwijaj swoją
+kolekcję i odkrywaj najrzadsze
+warianty.
 
-Ładowanie...
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div id="map" class="page">
-
-
-<div class="card">
-
-
-<h2>🗺️ Mapa Fortnite</h2>
-
-
-<img src="https://i.imgur.com/8QZQZQG.jpeg">
-
-
-
-<div class="marker"
-style="left:30%;top:40%;"
-onclick="showMarker('📦 Skrzynka')">
-
-📦
-
-</div>
-
-
-
-<div class="marker"
-style="left:60%;top:55%;"
-onclick="showMarker('🔄 Reboot Van')">
-
-🔄
-
-</div>
-
-
-
-<div class="marker"
-style="left:45%;top:70%;"
-onclick="showMarker('🚗 Pojazd')">
-
-🚗
-
-</div>
-
-
-
-<div class="marker"
-style="left:75%;top:30%;"
-onclick="showMarker('🎣 Wędka')">
-
-🎣
-
-</div>
-
-
-
-<div class="marker"
-style="left:50%;top:50%;"
-onclick="showMarker('📍 Miejscówka')">
-
-📍
-
-</div>
-
-
-
-</div>
-
-
-
-<div class="card" id="markerInfo">
-
-Kliknij marker
-
-</div>
-
-
-</div>
-
-
-</div><div id="settings" class="page">
-
-
-<div class="card">
-
-
-<h2>⚙️ Ustawienia</h2>
-
-
-<p>
-FN Tracker - Fortnite Companion
 </p>
 
 
-<p>
-Wersja: 1.2
-</p>
+<button
+class="big-button"
+onclick="openPage('sprites')"
+>
 
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="admin" class="page">
-
-
-<div class="card">
-
-
-<h2>👑 Panel Admina</h2>
-
-
-<input id="name" placeholder="Nazwa przedmiotu">
-
-
-
-<input id="price" placeholder="Cena V-dolców">
-
-
-
-<input id="rarity" placeholder="Rzadkość">
-
-
-
-<select id="category">
-
-
-<option value="Strój">
-👕 Strój
-</option>
-
-
-<option value="Kilof">
-⛏️ Kilof
-</option>
-
-
-<option value="Emotka">
-💃 Emotka
-</option>
-
-
-<option value="Plecak">
-🎒 Plecak
-</option>
-
-
-<option value="Lotnia">
-🪂 Lotnia
-</option>
-
-
-</select>
-
-
-
-
-<input id="image" placeholder="Link do obrazka">
-
-
-
-<input id="date" placeholder="Data sklepu np. 07.08.2026">
-
-
-
-<button class="add" onclick="addItem()">
-
-➕ Dodaj przedmiot
+👻 Duszki
 
 </button>
 
 
+<button
+class="big-button secondary"
+onclick="openPage('settings')"
+>
+
+⚙️ Ustawienia
+
+</button>
+
+
+</div>
+
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<strong id="ownedCount">
+0
+</strong>
+
+<span id="ownedText">
+Posiadane
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="allCount">
+117
+</strong>
+
+<span id="allText">
+Wszystkie
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="footer">
+
+FN Tracker<br><br>
+
+Stworzone przez FN Tracker Team
+
+</div>
+
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- DUSZKI -->
+<!-- ========================= -->
+
+
+<div
+id="sprites"
+class="page"
+>
+
+
+<div class="card">
+
+
+<h2 id="spritesTitle">
+👻 Duszki Fortnite
+</h2>
+
+
+<div class="counter">
+
+<span id="collectionText">
+Twoja kolekcja:
+</span>
+
+<strong id="collectionCount">
+0 / 117
+</strong>
+
+</div>
+
+
+<input
+id="search"
+class="search"
+placeholder="🔎 Szukaj duszka..."
+oninput="renderSprites()"
+>
+
 
 </div>
 
@@ -458,11 +654,136 @@ Wersja: 1.2
 <div class="card">
 
 
-<h2>📍 Markery</h2>
+<div
+class="filters"
+id="typeFilters"
+>
+
+
+<button
+class="active"
+onclick="setType('All',this)"
+>
+
+🔥 Wszystkie
+
+</button>
+
+
+</div>
+
+
+<br>
+
+
+<div
+class="filters"
+id="variantFilters"
+>
+
+
+<button
+class="active"
+onclick="setVariant('All',this)"
+>
+
+Wszystkie warianty
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<div
+id="spriteGrid"
+class="sprite-grid"
+>
+
+
+<div class="empty">
+
+Ładowanie duszków...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- USTAWIENIA -->
+<!-- ========================= -->
+
+
+<div
+id="settings"
+class="page"
+>
+
+
+<div class="card">
+
+
+<h2 id="settingsTitle">
+⚙️ Ustawienia
+</h2>
+
+
+<p id="languageTitle">
+🌐 Język
+</p>
+
+
+<button
+id="plButton"
+class="setting-button active"
+onclick="setLanguage('pl')"
+>
+
+🇵🇱 Polski
+
+</button>
+
+
+<button
+id="enButton"
+class="setting-button"
+onclick="setLanguage('en')"
+>
+
+🇬🇧 English
+
+</button>
+
+
+</div>
+
+
+
+<div class="card">
+
+
+<h2>
+ℹ️ FN Tracker
+</h2>
 
 
 <p>
-Tutaj później dodamy dodawanie własnych markerów.
+Wersja: 2.0
+</p>
+
+
+<p>
+Kolekcja duszków Fortnite
 </p>
 
 
@@ -470,365 +791,1528 @@ Tutaj później dodamy dodawanie własnych markerów.
 
 
 
+<div class="footer">
+
+Stworzone przez FN Tracker Team
+
+</div>
+
+
 </div>
 
 
 
-
+<!-- ========================= -->
+<!-- DOLNE MENU -->
+<!-- ========================= -->
 
 
 <div class="bottom-menu">
 
 
-<button onclick="openPage('shop')">
+<button
+id="homeButton"
+class="active"
+onclick="openPage('home')"
+>
 
-🛒<br>
-Sklep
+🏠<br>
 
-</button>
-
-
-
-<button onclick="openPage('map')">
-
-🗺️<br>
-Mapa
+<span id="homeMenu">
+Start
+</span>
 
 </button>
 
 
 
-<button onclick="openPage('settings')">
+<button
+id="spritesButton"
+onclick="openPage('sprites')"
+>
+
+👻<br>
+
+<span id="spritesMenu">
+Duszki
+</span>
+
+</button>
+
+
+
+<button
+id="settingsButton"
+onclick="openPage('settings')"
+>
 
 ⚙️<br>
+
+<span id="settingsMenu">
 Ustawienia
+</span>
 
 </button>
 
 
+</div>
 
-<button id="adminButton" style="display:none" onclick="openPage('admin')">
 
-👑<br>
-Admin
 
-</button>
+<script>
 
 
+/* ============================
+   CZĘŚĆ 1 — BAZA DUSZKÓW
+   ============================ */
 
-</div><
-        
-</body>
-  
-</html>
-<script type="module">
 
+/*
+   Tutaj będą wszystkie 117 duszków.
 
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+   W następnej części dodamy
+   właściwą bazę danych oraz
+   automatyczne obrazki.
+*/
 
 
-import {
+const sprites = [];
 
-getFirestore,
 
-collection,
+function addSprite(
+    name,
+    type,
+    variant,
+    rarity,
+    chance,
+    image
+){
 
-addDoc,
+    sprites.push({
 
-getDocs
+        name:name,
 
-}
+        type:type,
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        variant:variant,
 
+        rarity:rarity,
 
+        chance:chance,
 
+        image:image
 
-const firebaseConfig = {
-
-
-apiKey: "AIzaSyBlQzF_lY7plf0iz0Aeo3kfj2083OH3CeI",
-
-authDomain: "fn-tracker-7ca77.firebaseapp.com",
-
-projectId: "fn-tracker-7ca77",
-
-storageBucket: "fn-tracker-7ca77.firebasestorage.app",
-
-messagingSenderId: "894926360582",
-
-appId: "1:894926360582:web:446c19751ef653b3fa7387"
-
-
-};
-
-
-
-
-const app = initializeApp(firebaseConfig);
-
-
-const db = getFirestore(app);
-
-
-
-
-
-window.openPage = function(id){
-
-
-let pages = document.querySelectorAll(".page");
-
-
-pages.forEach(page=>{
-
-page.classList.remove("active");
-
-});
-
-
-document.getElementById(id).classList.add("active");
-
-
-};
-
-
-
-
-
-
-
-window.showMarker = function(text){
-
-
-document.getElementById("markerInfo").innerHTML =
-
-"📍 " + text;
-
-
-};
-
-
-
-
-
-
-
-window.addItem = async function(){
-
-
-
-let item = {
-
-
-name: document.getElementById("name").value,
-
-
-price: document.getElementById("price").value,
-
-
-rarity: document.getElementById("rarity").value,
-
-
-category: document.getElementById("category").value,
-
-
-image: document.getElementById("image").value,
-
-
-date: document.getElementById("date").value
-
-
-};
-
-
-
-
-if(item.name==="" || item.price===""){
-
-
-alert("Wpisz nazwę i cenę!");
-
-
-return;
-
+    });
 
 }
 
 
+/* ============================
+   PODSTAWOWE DUSZKI
+   ============================ */
 
 
-await addDoc(
+addSprite(
+    "Duszek wody",
+    "Woda",
+    "Podstawowy",
+    "Rzadki",
+    "0%",
+    ""
+);
 
-collection(db,"shop"),
 
-item
+addSprite(
+    "Złoty duszek wody",
+    "Woda",
+    "Złoty",
+    "Specjalny",
+    "0.53%",
+    ""
+);
 
+
+addSprite(
+    "Gami duszek wody",
+    "Woda",
+    "Gami",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Galaktyczny duszek wody",
+    "Woda",
+    "Galaktyczny",
+    "Specjalny",
+    "0.43%",
+    ""
+);
+
+
+addSprite(
+    "Holofoliowy duszek wody",
+    "Woda",
+    "Holo",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Quack duszek wody",
+    "Woda",
+    "Quack",
+    "Specjalny",
+    "0%",
+    ""
+);
+
+
+addSprite(
+    "Diamentowy duszek wody",
+    "Woda",
+    "Diament",
+    "Specjalny",
+    "0.37%",
+    ""
 );
 
 
 
-alert("✅ Dodano do sklepu!");
+/* ZIEMIA */
+
+
+addSprite(
+    "Duszek ziemi",
+    "Ziemia",
+    "Podstawowy",
+    "Podstawowy",
+    "50%",
+    ""
+);
+
+
+addSprite(
+    "Złoty duszek ziemi",
+    "Ziemia",
+    "Złoty",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Żelkowy duszek ziemi",
+    "Ziemia",
+    "Żelkowy",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Galaktyczny duszek ziemi",
+    "Ziemia",
+    "Galaktyczny",
+    "Specjalny",
+    "0.43%",
+    ""
+);
+
+
+addSprite(
+    "Kostkowy duszek ziemi",
+    "Ziemia",
+    "Kostka",
+    "Specjalny",
+    "0.21%",
+    ""
+);
+
+
+addSprite(
+    "Quack duszek ziemi",
+    "Ziemia",
+    "Quack",
+    "Specjalny",
+    "0%",
+    ""
+);
+
+
+addSprite(
+    "Diamentowy duszek ziemi",
+    "Ziemia",
+    "Diament",
+    "Specjalny",
+    "0.37%",
+    ""
+);
 
 
 
-loadShop();
+/* OGIEŃ */
 
+
+addSprite(
+    "Duszek ognia",
+    "Ogień",
+    "Podstawowy",
+    "Podstawowy",
+    "50%",
+    ""
+);
+
+
+addSprite(
+    "Złoty duszek ognia",
+    "Ogień",
+    "Złoty",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Żelkowy duszek ognia",
+    "Ogień",
+    "Żelkowy",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Galaktyczny duszek ognia",
+    "Ogień",
+    "Galaktyczny",
+    "Specjalny",
+    "0.43%",
+    ""
+);
+
+
+addSprite(
+    "Holofoliowy duszek ognia",
+    "Ogień",
+    "Holo",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Kostkowy duszek ognia",
+    "Ogień",
+    "Kostka",
+    "Specjalny",
+    "0.21%",
+    ""
+);
+
+
+addSprite(
+    "Quack duszek ognia",
+    "Ogień",
+    "Quack",
+    "Specjalny",
+    "0%",
+    ""
+);
+
+
+/* KONIEC CZĘŚCI 1 */<!-- ========================= -->
+<!-- CZĘŚĆ 2 — DANE I FUNKCJE -->
+<!-- ========================= -->
+
+
+/*
+   DODATKOWE DUSZKI
+*/
+
+
+addSprite(
+    "Duszek powietrza",
+    "Powietrze",
+    "Podstawowy",
+    "Podstawowy",
+    "50%",
+    ""
+);
+
+
+addSprite(
+    "Złoty duszek powietrza",
+    "Powietrze",
+    "Złoty",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Żelkowy duszek powietrza",
+    "Powietrze",
+    "Żelkowy",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Galaktyczny duszek powietrza",
+    "Powietrze",
+    "Galaktyczny",
+    "Specjalny",
+    "0.43%",
+    ""
+);
+
+
+addSprite(
+    "Holofoliowy duszek powietrza",
+    "Powietrze",
+    "Holo",
+    "Specjalny",
+    "0.53%",
+    ""
+);
+
+
+addSprite(
+    "Kostkowy duszek powietrza",
+    "Powietrze",
+    "Kostka",
+    "Specjalny",
+    "0.21%",
+    ""
+);
+
+
+addSprite(
+    "Quack duszek powietrza",
+    "Powietrze",
+    "Quack",
+    "Specjalny",
+    "0%",
+    ""
+);
+
+
+/*
+   DUSZKI — POZOSTAŁE
+*/
+
+
+addSprite(
+    "Duszek wody - klasyczny",
+    "Woda",
+    "Klasyczny",
+    "Rzadki",
+    "0%",
+    ""
+);
+
+
+addSprite(
+    "Duszek ziemi - klasyczny",
+    "Ziemia",
+    "Klasyczny",
+    "Podstawowy",
+    "50%",
+    ""
+);
+
+
+addSprite(
+    "Duszek ognia - klasyczny",
+    "Ogień",
+    "Klasyczny",
+    "Podstawowy",
+    "50%",
+    ""
+);
+
+
+/*
+=================================
+KOLEKCJA
+=================================
+*/
+
+
+let collection = JSON.parse(
+    localStorage.getItem(
+        "fntracker_collection"
+    ) || "{}"
+);
+
+
+let currentType = "All";
+
+let currentVariant = "All";
+
+
+/*
+=================================
+OBRAZKI
+=================================
+*/
+
+
+const fallbackImages = {
+
+    "Woda":
+    "https://fortnite.gg/img/sprites/water.png",
+
+    "Ziemia":
+    "https://fortnite.gg/img/sprites/earth.png",
+
+    "Ogień":
+    "https://fortnite.gg/img/sprites/fire.png",
+
+    "Powietrze":
+    "https://fortnite.gg/img/sprites/air.png"
 
 };
 
 
+/*
+   Jeżeli prawdziwy obrazek nie
+   załaduje się, karta pokaże emoji.
+*/
 
 
+const icons = {
+
+    "Woda":"🌊",
+
+    "Ziemia":"🌱",
+
+    "Ogień":"🔥",
+
+    "Powietrze":"💨"
+
+};
 
 
-
-async function loadShop(){
-
-
-let shop = document.getElementById("shopItems");
-
-
-shop.innerHTML="";
+/*
+=================================
+OTWIERANIE ZAKŁADEK
+=================================
+*/
 
 
+function openPage(id){
 
-let items = await getDocs(
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
 
-collection(db,"shop")
+        page.classList.remove("active");
 
-);
-
-
-
-
-let today = new Date().toLocaleDateString("pl-PL");
+    });
 
 
-
-let found=false;
-
-
-
-items.forEach(doc=>{
+    const page =
+    document.getElementById(id);
 
 
-let data = doc.data();
+    if(page){
+
+        page.classList.add("active");
+
+    }
 
 
+    document
+    .querySelectorAll(
+        ".bottom-menu button"
+    )
+    .forEach(function(button){
+
+        button.classList.remove(
+            "active"
+        );
+
+    });
 
 
-if(data.date===today || data.date===""){
+    if(id === "home"){
+
+        document
+        .getElementById("homeButton")
+        .classList.add("active");
+
+    }
 
 
-found=true;
+    if(id === "sprites"){
+
+        document
+        .getElementById("spritesButton")
+        .classList.add("active");
+
+    }
 
 
+    if(id === "settings"){
 
-shop.innerHTML += `
+        document
+        .getElementById("settingsButton")
+        .classList.add("active");
+
+    }
+
+}
 
 
-<div class="item">
+/*
+=================================
+FILTR TYPÓW
+=================================
+*/
 
 
-<img src="${data.image || 'https://via.placeholder.com/300'}">
+function setType(
+    type,
+    button
+){
 
+    currentType = type;
+
+
+    document
+    .querySelectorAll(
+        "#typeFilters button"
+    )
+    .forEach(function(b){
+
+        b.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderSprites();
+
+}
+
+
+/*
+=================================
+FILTR WARIANTÓW
+=================================
+*/
+
+
+function setVariant(
+    variant,
+    button
+){
+
+    currentVariant =
+    variant;
+
+
+    document
+    .querySelectorAll(
+        "#variantFilters button"
+    )
+    .forEach(function(b){
+
+        b.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderSprites();
+
+}
+
+
+/*
+=================================
+KOLEKCJA
+=================================
+*/
+
+
+function toggleCollection(index){
+
+    if(
+        collection[index] !== undefined
+    ){
+
+        delete collection[index];
+
+    }else{
+
+        collection[index] = 1;
+
+    }
+
+
+    saveCollection();
+
+    renderSprites();
+
+    updateStats();
+
+}
+
+
+/*
+=================================
+POZIOM 1–5
+=================================
+*/
+
+
+function setLevel(
+    index,
+    level
+){
+
+    if(
+        collection[index] !== undefined
+    ){
+
+        collection[index] =
+        level;
+
+
+        saveCollection();
+
+        renderSprites();
+
+        updateStats();
+
+    }
+
+}
+
+
+/*
+=================================
+ZAPIS
+=================================
+*/
+
+
+function saveCollection(){
+
+    localStorage.setItem(
+        "fntracker_collection",
+        JSON.stringify(
+            collection
+        )
+    );
+
+}
+
+
+/*
+=================================
+STATYSTYKI
+=================================
+*/
+
+
+function updateStats(){
+
+    const count =
+    Object.keys(
+        collection
+    ).length;
+
+
+    document
+    .getElementById(
+        "ownedCount"
+    )
+    .textContent =
+    count;
+
+
+    document
+    .getElementById(
+        "collectionCount"
+    )
+    .textContent =
+    count +
+    " / " +
+    sprites.length;
+
+
+    document
+    .getElementById(
+        "allCount"
+    )
+    .textContent =
+    sprites.length;
+
+}
+
+
+/*
+=================================
+KLASA RZADKOŚCI
+=================================
+*/
+
+
+function getRarityClass(
+    rarity
+){
+
+    return rarity
+    .toLowerCase()
+    .replace(
+        /ą/g,"a"
+    )
+    .replace(
+        /ó/g,"o"
+    )
+    .replace(
+        /ś/g,"s"
+    )
+    .replace(
+        /ć/g,"c"
+    );
+
+}
+
+
+/*
+=================================
+GENEROWANIE KART
+=================================
+*/
+
+
+function renderSprites(){
+
+    const grid =
+    document.getElementById(
+        "spriteGrid"
+    );
+
+
+    const search =
+    document.getElementById(
+        "search"
+    )
+    .value
+    .toLowerCase()
+    .trim();
+
+
+    grid.innerHTML = "";
+
+
+    let shown = 0;
+
+
+    sprites.forEach(
+    function(sprite,index){
+
+        if(
+            search &&
+            !sprite.name
+            .toLowerCase()
+            .includes(search)
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            currentType !== "All" &&
+            sprite.type !==
+            currentType
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            currentVariant !== "All" &&
+            sprite.variant !==
+            currentVariant
+        ){
+
+            return;
+
+        }
+
+
+        shown++;
+
+
+        const owned =
+        collection[index] !==
+        undefined;
+
+
+        const level =
+        collection[index] || 0;
+
+
+        const icon =
+        icons[sprite.type] ||
+        "👻";
+
+
+        const image =
+        sprite.image ||
+        fallbackImages[
+            sprite.type
+        ];
+
+
+        grid.innerHTML += `
+
+<div class="sprite">
+
+
+<img
+class="sprite-image"
+src="${image}"
+alt="${sprite.name}"
+onerror="
+this.style.display='none';
+this.nextElementSibling.style.display='flex';
+"
+>
+
+
+<div
+style="
+display:none;
+height:100%;
+min-height:150px;
+align-items:center;
+justify-content:center;
+font-size:60px;
+background:#101722;
+border-radius:13px;
+margin-bottom:10px;
+"
+>
+
+${icon}
+
+</div>
 
 
 <h3>
-
-${data.name}
-
+${sprite.name}
 </h3>
 
 
+<p
+class="rarity ${getRarityClass(
+    sprite.rarity
+)}"
+>
 
-<p class="category">
-
-${data.category}
+💎 ${sprite.rarity}
 
 </p>
-
 
 
 <p>
 
-${data.rarity}
+🎨 Wariant:
+${sprite.variant}
 
 </p>
 
 
+<p class="prob">
 
-<div class="price">
+🎁 Szansa:
+${sprite.chance}
 
-${data.price} V-dolców
-
-</div>
+</p>
 
 
-</div>
+<button
+class="
+collection-button
+${owned ? "owned" : ""}
+"
+onclick="
+toggleCollection(${index})
+"
+>
 
+${
+owned
+?
+"✅ W kolekcji"
+:
+"➕ Dodaj do kolekcji"
+}
+
+</button>
+
+
+${
+owned
+?
+`
+
+<div class="level">
+
+${[1,2,3,4,5]
+.map(function(levelNumber){
+
+return `
+
+<button
+class="
+${
+level === levelNumber
+?
+"selected"
+:
+""
+}
+"
+onclick="
+setLevel(
+${index},
+${levelNumber}
+)
+"
+>
+
+${"⭐".repeat(
+    levelNumber
+)}
+
+</button>
 
 `;
 
+})
+.join("")}
 
+</div>
+
+
+<p
+style="
+text-align:center;
+"
+>
+
+Poziom:
+${level}/5
+
+</p>
+
+`
+:
+""
+}
+
+
+</div>
+
+`;
+
+    });
+
+
+    if(shown === 0){
+
+        grid.innerHTML = `
+
+<div class="empty">
+
+Nie znaleziono duszka. 👻
+
+</div>
+
+`;
+
+    }
 
 }
 
 
-
-});
-
-
-
-
-document.getElementById("shopDate").innerHTML =
-
-"🗓️ Sklep: " + today;
+/*
+=================================
+FILTRY
+=================================
+*/
 
 
+function createFilters(){
 
-if(!found){
+    const types =
+    [
+        ...new Set(
+            sprites.map(
+                function(sprite){
+                    return sprite.type;
+                }
+            )
+        )
+    ];
 
 
-shop.innerHTML =
+    const typeBox =
+    document.getElementById(
+        "typeFilters"
+    );
 
-'<div class="empty">Brak przedmiotów na dziś</div>';
 
+    types.forEach(
+    function(type){
+
+        typeBox.innerHTML += `
+
+<button
+onclick="
+setType(
+'${type}',
+this
+)
+"
+>
+
+${icons[type] || "👻"}
+${type}
+
+</button>
+
+`;
+
+    });
+
+
+    const variants =
+    [
+        ...new Set(
+            sprites.map(
+                function(sprite){
+                    return sprite.variant;
+                }
+            )
+        )
+    ];
+
+
+    const variantBox =
+    document.getElementById(
+        "variantFilters"
+    );
+
+
+    variants.forEach(
+    function(variant){
+
+        variantBox.innerHTML += `
+
+<button
+onclick="
+setVariant(
+'${variant}',
+this
+)
+"
+>
+
+${variant}
+
+</button>
+
+`;
+
+    });
 
 }
 
 
+/* KONIEC CZĘŚCI 2 */<!-- ========================= -->
+<!-- CZĘŚĆ 3 — URUCHOMIENIE -->
+<!-- ========================= -->
+
+
+/*
+=================================
+JĘZYK
+=================================
+*/
+
+
+let language =
+localStorage.getItem(
+    "fntracker_language"
+) || "pl";
+
+
+const translations = {
+
+    pl: {
+
+        welcomeTitle:
+        "Witaj, graczu! 👋",
+
+        welcomeText:
+        "Witaj w FN Tracker. Zbieraj duszki, rozwijaj swoją kolekcję i odkrywaj najrzadsze warianty.",
+
+        owned:
+        "Posiadane",
+
+        all:
+        "Wszystkie",
+
+        sprites:
+        "Duszki Fortnite",
+
+        collection:
+        "Twoja kolekcja:",
+
+        search:
+        "🔎 Szukaj duszka...",
+
+        start:
+        "Start",
+
+        settings:
+        "Ustawienia",
+
+        language:
+        "🌐 Język",
+
+        add:
+        "➕ Dodaj do kolekcji",
+
+        added:
+        "✅ W kolekcji",
+
+        noResults:
+        "Nie znaleziono duszka. 👻",
+
+        level:
+        "Poziom",
+
+        rarity:
+        "Rzadkość",
+
+        variant:
+        "Wariant",
+
+        chance:
+        "Szansa",
+
+        allVariants:
+        "Wszystkie warianty"
+
+    },
+
+
+    en: {
+
+        welcomeTitle:
+        "Welcome, player! 👋",
+
+        welcomeText:
+        "Welcome to FN Tracker. Collect sprites, develop your collection and discover the rarest variants.",
+
+        owned:
+        "Owned",
+
+        all:
+        "All",
+
+        sprites:
+        "Fortnite Sprites",
+
+        collection:
+        "Your collection:",
+
+        search:
+        "🔎 Search sprite...",
+
+        start:
+        "Home",
+
+        settings:
+        "Settings",
+
+        language:
+        "🌐 Language",
+
+        add:
+        "➕ Add to collection",
+
+        added:
+        "✅ In collection",
+
+        noResults:
+        "No sprite found. 👻",
+
+        level:
+        "Level",
+
+        rarity:
+        "Rarity",
+
+        variant:
+        "Variant",
+
+        chance:
+        "Chance",
+
+        allVariants:
+        "All variants"
+
+    }
+
+};
+
+
+/*
+=================================
+ZMIANA JĘZYKA
+=================================
+*/
+
+
+function setLanguage(
+    selected
+){
+
+    language = selected;
+
+
+    localStorage.setItem(
+        "fntracker_language",
+        selected
+    );
+
+
+    updateLanguage();
 
 }
 
 
+/*
+=================================
+AKTUALIZACJA TEKSTÓW
+=================================
+*/
 
 
+function updateLanguage(){
+
+    const t =
+    translations[language];
 
 
+    document
+    .getElementById(
+        "welcomeTitle"
+    )
+    .textContent =
+    t.welcomeTitle;
 
-const password = prompt("🔐 Hasło administratora:");
+
+    document
+    .getElementById(
+        "welcomeText"
+    )
+    .textContent =
+    t.welcomeText;
 
 
+    document
+    .getElementById(
+        "ownedText"
+    )
+    .textContent =
+    t.owned;
 
-if(password==="FNTRACKER2026"){
+
+    document
+    .getElementById(
+        "allText"
+    )
+    .textContent =
+    t.all;
 
 
-document.getElementById("adminButton").style.display="block";
+    document
+    .getElementById(
+        "spritesTitle"
+    )
+    .textContent =
+    "👻 " + t.sprites;
 
+
+    document
+    .getElementById(
+        "collectionText"
+    )
+    .textContent =
+    t.collection;
+
+
+    document
+    .getElementById(
+        "search"
+    )
+    .placeholder =
+    t.search;
+
+
+    document
+    .getElementById(
+        "homeMenu"
+    )
+    .textContent =
+    t.start;
+
+
+    document
+    .getElementById(
+        "spritesMenu"
+    )
+    .textContent =
+    language === "pl"
+    ?
+    "Duszki"
+    :
+    "Sprites";
+
+
+    document
+    .getElementById(
+        "settingsMenu"
+    )
+    .textContent =
+    t.settings;
+
+
+    document
+    .getElementById(
+        "settingsTitle"
+    )
+    .textContent =
+    "⚙️ " + t.settings;
+
+
+    document
+    .getElementById(
+        "languageTitle"
+    )
+    .textContent =
+    t.language;
+
+
+    document
+    .getElementById(
+        "plButton"
+    )
+    .classList.toggle(
+        "active",
+        language === "pl"
+    );
+
+
+    document
+    .getElementById(
+        "enButton"
+    )
+    .classList.toggle(
+        "active",
+        language === "en"
+    );
+
+
+    renderSprites();
 
 }
 
 
+/*
+=================================
+URUCHOMIENIE
+=================================
+*/
 
 
+createFilters();
+
+updateStats();
+
+updateLanguage();
+
+renderSprites();
 
 
+/*
+=================================
+USTAWIENIE LICZNIKA 117
+=================================
+*/
 
-loadShop();
 
+document
+.getElementById(
+    "allCount"
+)
+.textContent =
+sprites.length;
+
+
+document
+.getElementById(
+    "collectionCount"
+)
+.textContent =
+"0 / " + sprites.length;
+
+
+/*
+=================================
+KONIEC JAVASCRIPT
+=================================
+*/
 
 
 </script>
