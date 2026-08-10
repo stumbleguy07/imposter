@@ -1,2965 +1,876 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>FN Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMPOSTOR</title>
 
 <style>
-
-*{
-box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#080c14;
-color:white;
-padding-bottom:85px;
+body {
+    background: #0f1219;
+    color: white;
+    min-height: 100vh;
 }
 
-header{
-background:linear-gradient(135deg,#101827,#172554);
-padding:24px 15px;
-text-align:center;
-border-bottom:1px solid #26354d;
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 25px 18px 40px;
 }
 
-.logo{
-font-size:34px;
-font-weight:bold;
-color:#00aaff;
+.screen.active {
+    display: block;
 }
 
-header p{
-margin:7px 0 0;
-color:#9ca3af;
+.container {
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
 }
 
-.page{
-display:none;
-padding:18px;
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin: 20px 0 8px;
+    letter-spacing: 1px;
 }
 
-.page.active{
-display:block;
+.subtitle {
+    text-align: center;
+    color: #aeb4c2;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
 }
 
-.welcome{
-margin-top:15px;
-background:linear-gradient(145deg,#172033,#101722);
-padding:25px;
-border-radius:22px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.35);
+.card {
+    background: #171c27;
+    border: 1px solid #252c3b;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
 }
 
-.welcome-icon{
-font-size:65px;
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 7px;
 }
 
-.welcome h1{
-font-size:29px;
-margin:8px 0;
+.small {
+    color: #9da5b5;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.welcome p{
-color:#9ca3af;
-line-height:1.5;
+.player-button,
+.main-button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 17px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
 }
 
-.big-button{
-width:100%;
-padding:16px;
-margin-top:12px;
-border:0;
-border-radius:14px;
-background:#00aaff;
-color:white;
-font-size:17px;
-font-weight:bold;
+.player-button {
+    background: #202737;
+    color: white;
+    border: 1px solid #30394d;
 }
 
-.big-button.secondary{
-background:#202b3d;
+.player-button:hover {
+    background: #293247;
 }
 
-.stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:18px;
+.player-button.done {
+    opacity: 0.55;
 }
 
-.stat{
-background:#151d2b;
-padding:18px;
-border-radius:15px;
-text-align:center;
+.main-button {
+    background: #00aaff;
+    color: white;
 }
 
-.stat strong{
-font-size:25px;
-color:#00aaff;
-display:block;
+.main-button:hover {
+    background: #008ed6;
 }
 
-.card{
-background:#151d2b;
-padding:18px;
-border-radius:18px;
-margin-bottom:15px;
+.back-button {
+    background: #252c3b;
 }
 
-.card h2{
-margin-top:0;
+.reveal-box {
+    background: #202737;
+    border: 2px dashed #3c475e;
+    border-radius: 20px;
+    min-height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    margin: 20px 0;
 }
 
-.search{
-width:100%;
-padding:14px;
-border:1px solid #29364a;
-border-radius:13px;
-background:#0d131e;
-color:white;
-font-size:16px;
-margin-bottom:12px;
+.reveal-box h2 {
+    font-size: 20px;
 }
 
-.filters{
-display:flex;
-gap:8px;
-overflow-x:auto;
-padding-bottom:8px;
+.secret-word {
+    font-size: 34px;
+    font-weight: bold;
+    color: #00aaff;
 }
 
-.filters button{
-white-space:nowrap;
-border:0;
-border-radius:10px;
-padding:10px 13px;
-background:#202b3d;
-color:white;
+.category {
+    margin-top: 10px;
+    color: #b9c0cd;
+    font-size: 15px;
 }
 
-.filters button.active{
-background:#00aaff;
+.info-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 7px;
 }
 
-.sprite-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
+.info-card {
+    margin-bottom: 15px;
 }
 
-.sprite{
-background:#172131;
-border-radius:17px;
-padding:12px;
-border:1px solid #243249;
-overflow:hidden;
+.result {
+    text-align: center;
+    margin-top: 40px;
+    min-height: 180px;
 }
 
-.sprite-image{
-width:100%;
-aspect-ratio:1/1;
-object-fit:cover;
-display:block;
-background:#101722;
-border-radius:13px;
-margin-bottom:10px;
+.result-text {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.8;
+    white-space: pre-line;
 }
 
-.sprite-fallback{
-width:100%;
-aspect-ratio:1/1;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:60px;
-background:#101722;
-border-radius:13px;
-margin-bottom:10px;
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 25px;
+    background: white;
+    animation: blink 0.7s infinite;
 }
 
-.sprite h3{
-font-size:16px;
-margin:7px 0;
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
-.sprite p{
-margin:5px 0;
-font-size:13px;
-color:#aab4c3;
+.hidden {
+    display: none !important;
 }
 
-.rarity{
-font-weight:bold;
+.success {
+    color: #4ade80;
 }
 
-.special{
-color:#c084fc !important;
+.impostor {
+    color: #ff5252;
 }
 
-.rare{
-color:#60a5fa !important;
+.divider {
+    height: 1px;
+    background: #2b3343;
+    margin: 20px 0;
 }
-
-.epic{
-color:#c084fc !important;
-}
-
-.legendary{
-color:#fbbf24 !important;
-}
-
-.mythic{
-color:#fb7185 !important;
-}
-
-.prob{
-color:#00aaff !important;
-font-weight:bold;
-}
-
-.collection-button{
-width:100%;
-padding:10px;
-border:0;
-border-radius:10px;
-background:#00aaff;
-color:white;
-font-weight:bold;
-margin-top:9px;
-}
-
-.collection-button.owned{
-background:#26364b;
-}
-
-.level{
-margin-top:9px;
-display:flex;
-gap:4px;
-}
-
-.level button{
-flex:1;
-border:0;
-background:#202b3d;
-color:white;
-padding:7px 2px;
-border-radius:7px;
-}
-
-.level button.selected{
-background:#fbbf24;
-color:#111;
-}
-
-.empty{
-text-align:center;
-color:#778195;
-padding:30px 5px;
-grid-column:1/-1;
-}
-
-.counter{
-font-size:14px;
-color:#9ca3af;
-margin-bottom:12px;
-}
-
-.setting-button{
-width:100%;
-padding:14px;
-margin:6px 0;
-border:0;
-border-radius:12px;
-background:#202b3d;
-color:white;
-font-size:15px;
-text-align:left;
-}
-
-.setting-button.active{
-background:#00aaff;
-}
-
-.footer{
-text-align:center;
-color:#697586;
-font-size:12px;
-margin-top:35px;
-padding-bottom:20px;
-}
-
-.bottom-menu{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#111925;
-border-top:1px solid #26354d;
-display:flex;
-justify-content:space-around;
-padding:9px 0;
-z-index:1000;
-}
-
-.bottom-menu button{
-background:none;
-border:0;
-color:#b8c2d0;
-font-size:12px;
-}
-
-.bottom-menu button.active{
-color:#00aaff;
-}
-
-@media(max-width:360px){
-
-.sprite-grid{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<header>
+<!-- =========================
+     EKRAN 1 - USTAWIENIA
+========================= -->
 
-<div class="logo">
-FN Tracker
-</div>
+<div id="setupScreen" class="screen active">
+<div class="container">
 
-<p>
-Fortnite Sprites Collection
+<h1>IMPOSTOR</h1>
+
+<p class="subtitle">
+Ustawcie grę, a następnie rozpocznijcie rundę.
 </p>
-
-</header>
-
-
-<!-- START -->
-
-<div id="home" class="page active">
-
-<div class="welcome">
-
-<div class="welcome-icon">
-👻
-</div>
-
-<h1 id="welcomeTitle">
-Witaj, graczu! 👋
-</h1>
-
-<p id="welcomeText">
-Witaj w FN Tracker. Zbieraj duszki,
-rozwijaj swoją kolekcję i odkrywaj
-najrzadsze warianty.
-</p>
-
-<button
-class="big-button"
-onclick="openPage('sprites')"
->
-👻 Duszki
-</button>
-
-<button
-class="big-button secondary"
-onclick="openPage('settings')"
->
-⚙️ Ustawienia
-</button>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-
-<strong id="ownedCount">
-0
-</strong>
-
-<span id="ownedText">
-Posiadane
-</span>
-
-</div>
-
-<div class="stat">
-
-<strong id="allCount">
-117
-</strong>
-
-<span id="allText">
-Wszystkie
-</span>
-
-</div>
-
-</div>
-
-<div class="footer">
-
-FN Tracker<br><br>
-
-Stworzone przez FN Tracker Team
-
-</div>
-
-</div>
-
-
-<!-- DUSZKI -->
-
-<div id="sprites" class="page">
 
 <div class="card">
+<h2>Ustawienia gry</h2>
+<p class="small">Wybierz liczbę graczy.</p>
 
-<h2 id="spritesTitle">
-👻 Duszki Fortnite
-</h2>
+<select id="playerCount"
+style="width:100%;margin-top:15px;padding:15px;border-radius:12px;background:#202737;color:white;border:1px solid #30394d;font-size:16px;">
+<option value="3">3 graczy</option>
+<option value="4">4 graczy</option>
+<option value="5">5 graczy</option>
+<option value="6">6 graczy</option>
+<option value="7">7 graczy</option>
+<option value="8">8 graczy</option>
+<option value="9">9 graczy</option>
+<option value="10">10 graczy</option>
+</select>
 
-<div class="counter">
-
-<span id="collectionText">
-Twoja kolekcja:
-</span>
-
-<strong id="collectionCount">
-0 / 117
-</strong>
-
-</div>
-
-<input
-id="search"
-class="search"
-placeholder="🔎 Szukaj duszka..."
-oninput="renderSprites()"
->
-
+<div id="namesContainer" style="margin-top:15px;"></div>
 </div>
 
 <div class="card">
-
-<div
-class="filters"
-id="typeFilters"
->
-
-<button
-class="active"
-onclick="setType('All',this)"
->
-🔥 Wszystkie
-</button>
-
-</div>
-
-<br>
-
-<div
-class="filters"
-id="variantFilters"
->
-
-<button
-class="active"
-onclick="setVariant('All',this)"
->
-Wszystkie warianty
-</button>
-
-</div>
-
-</div>
-
-<div
-id="spriteGrid"
-class="sprite-grid"
->
-
-<div class="empty">
-Ładowanie duszków...
-</div>
-
-</div>
-
-</div>
-
-
-<!-- USTAWIENIA -->
-
-<div id="settings" class="page">
-
-<div class="card">
-
-<h2 id="settingsTitle">
-⚙️ Ustawienia
-</h2>
-
-<p id="languageTitle">
-🌐 Język
-</p>
-
-<button
-id="plButton"
-class="setting-button active"
-onclick="setLanguage('pl')"
->
-🇵🇱 Polski
-</button>
-
-<button
-id="enButton"
-class="setting-button"
-onclick="setLanguage('en')"
->
-🇬🇧 English
-</button>
-
+<h2>Liczba oszustów</h2>
+<select id="impostorCount"
+style="width:100%;margin-top:15px;padding:15px;border-radius:12px;background:#202737;color:white;border:1px solid #30394d;font-size:16px;">
+<option value="1">1 oszust</option>
+<option value="2">2 oszustów</option>
+</select>
 </div>
 
 <div class="card">
+<h2>Tryb gry</h2>
+<p class="small">
+Gra słowna – znajdź, kto nie zna tajnego słowa.
+</p>
+</div>
 
-<h2>
-ℹ️ FN Tracker
-</h2>
+<div class="card">
+<h2>Kategoria</h2>
 
-<p>
-Wersja: 2.1
+<select id="category"
+style="width:100%;margin-top:15px;padding:15px;border-radius:12px;background:#202737;color:white;border:1px solid #30394d;font-size:16px;">
+<option value="Jedzenie">🍕 Jedzenie</option>
+<option value="Hobby">🎨 Hobby</option>
+<option value="Kraje">🌍 Kraje</option>
+<option value="Szkoła">📚 Szkoła</option>
+<option value="Miasta">🏙️ Miasta</option>
+</select>
+</div>
+
+<button class="main-button" onclick="startGame()">
+START GRY
+</button>
+
+</div>
+</div>
+
+
+<!-- =========================
+     EKRAN 2 - GRACZE
+========================= -->
+
+<div id="playersScreen" class="screen">
+<div class="container">
+
+<h1>GRACZE</h1>
+
+<p class="subtitle">
+Dotknij swojego imienia, aby zobaczyć słowo, a następnie przekaż urządzenie następnemu graczowi.
 </p>
 
-<p>
-117 Fortnite Sprites
+<div id="playersList"></div>
+
+</div>
+</div>
+
+
+<!-- =========================
+     EKRAN 3 - ODKRYWANIE
+========================= -->
+
+<div id="revealScreen" class="screen">
+<div class="container">
+
+<h1 id="currentPlayerTitle">GRACZ 1</h1>
+
+<p class="subtitle">
+Dotknij pola, aby odsłonić.
 </p>
 
+<div id="revealBox" class="reveal-box" onclick="revealWord()">
+
+<div id="hiddenMessage">
+<h2>🔒</h2>
+<p class="small" style="margin-top:8px;">
+Dotknij, aby odsłonić
+</p>
 </div>
 
-<div class="footer">
-
-Stworzone przez FN Tracker Team
-
+<div id="wordContent" class="hidden">
+<div id="wordText" class="secret-word"></div>
+<div id="categoryText" class="category"></div>
 </div>
 
 </div>
 
-
-<!-- DOLNE MENU -->
-
-<div class="bottom-menu">
-
-<button
-id="homeButton"
-class="active"
-onclick="openPage('home')"
->
-🏠<br>
-<span id="homeMenu">
-Start
-</span>
+<button id="understoodButton"
+class="main-button hidden"
+onclick="understood()">
+ROZUMIEM!
 </button>
 
-<button
-id="spritesButton"
-onclick="openPage('sprites')"
->
-👻<br>
-<span id="spritesMenu">
-Duszki
-</span>
+</div>
+</div>
+
+
+<!-- =========================
+     EKRAN 4 - GŁOSOWANIE
+========================= -->
+
+<div id="votingScreen" class="screen">
+<div class="container">
+
+<h1>FAZA GŁOSOWANIA</h1>
+
+<p class="subtitle">
+Czas na dyskusję i głosowanie na oszusta.
+</p>
+
+<div class="card info-card">
+<div class="info-title">Jak głosować</div>
+<p class="small">
+Przedyskutujcie swoje podejrzenia, a następnie zagłosujcie na gracza, którego uważacie za oszusta.
+</p>
+</div>
+
+<div class="card info-card">
+<div class="info-title">Gracz rozpoczynający</div>
+<p class="small">
+Losowy gracz rozpoczyna rundę.
+</p>
+
+<div id="startingPlayer"
+style="font-size:20px;font-weight:bold;margin-top:10px;color:#00aaff;">
+</div>
+</div>
+
+<div class="card info-card">
+<div class="info-title">Dyskusja grupowa</div>
+<p class="small">
+Kontynuujcie zgodnie z ruchem wskazówek zegara.
+</p>
+</div>
+
+<div class="card info-card">
+<div class="info-title">Czas głosowania</div>
+<p class="small">
+Każdy gracz mówi słowo związane z sekretem. Zróbcie dwie lub trzy rundy.
+</p>
+</div>
+
+<div class="card info-card">
+<div class="info-title">FAZA UJAWNIANIA</div>
+<p class="small">
+Głosujcie na gracza, którego uważacie za oszusta, następnie dotknijcie „Ujawnij wyniki”, aby zobaczyć, kto jest oszustem.
+</p>
+</div>
+
+<button class="main-button" onclick="showResults()">
+UJAWNIJ WYNIKI
 </button>
 
-<button
-id="settingsButton"
-onclick="openPage('settings')"
->
-⚙️<br>
-<span id="settingsMenu">
-Ustawienia
-</span>
+</div>
+</div>
+
+
+<!-- =========================
+     EKRAN 5 - WYNIKI
+========================= -->
+
+<div id="resultsScreen" class="screen">
+<div class="container">
+
+<h1>WYNIKI</h1>
+
+<p class="subtitle">
+Sprawdźcie, kto był oszustem.
+</p>
+
+<div class="result">
+
+<div id="typingResult" class="result-text"></div>
+
+</div>
+
+<button id="againButton"
+class="main-button hidden"
+onclick="location.reload()">
+ZAGRAJ PONOWNIE
 </button>
 
+</div>
 </div>
 
 
 <script>
 
-
-/*
-====================================
-BAZA 117 DUSZKÓW
-CZĘŚĆ 1
-====================================
-*/
-
-const sprites = [];
-
-
-function addSprite(
-name,
-type,
-variant,
-rarity,
-chance,
-image=""
-){
-
-sprites.push({
-
-name:name,
-type:type,
-variant:variant,
-rarity:rarity,
-chance:chance,
-image:image
-
-});
-
-}
-
-
-/*
-====================================
-BATMAN
-====================================
-*/
-
-addSprite(
-"Batman",
-"Batman",
-"Base",
-"Mythic",
-"1.44%"
-);
-
-addSprite(
-"Cube Batman",
-"Batman",
-"Cube",
-"Special",
-"0.02%"
-);
-
-addSprite(
-"Gold Batman",
-"Batman",
-"Gold",
-"Special",
-"0.17%"
-);
-
-addSprite(
-"Gummy Batman",
-"Batman",
-"Gummy",
-"Special",
-"0.10%"
-);
-
-addSprite(
-"Galaxy Batman",
-"Batman",
-"Galaxy",
-"Special",
-"0.07%"
-);
-
-addSprite(
-"Holofoil Batman",
-"Batman",
-"Holofoil",
-"Special",
-"0.34%"
-);
-
-addSprite(
-"Gem Batman",
-"Batman",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Batman",
-"Batman",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-WATER
-====================================
-*/
-
-addSprite(
-"Water",
-"Water",
-"Base",
-"Rare",
-"0%"
-);
-
-addSprite(
-"Gold Water",
-"Water",
-"Gold",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Quack Water",
-"Water",
-"Quack",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Water",
-"Water",
-"Gummy",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Galaxy Water",
-"Water",
-"Galaxy",
-"Special",
-"0.43%"
-);
-
-addSprite(
-"Gem Water",
-"Water",
-"Gem",
-"Special",
-"0.37%"
-);
-
-addSprite(
-"Holofoil Water",
-"Water",
-"Holofoil",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Cube Water",
-"Water",
-"Cube",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-EARTH
-====================================
-*/
-
-addSprite(
-"Earth",
-"Earth",
-"Base",
-"Rare",
-"0%"
-);
-
-addSprite(
-"Cube Earth",
-"Earth",
-"Cube",
-"Special",
-"0.21%"
-);
-
-addSprite(
-"Gold Earth",
-"Earth",
-"Gold",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Quack Earth",
-"Earth",
-"Quack",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Earth",
-"Earth",
-"Gummy",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Galaxy Earth",
-"Earth",
-"Galaxy",
-"Special",
-"0.43%"
-);
-
-addSprite(
-"Gem Earth",
-"Earth",
-"Gem",
-"Special",
-"0.37%"
-);
-
-addSprite(
-"Holofoil Earth",
-"Earth",
-"Holofoil",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-FIRE
-====================================
-*/
-
-addSprite(
-"Fire",
-"Fire",
-"Base",
-"Rare",
-"0%"
-);
-
-addSprite(
-"Cube Fire",
-"Fire",
-"Cube",
-"Special",
-"0.21%"
-);
-
-addSprite(
-"Gold Fire",
-"Fire",
-"Gold",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Quack Fire",
-"Fire",
-"Quack",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Fire",
-"Fire",
-"Gummy",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Galaxy Fire",
-"Fire",
-"Galaxy",
-"Special",
-"0.43%"
-);
-
-addSprite(
-"Holofoil Fire",
-"Fire",
-"Holofoil",
-"Special",
-"0.53%"
-);
-
-addSprite(
-"Gem Fire",
-"Fire",
-"Gem",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-DUCK
-====================================
-*/
-
-addSprite(
-"Duck",
-"Duck",
-"Base",
-"Epic",
-"6.48%"
-);
-
-addSprite(
-"Gold Duck",
-"Duck",
-"Gold",
-"Special",
-"0.62%"
-);
-
-addSprite(
-"Gummy Duck",
-"Duck",
-"Gummy",
-"Special",
-"0.37%"
-);
-
-addSprite(
-"Galaxy Duck",
-"Duck",
-"Galaxy",
-"Special",
-"0.25%"
-);
-
-addSprite(
-"Gem Duck",
-"Duck",
-"Gem",
-"Special",
-"0.10%"
-);
-
-addSprite(
-"Holofoil Duck",
-"Duck",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Duck",
-"Duck",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Duck",
-"Duck",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-GHOST
-====================================
-*/
-
-addSprite(
-"Ghost",
-"Ghost",
-"Base",
-"Epic",
-"5.25%"
-);
-
-addSprite(
-"Gold Ghost",
-"Ghost",
-"Gold",
-"Special",
-"0.62%"
-);
-
-addSprite(
-"Gummy Ghost",
-"Ghost",
-"Gummy",
-"Special",
-"0.37%"
-);
-
-addSprite(
-"Galaxy Ghost",
-"Ghost",
-"Galaxy",
-"Special",
-"0.25%"
-);
-
-addSprite(
-"Gem Ghost",
-"Ghost",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Ghost",
-"Ghost",
-"Holofoil",
-"Special",
-"1.23%"
-);
-
-addSprite(
-"Cube Ghost",
-"Ghost",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Ghost",
-"Ghost",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-KONIEC CZĘŚCI 1
-====================================
-*//*
-====================================
-CZĘŚĆ 2 — KOLEJNE DUSZKI
-====================================
-*/
-
-
-/*
-====================================
-DREAM
-====================================
-*/
-
-addSprite(
-"Dream",
-"Dream",
-"Base",
-"Legendary",
-"6.98%"
-);
-
-addSprite(
-"Gold Dream",
-"Dream",
-"Gold",
-"Special",
-"0.31%"
-);
-
-addSprite(
-"Gummy Dream",
-"Dream",
-"Gummy",
-"Special",
-"0.23%"
-);
-
-addSprite(
-"Galaxy Dream",
-"Dream",
-"Galaxy",
-"Special",
-"0.12%"
-);
-
-addSprite(
-"Gem Dream",
-"Dream",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Dream",
-"Dream",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Dream",
-"Dream",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Dream",
-"Dream",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-DEMON
-====================================
-*/
-
-addSprite(
-"Demon",
-"Demon",
-"Base",
-"Epic",
-"9%"
-);
-
-addSprite(
-"Gold Demon",
-"Demon",
-"Gold",
-"Special",
-"0.4%"
-);
-
-addSprite(
-"Gummy Demon",
-"Demon",
-"Gummy",
-"Special",
-"0.3%"
-);
-
-addSprite(
-"Galaxy Demon",
-"Demon",
-"Galaxy",
-"Special",
-"0.16%"
-);
-
-addSprite(
-"Gem Demon",
-"Demon",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Demon",
-"Demon",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Demon",
-"Demon",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Demon",
-"Demon",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-PUNK
-====================================
-*/
-
-addSprite(
-"Punk",
-"Punk",
-"Base",
-"Legendary",
-"6.98%"
-);
-
-addSprite(
-"Gold Punk",
-"Punk",
-"Gold",
-"Special",
-"0.31%"
-);
-
-addSprite(
-"Gummy Punk",
-"Punk",
-"Gummy",
-"Special",
-"0.23%"
-);
-
-addSprite(
-"Galaxy Punk",
-"Punk",
-"Galaxy",
-"Special",
-"0.12%"
-);
-
-addSprite(
-"Gem Punk",
-"Punk",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Punk",
-"Punk",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Punk",
-"Punk",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Punk",
-"Punk",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-KING
-====================================
-*/
-
-addSprite(
-"King",
-"King",
-"Base",
-"Epic",
-"9%"
-);
-
-addSprite(
-"Gold King",
-"King",
-"Gold",
-"Special",
-"0.4%"
-);
-
-addSprite(
-"Gummy King",
-"King",
-"Gummy",
-"Special",
-"0.3%"
-);
-
-addSprite(
-"Galaxy King",
-"King",
-"Galaxy",
-"Special",
-"0.16%"
-);
-
-addSprite(
-"Gem King",
-"King",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil King",
-"King",
-"Holofoil",
-"Special",
-"0.06%"
-);
-
-addSprite(
-"Cube King",
-"King",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack King",
-"King",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-FISHY
-====================================
-*/
-
-addSprite(
-"Fishy",
-"Fishy",
-"Base",
-"Rare",
-"0%"
-);
-
-addSprite(
-"Gold Fishy",
-"Fishy",
-"Gold",
-"Special",
-"0.75%"
-);
-
-addSprite(
-"Gummy Fishy",
-"Fishy",
-"Gummy",
-"Special",
-"0.62%"
-);
-
-addSprite(
-"Galaxy Fishy",
-"Fishy",
-"Galaxy",
-"Special",
-"0.5%"
-);
-
-addSprite(
-"Gem Fishy",
-"Fishy",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Fishy",
-"Fishy",
-"Holofoil",
-"Special",
-"0.25%"
-);
-
-addSprite(
-"Cube Fishy",
-"Fishy",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Fishy",
-"Fishy",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-ZERO POINT
-====================================
-*/
-
-addSprite(
-"Zero Point",
-"Zero Point",
-"Base",
-"Mythic",
-"0.00093%"
-);
-
-addSprite(
-"Gold Zero Point",
-"Zero Point",
-"Gold",
-"Special",
-"0.000041%"
-);
-
-addSprite(
-"Gummy Zero Point",
-"Zero Point",
-"Gummy",
-"Special",
-"0.000031%"
-);
-
-addSprite(
-"Galaxy Zero Point",
-"Zero Point",
-"Galaxy",
-"Special",
-"0.000016%"
-);
-
-addSprite(
-"Gem Zero Point",
-"Zero Point",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Zero Point",
-"Zero Point",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Zero Point",
-"Zero Point",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Zero Point",
-"Zero Point",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-POJEDYNCZE DUSZKI
-====================================
-*/
-
-addSprite(
-"Burnt Peanut",
-"Burnt Peanut",
-"Base",
-"Mythic",
-"0%"
-);
-
-addSprite(
-"Vini Jr.",
-"Vini Jr.",
-"Base",
-"Mythic",
-"0%"
-);
-
-
-/*
-====================================
-KONIEC CZĘŚCI 2
-====================================
-*//*
-====================================
-CZĘŚĆ 3 — KOLEJNE DUSZKI
-====================================
-*/
-
-
-/*
-====================================
-LLAMA
-====================================
-*/
-
-addSprite(
-"Llama",
-"Llama",
-"Base",
-"Legendary",
-"0%"
-);
-
-addSprite(
-"Gold Llama",
-"Llama",
-"Gold",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Llama",
-"Llama",
-"Gummy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Galaxy Llama",
-"Llama",
-"Galaxy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gem Llama",
-"Llama",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Llama",
-"Llama",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Llama",
-"Llama",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Llama",
-"Llama",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-PEELY
-====================================
-*/
-
-addSprite(
-"Peely",
-"Peely",
-"Base",
-"Legendary",
-"0%"
-);
-
-addSprite(
-"Gold Peely",
-"Peely",
-"Gold",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Peely",
-"Peely",
-"Gummy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Galaxy Peely",
-"Peely",
-"Galaxy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gem Peely",
-"Peely",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Peely",
-"Peely",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Peely",
-"Peely",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Peely",
-"Peely",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-IRONMOUSE
-====================================
-*/
-
-addSprite(
-"Ironmouse",
-"Ironmouse",
-"Base",
-"Epic",
-"0%"
-);
-
-addSprite(
-"Gold Ironmouse",
-"Ironmouse",
-"Gold",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Ironmouse",
-"Ironmouse",
-"Gummy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Galaxy Ironmouse",
-"Ironmouse",
-"Galaxy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gem Ironmouse",
-"Ironmouse",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Ironmouse",
-"Ironmouse",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Ironmouse",
-"Ironmouse",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Ironmouse",
-"Ironmouse",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-KOLEJNE WARIANTY SPECJALNE
-====================================
-*/
-
-addSprite(
-"Gold Sprite",
-"Sprite",
-"Gold",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Sprite",
-"Sprite",
-"Gummy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Galaxy Sprite",
-"Sprite",
-"Galaxy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Sprite",
-"Sprite",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Sprite",
-"Sprite",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gem Sprite",
-"Sprite",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Sprite",
-"Sprite",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-DODATKOWE DUSZKI
-====================================
-*/
-
-addSprite(
-"Shadow",
-"Shadow",
-"Base",
-"Epic",
-"0%"
-);
-
-addSprite(
-"Gold Shadow",
-"Shadow",
-"Gold",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gummy Shadow",
-"Shadow",
-"Gummy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Galaxy Shadow",
-"Shadow",
-"Galaxy",
-"Special",
-"0%"
-);
-
-addSprite(
-"Cube Shadow",
-"Shadow",
-"Cube",
-"Special",
-"0%"
-);
-
-addSprite(
-"Holofoil Shadow",
-"Shadow",
-"Holofoil",
-"Special",
-"0%"
-);
-
-addSprite(
-"Gem Shadow",
-"Shadow",
-"Gem",
-"Special",
-"0%"
-);
-
-addSprite(
-"Quack Shadow",
-"Shadow",
-"Quack",
-"Special",
-"0%"
-);
-
-
-/*
-====================================
-KONIEC CZĘŚCI 3
-====================================
-*//*
-====================================
-CZĘŚĆ 4 — FUNKCJE APLIKACJI
-====================================
-*/
-
-
-/*
-====================================
-KOLEKCJA
-====================================
-*/
-
-let collection =
-JSON.parse(
-localStorage.getItem(
-"fntracker_collection"
-) || "{}"
-);
-
-
-/*
-====================================
-JĘZYK
-====================================
-*/
-
-let language =
-localStorage.getItem(
-"fntracker_language"
-) || "pl";
-
-
-const translations = {
-
-pl: {
-
-welcomeTitle:
-"Witaj, graczu! 👋",
-
-welcomeText:
-"Witaj w FN Tracker. Zbieraj duszki, rozwijaj swoją kolekcję i odkrywaj najrzadsze warianty.",
-
-owned:
-"Posiadane",
-
-all:
-"Wszystkie",
-
-sprites:
-"Duszki Fortnite",
-
-collection:
-"Twoja kolekcja:",
-
-search:
-"🔎 Szukaj duszka...",
-
-start:
-"Start",
-
-settings:
-"Ustawienia",
-
-language:
-"🌐 Język",
-
-add:
-"➕ Dodaj do kolekcji",
-
-added:
-"✅ W kolekcji",
-
-noResults:
-"Nie znaleziono duszka. 👻",
-
-level:
-"Poziom",
-
-variant:
-"Wariant",
-
-chance:
-"Szansa"
-
-},
-
-en: {
-
-welcomeTitle:
-"Welcome, player! 👋",
-
-welcomeText:
-"Welcome to FN Tracker. Collect sprites, level up your collection and discover the rarest variants.",
-
-owned:
-"Owned",
-
-all:
-"All",
-
-sprites:
-"Fortnite Sprites",
-
-collection:
-"Your collection:",
-
-search:
-"🔎 Search sprite...",
-
-start:
-"Home",
-
-settings:
-"Settings",
-
-language:
-"🌐 Language",
-
-add:
-"➕ Add to collection",
-
-added:
-"✅ In collection",
-
-noResults:
-"No sprite found. 👻",
-
-level:
-"Level",
-
-variant:
-"Variant",
-
-chance:
-"Chance"
-
-}
-
+/* =========================
+   ZMIENNE GRY
+========================= */
+
+let players = [];
+let impostors = [];
+let currentPlayer = 0;
+let wordRevealed = false;
+
+let selectedCategory = "";
+let secretWord = "";
+
+
+/* =========================
+   SŁOWA
+========================= */
+
+const words = {
+
+    "Jedzenie": [
+        "Pizza",
+        "Burger",
+        "Spaghetti",
+        "Lody",
+        "Naleśniki",
+        "Frytki",
+        "Hot Dog",
+        "Taco",
+        "Kebab",
+        "Czekolada"
+    ],
+
+    "Hobby": [
+        "Granie",
+        "Rysowanie",
+        "Gotowanie",
+        "Fotografia",
+        "Czytanie",
+        "Wędkowanie",
+        "Jazda na rowerze",
+        "Piłka nożna",
+        "Muzyka"
+    ],
+
+    "Kraje": [
+        "Polska",
+        "Francja",
+        "Niemcy",
+        "Włochy",
+        "Hiszpania",
+        "Japonia",
+        "USA",
+        "Kanada",
+        "Brazylia"
+    ],
+
+    "Szkoła": [
+        "Matematyka",
+        "Historia",
+        "Biologia",
+        "Geografia",
+        "Lekcja",
+        "Tablica",
+        "Plecak",
+        "Sprawdzian"
+    ],
+
+    "Miasta": [
+        "Warszawa",
+        "Kraków",
+        "Londyn",
+        "Paryż",
+        "Berlin",
+        "Rzym",
+        "Tokio",
+        "Madryt",
+        "Nowy Jork"
+    ]
 };
 
 
-/*
-====================================
-OTWIERANIE STRON
-====================================
-*/
+/* =========================
+   GENEROWANIE PÓL IMION
+========================= */
 
-function openPage(id){
+function generateNameInputs() {
+
+    const count =
+        parseInt(document.getElementById("playerCount").value);
+
+    const container =
+        document.getElementById("namesContainer");
+
+    container.innerHTML = "";
+
+    for (let i = 1; i <= count; i++) {
+
+        const input = document.createElement("input");
+
+        input.type = "text";
+        input.placeholder = "Imię gracza " + i;
+        input.id = "player" + i;
+
+        input.style =
+        "width:100%;margin-top:10px;padding:14px;border-radius:12px;background:#202737;color:white;border:1px solid #30394d;font-size:16px;";
+
+        container.appendChild(input);
+    }
+}
 
 document
-.querySelectorAll(".page")
-.forEach(function(page){
+.getElementById("playerCount")
+.addEventListener("change", generateNameInputs);
 
-page.classList.remove(
-"active"
-);
+generateNameInputs();
 
-});
 
+/* =========================
+   ZMIANA EKRANU
+========================= */
 
-const selected =
-document.getElementById(id);
-
-
-if(selected){
-
-selected.classList.add(
-"active"
-);
-
-}
-
-
-document
-.querySelectorAll(
-".bottom-menu button"
-)
-.forEach(function(button){
-
-button.classList.remove(
-"active"
-);
-
-});
-
-
-if(id === "home"){
-
-document
-.getElementById(
-"homeButton"
-)
-.classList.add(
-"active"
-);
-
-}
-
-if(id === "sprites"){
-
-document
-.getElementById(
-"spritesButton"
-)
-.classList.add(
-"active"
-);
-
-}
-
-if(id === "settings"){
-
-document
-.getElementById(
-"settingsButton"
-)
-.classList.add(
-"active"
-);
-
-}
-
-}
-
-
-/*
-====================================
-ZMIANA JĘZYKA
-====================================
-*/
-
-function setLanguage(
-selected
-){
-
-language =
-selected;
-
-
-localStorage.setItem(
-"fntracker_language",
-selected
-);
-
-
-updateLanguage();
-
-}
-
-
-/*
-====================================
-AKTUALIZACJA JĘZYKA
-====================================
-*/
-
-function updateLanguage(){
-
-const t =
-translations[
-language
-];
-
-
-document
-.getElementById(
-"welcomeTitle"
-)
-.textContent =
-t.welcomeTitle;
-
-
-document
-.getElementById(
-"welcomeText"
-)
-.textContent =
-t.welcomeText;
-
-
-document
-.getElementById(
-"ownedText"
-)
-.textContent =
-t.owned;
-
-
-document
-.getElementById(
-"allText"
-)
-.textContent =
-t.all;
-
-
-document
-.getElementById(
-"spritesTitle"
-)
-.textContent =
-"👻 " + t.sprites;
-
-
-document
-.getElementById(
-"collectionText"
-)
-.textContent =
-t.collection;
-
-
-document
-.getElementById(
-"search"
-)
-.placeholder =
-t.search;
-
-
-document
-.getElementById(
-"homeMenu"
-)
-.textContent =
-t.start;
-
-
-document
-.getElementById(
-"spritesMenu"
-)
-.textContent =
-language === "pl"
-?
-"Duszki"
-:
-"Sprites";
-
-
-document
-.getElementById(
-"settingsMenu"
-)
-.textContent =
-t.settings;
-
-
-document
-.getElementById(
-"settingsTitle"
-)
-.textContent =
-"⚙️ " + t.settings;
-
-
-document
-.getElementById(
-"languageTitle"
-)
-.textContent =
-t.language;
-
-
-document
-.getElementById(
-"plButton"
-)
-.classList.toggle(
-"active",
-language === "pl"
-);
-
-
-document
-.getElementById(
-"enButton"
-)
-.classList.toggle(
-"active",
-language === "en"
-);
-
-
-renderSprites();
-
-}
-
-
-/*
-====================================
-DODAJ DO KOLEKCJI
-====================================
-*/
-
-function toggleCollection(
-index
-){
-
-if(
-collection[index]
-!== undefined
-){
-
-delete collection[index];
-
-}else{
-
-collection[index] = 1;
-
-}
-
-
-saveCollection();
-
-renderSprites();
-
-updateStats();
-
-}
-
-
-/*
-====================================
-POZIOM 1–5
-====================================
-*/
-
-function setLevel(
-index,
-level
-){
-
-if(
-collection[index]
-!== undefined
-){
-
-collection[index] =
-level;
-
-
-saveCollection();
-
-renderSprites();
-
-updateStats();
-
-}
-
-}
-
-
-/*
-====================================
-ZAPIS KOLEKCJI
-====================================
-*/
-
-function saveCollection(){
-
-localStorage.setItem(
-"fntracker_collection",
-JSON.stringify(
-collection
-)
-);
-
-}
-
-
-/*
-====================================
-STATYSTYKI
-====================================
-*/
-
-function updateStats(){
-
-const count =
-Object.keys(
-collection
-).length;
-
-
-document
-.getElementById(
-"ownedCount"
-)
-.textContent =
-count;
-
-
-document
-.getElementById(
-"collectionCount"
-)
-.textContent =
-count +
-" / " +
-sprites.length;
-
-
-document
-.getElementById(
-"allCount"
-)
-.textContent =
-sprites.length;
-
-}
-
-
-/*
-====================================
-IKONY
-====================================
-*/
-
-const icons = {
-
-"Water":"🌊",
-
-"Earth":"🌱",
-
-"Fire":"🔥",
-
-"Air":"💨",
-
-"Batman":"🦇",
-
-"Duck":"🦆",
-
-"Ghost":"👻",
-
-"Dream":"💭",
-
-"Demon":"😈",
-
-"Punk":"🎸",
-
-"King":"👑",
-
-"Fishy":"🐟",
-
-"Zero Point":"🌀",
-
-"Llama":"🦙",
-
-"Peely":"🍌",
-
-"Ironmouse":"🐭",
-
-"Sprite":"👻",
-
-"Shadow":"🌑"
-
-};
-
-
-/*
-====================================
-OBRAZEK ZASTĘPCZY
-====================================
-*/
-
-function getFallback(
-type
-){
-
-return icons[type]
-|| "👻";
-
-}
-
-
-/*
-====================================
-KLASA RZADKOŚCI
-====================================
-*/
-
-function getRarityClass(
-rarity
-){
-
-return rarity
-.toLowerCase()
-.replaceAll(
-" ",
-"-"
-);
-
-}
-
-
-/*
-====================================
-RENDEROWANIE DUSZKÓW
-====================================
-*/
-
-function renderSprites(){
-
-const grid =
-document.getElementById(
-"spriteGrid"
-);
-
-
-const search =
-document.getElementById(
-"search"
-)
-.value
-.toLowerCase()
-.trim();
-
-
-grid.innerHTML =
-"";
-
-
-let shown = 0;
-
-
-sprites.forEach(
-function(sprite,index){
-
-if(
-search &&
-!sprite.name
-.toLowerCase()
-.includes(search)
-){
-
-return;
-
-}
-
-
-if(
-currentType !== "All" &&
-sprite.type !==
-currentType
-){
-
-return;
-
-}
-
-
-if(
-currentVariant !== "All" &&
-sprite.variant !==
-currentVariant
-){
-
-return;
-
-}
-
-
-shown++;
-
-
-const owned =
-collection[index]
-!== undefined;
-
-
-const level =
-collection[index]
-|| 0;
-
-
-const fallback =
-getFallback(
-sprite.type
-);
-
-
-grid.innerHTML += `
-
-<div class="sprite">
-
-
-${
-sprite.image
-?
-
-`
-<img
-class="sprite-image"
-src="${sprite.image}"
-alt="${sprite.name}"
-onerror="
-this.style.display='none';
-this.nextElementSibling.style.display='flex';
-"
->
-`
-
-:
-
-""
-}
-
-
-<div
-class="sprite-fallback"
-style="
-${
-sprite.image
-?
-"display:none;"
-:
-""
-}
-"
->
-
-${fallback}
-
-</div>
-
-
-<h3>
-${sprite.name}
-</h3>
-
-
-<p
-class="rarity
-${getRarityClass(
-sprite.rarity
-)}"
->
-
-💎 ${sprite.rarity}
-
-</p>
-
-
-<p>
-
-🎨 Wariant:
-${sprite.variant}
-
-</p>
-
-
-<p class="prob">
-
-🎁 Szansa:
-${sprite.chance}
-
-</p>
-
-
-<button
-class="
-collection-button
-${owned ? "owned" : ""}
-"
-onclick="
-toggleCollection(${index})
-"
->
-
-${
-owned
-?
-"✅ W kolekcji"
-:
-"➕ Dodaj do kolekcji"
-}
-
-</button>
-
-
-${
-owned
-?
-
-`
-
-<div class="level">
-
-${[1,2,3,4,5]
-.map(
-function(levelNumber){
-
-return `
-
-<button
-class="
-${
-level ===
-levelNumber
-?
-"selected"
-:
-""
-}
-"
-onclick="
-setLevel(
-${index},
-${levelNumber}
-)
-"
->
-
-${levelNumber}
-
-</button>
-
-`;
-
-}
-)
-.join("")
-}
-
-</div>
-
-<p
-style="
-text-align:center;
-font-size:12px;
-"
->
-
-⭐ Poziom:
-${level}/5
-
-</p>
-
-`
-
-:
-
-""
-
-}
-
-
-</div>
-
-`;
-
-}
-);
-
-
-if(shown === 0){
-
-grid.innerHTML = `
-
-<div class="empty">
-
-${
-translations[
-language
-].noResults
-}
-
-</div>
-
-`;
-
-}
-
-}
-
-
-/*
-====================================
-KONIEC CZĘŚCI 4
-====================================
-*//* KONIEC CZĘŚCI 4 */
-
-
-/*
-====================================
-FILTRY
-====================================
-*/
-
-let currentType = "All";
-let currentVariant = "All";
-
-
-function setType(type, button){
-
-    currentType = type;
+function showScreen(id) {
 
     document
-    .querySelectorAll("#typeFilters button")
-    .forEach(function(btn){
-
-        btn.classList.remove("active");
-
-    });
-
-    button.classList.add("active");
-
-    renderSprites();
-
-}
-
-
-function setVariant(variant, button){
-
-    currentVariant = variant;
+    .querySelectorAll(".screen")
+    .forEach(screen => screen.classList.remove("active"));
 
     document
-    .querySelectorAll("#variantFilters button")
-    .forEach(function(btn){
+    .getElementById(id)
+    .classList.add("active");
 
-        btn.classList.remove("active");
-
-    });
-
-    button.classList.add("active");
-
-    renderSprites();
-
+    window.scrollTo(0,0);
 }
 
 
-/*
-====================================
-TWORZENIE FILTRÓW
-====================================
-*/
+/* =========================
+   START GRY
+========================= */
 
-function createFilters(){
+function startGame() {
 
-    const typeBox =
-    document.getElementById(
-        "typeFilters"
-    );
+    const count =
+        parseInt(document.getElementById("playerCount").value);
 
-    const types = [
-        ...new Set(
-            sprites.map(function(sprite){
+    players = [];
 
-                return sprite.type;
+    for (let i = 1; i <= count; i++) {
 
-            })
-        )
-    ];
+        let name =
+            document.getElementById("player" + i).value.trim();
 
+        if (name === "") {
+            name = "Gracz " + i;
+        }
 
-    types.forEach(function(type){
-
-        typeBox.innerHTML += `
-
-        <button
-        onclick="
-        setType('${type}',this)
-        "
-        >
-
-        ${icons[type] || "👻"}
-        ${type}
-
-        </button>
-
-        `;
-
-    });
-
-
-    const variantBox =
-    document.getElementById(
-        "variantFilters"
-    );
-
-
-    const variants = [
-        ...new Set(
-            sprites.map(function(sprite){
-
-                return sprite.variant;
-
-            })
-        )
-    ];
-
-
-    variants.forEach(function(variant){
-
-        variantBox.innerHTML += `
-
-        <button
-        onclick="
-        setVariant('${variant}',this)
-        "
-        >
-
-        ${variant}
-
-        </button>
-
-        `;
-
-    });
-
-}
-
-
-/*
-====================================
-LICZNIK KOLEKCJI
-====================================
-*/
-
-function loadCollection(){
-
-    try{
-
-        collection =
-        JSON.parse(
-            localStorage.getItem(
-                "fntracker_collection"
-            ) || "{}"
-        );
-
-    }catch(error){
-
-        collection = {};
-
+        players.push({
+            name: name,
+            number: i,
+            isImpostor: false,
+            done: false
+        });
     }
 
+
+    /* KATEGORIA */
+
+    selectedCategory =
+        document.getElementById("category").value;
+
+
+    /* LOSOWANIE SŁOWA */
+
+    const categoryWords =
+        words[selectedCategory];
+
+    secretWord =
+        categoryWords[
+            Math.floor(Math.random() * categoryWords.length)
+        ];
+
+
+    /* LOSOWANIE OSZUSTÓW */
+
+    const impostorCount =
+        parseInt(document.getElementById("impostorCount").value);
+
+    impostors = [];
+
+    while (impostors.length < impostorCount) {
+
+        const random =
+            Math.floor(Math.random() * players.length);
+
+        if (!impostors.includes(random)) {
+            impostors.push(random);
+        }
+    }
+
+
+    impostors.forEach(index => {
+        players[index].isImpostor = true;
+    });
+
+
+    /* LISTA GRACZY */
+
+    createPlayersList();
+
+    showScreen("playersScreen");
 }
 
 
-/*
-====================================
-START APLIKACJI
-====================================
-*/
+/* =========================
+   LISTA GRACZY
+========================= */
 
-loadCollection();
+function createPlayersList() {
 
-createFilters();
+    const list =
+        document.getElementById("playersList");
 
-updateStats();
+    list.innerHTML = "";
 
-updateLanguage();
+    players.forEach((player, index) => {
 
-renderSprites();
+        const button =
+            document.createElement("button");
+
+        button.className = "player-button";
+
+        button.id = "playerButton" + index;
+
+        button.innerHTML =
+            player.name;
+
+        button.onclick =
+            function() {
+                openPlayer(index);
+            };
+
+        list.appendChild(button);
+    });
+}
 
 
-/*
-====================================
-USTAWIENIE AKTYWNEJ ZAKŁADKI
-====================================
-*/
+/* =========================
+   OTWARCIE GRACZA
+========================= */
 
-openPage("home");
+function openPlayer(index) {
+
+    if (players[index].done) return;
+
+    currentPlayer = index;
+    wordRevealed = false;
+
+    document
+    .getElementById("currentPlayerTitle")
+    .textContent =
+        players[index].name.toUpperCase();
+
+    document
+    .getElementById("hiddenMessage")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("wordContent")
+    .classList.add("hidden");
+
+    document
+    .getElementById("understoodButton")
+    .classList.add("hidden");
+
+    showScreen("revealScreen");
+}
 
 
-/*
-====================================
-KONIEC JAVASCRIPT
-====================================
-*/
+/* =========================
+   ODKRYWANIE SŁOWA
+========================= */
+
+function revealWord() {
+
+    if (wordRevealed) return;
+
+    wordRevealed = true;
+
+    const player =
+        players[currentPlayer];
+
+    document
+    .getElementById("hiddenMessage")
+    .classList.add("hidden");
+
+    document
+    .getElementById("wordContent")
+    .classList.remove("hidden");
+
+
+    if (player.isImpostor) {
+
+        document
+        .getElementById("wordText")
+        .innerHTML =
+            '<span class="impostor">🕵️ JESTEŚ OSZUSTEM</span>';
+
+        document
+        .getElementById("categoryText")
+        .textContent =
+            "Kategoria: " + selectedCategory;
+
+    } else {
+
+        document
+        .getElementById("wordText")
+        .textContent =
+            secretWord;
+
+        document
+        .getElementById("categoryText")
+        .textContent =
+            "Kategoria: " + selectedCategory;
+    }
+
+
+    document
+    .getElementById("understoodButton")
+    .classList.remove("hidden");
+}
+
+
+/* =========================
+   ROZUMIEM
+========================= */
+
+function understood() {
+
+    players[currentPlayer].done = true;
+
+    const button =
+        document.getElementById(
+            "playerButton" + currentPlayer
+        );
+
+    button.classList.add("done");
+
+    button.innerHTML =
+        players[currentPlayer].name +
+        " ✓";
+
+    /* SPRAWDZAMY CZY WSZYSCY SKOŃCZYLI */
+
+    const everyoneDone =
+        players.every(player => player.done);
+
+    if (everyoneDone) {
+
+        prepareVoting();
+
+        showScreen("votingScreen");
+
+    } else {
+
+        showScreen("playersScreen");
+    }
+}
+
+
+/* =========================
+   PRZYGOTOWANIE GŁOSOWANIA
+========================= */
+
+function prepareVoting() {
+
+    const randomPlayer =
+        players[
+            Math.floor(Math.random() * players.length)
+        ];
+
+    document
+    .getElementById("startingPlayer")
+    .textContent =
+        randomPlayer.name;
+}
+
+
+/* =========================
+   WYNIKI
+========================= */
+
+function showResults() {
+
+    showScreen("resultsScreen");
+
+    const impostorNames =
+        players
+        .filter(player => player.isImpostor)
+        .map(player => player.name)
+        .join(", ");
+
+    const fullText =
+        "Oszust: " +
+        impostorNames +
+        "\n\nTajne słowo: " +
+        secretWord;
+
+    typeText(
+        fullText,
+        60,
+        function() {
+
+            document
+            .getElementById("againButton")
+            .classList.remove("hidden");
+
+        }
+    );
+}
+
+
+/* =========================
+   ANIMACJA PISANIA
+========================= */
+
+function typeText(text, speed, callback) {
+
+    const element =
+        document.getElementById("typingResult");
+
+    element.textContent = "";
+
+    let index = 0;
+
+    function write() {
+
+        if (index < text.length) {
+
+            element.textContent +=
+                text.charAt(index);
+
+            index++;
+
+            setTimeout(write, speed);
+
+        } else {
+
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    write();
+}
 
 </script>
 
-
 </body>
-
 </html>
