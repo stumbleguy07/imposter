@@ -68,16 +68,6 @@ input {
     }
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.04);
-    }
-}
-
 .logo {
     text-align: center;
     margin-top: 55px;
@@ -440,10 +430,7 @@ input:focus {
 
 <body>
 
-
-<!-- =========================
-     HOME
-========================= -->
+<!-- HOME -->
 
 <section id="home" class="screen active">
 
@@ -456,16 +443,12 @@ input:focus {
 
         <button class="main-btn primary"
                 onclick="showScreen('setup')">
-
             🎮 ZACZNIJ GRĘ
-
         </button>
 
         <button class="main-btn secondary"
                 onclick="showScreen('howto')">
-
             📖 JAK GRAĆ
-
         </button>
 
     </div>
@@ -473,107 +456,80 @@ input:focus {
 </section>
 
 
-<!-- =========================
-     HOW TO PLAY
-========================= -->
+<!-- HOW TO PLAY -->
 
 <section id="howto" class="screen">
 
     <button class="back"
             onclick="showScreen('home')">
-
         ← Wróć
-
     </button>
 
     <h2 class="title">Jak grać?</h2>
 
     <div class="card">
-
         <h3>👥 1. Gracze</h3>
-
         <p class="small">
             Wpisz imiona wszystkich graczy.
             Każdy gracz otrzyma swoją rolę.
         </p>
-
     </div>
 
     <div class="card">
-
         <h3>🕵️ 2. Impostor</h3>
-
         <p class="small">
             Większość graczy zna tajne słowo.
             Impostor go nie zna i musi udawać,
             że wie, o czym mówią inni.
         </p>
-
     </div>
 
     <div class="card">
-
         <h3>🪙 3. Zdrapka</h3>
-
         <p class="small">
             Przekazujcie telefon po kolei.
             Każdy gracz zdrapuje swoje pole,
             aby zobaczyć swoją rolę.
         </p>
-
     </div>
 
     <div class="card">
-
         <h3>💬 4. Dyskusja</h3>
-
         <p class="small">
             Rozmawiajcie i próbujcie odkryć,
             kto nie zna tajnego słowa.
         </p>
-
     </div>
 
     <div class="card">
-
         <h3>🗳️ 5. Faza Głosowania</h3>
-
         <p class="small">
             Czas na dyskusję i głosowanie.
             Wybierzcie osobę, którą podejrzewacie.
         </p>
-
     </div>
 
     <div class="card">
-
         <h3>🏆 6. Ujawnienie</h3>
-
         <p class="small">
             Na końcu poznacie Impostora,
             tajne słowo oraz kategorię.
         </p>
-
     </div>
 
 </section>
 
 
-<!-- =========================
-     SETUP
-========================= -->
+<!-- SETUP -->
 
 <section id="setup" class="screen">
 
     <button class="back"
             onclick="showScreen('home')">
-
         ← Wróć
-
     </button>
 
     <h2 class="title">Ustawienia gry</h2>
-
 
     <div class="card">
 
@@ -785,25 +741,19 @@ input:focus {
 
     <button class="main-btn primary"
             onclick="goToPlayers()">
-
         DALEJ →
-
     </button>
 
 </section>
 
 
-<!-- =========================
-     PLAYERS
-========================= -->
+<!-- PLAYERS -->
 
 <section id="players" class="screen">
 
     <button class="back"
             onclick="showScreen('setup')">
-
         ← Wróć
-
     </button>
 
     <h2 class="title">
@@ -825,25 +775,19 @@ input:focus {
 
     <button class="main-btn primary"
             onclick="startGame()">
-
         🚀 ROZPOCZNIJ GRĘ
-
     </button>
 
 </section>
 
 
-<!-- =========================
-     PASS PHONE
-========================= -->
+<!-- PASS PHONE -->
 
 <section id="pass" class="screen">
 
     <button class="back"
             onclick="showScreen('players')">
-
         ← Wróć
-
     </button>
 
     <div class="pass-box">
@@ -875,9 +819,7 @@ input:focus {
 
         <button class="main-btn primary"
                 onclick="openScratch()">
-
             👁️ ODSŁOŃ SWOJĄ ROLĘ
-
         </button>
 
     </div>
@@ -885,17 +827,13 @@ input:focus {
 </section>
 
 
-<!-- =========================
-     SCRATCH
-========================= -->
+<!-- SCRATCH -->
 
 <section id="scratch" class="screen">
 
     <button class="back"
             onclick="showScreen('pass')">
-
         ← Wróć
-
     </button>
 
     <h2 id="scratchTitle"
@@ -906,10 +844,8 @@ input:focus {
     <p id="scratchInfo"
        class="small"
        style="text-align:center;">
-
         Zdrapuj palcem,
         aby odsłonić swoją rolę.
-
     </p>
 
 
@@ -919,30 +855,24 @@ input:focus {
 
             <div id="categoryResult"
                  class="category-name">
-
                 Kategoria
-
             </div>
 
             <div id="secretResult"
                  class="secret-word">
-
                 SŁOWO
-
             </div>
 
             <div id="impostorResult"
                  class="impostor-text"
                  style="display:none;">
-
                 JESTEŚ<br>
                 IMPOSTOREM
-
             </div>
 
         </div>
 
-        <canvas id="scratchCanvas"></canvas>
+        <!-- Canvas jest tworzony ponownie przez JavaScript -->
 
     </div>
 
@@ -966,17 +896,13 @@ input:focus {
             class="main-btn primary"
             style="display:none;"
             onclick="nextPlayer()">
-
         ROZUMIEM! →
-
     </button>
 
 </section>
 
 
-<!-- =========================
-     DISCUSSION
-========================= -->
+<!-- DISCUSSION -->
 
 <section id="discussion" class="screen">
 
@@ -1016,17 +942,13 @@ input:focus {
 
     <button class="main-btn primary"
             onclick="startVoting()">
-
         🗳️ PRZEJDŹ DO GŁOSOWANIA
-
     </button>
 
 </section>
 
 
-<!-- =========================
-     VOTING
-========================= -->
+<!-- VOTING -->
 
 <section id="voting" class="screen">
 
@@ -1053,17 +975,13 @@ input:focus {
 
     <button class="main-btn primary"
             onclick="finishVoting()">
-
         ZATWIERDŹ GŁOS
-
     </button>
 
 </section>
 
 
-<!-- =========================
-     RESULT
-========================= -->
+<!-- RESULT -->
 
 <section id="result" class="screen">
 
@@ -1120,9 +1038,7 @@ input:focus {
 
     <button class="main-btn primary"
             onclick="restartGame()">
-
         🔄 ZAGRAJ PONOWNIE
-
     </button>
 
 </section>
@@ -1682,13 +1598,12 @@ function openScratch() {
     showScreen("scratch");
 
 
-    /* NAJWAŻNIEJSZE:
-       ZA KAŻDYM RAZEM
-       TWORZYMY NOWĄ ZDRAPKĘ */
+    // MAŁE OPÓŹNIENIE, ABY EKRAN
+    // NA PEWNO SIĘ WYŚWIETLIŁ
 
     setTimeout(
         setupScratch,
-        100
+        150
     );
 }
 
@@ -1738,15 +1653,10 @@ function getHint() {
 
 
 /* =========================
-   ZDRAPKA
+   NOWA ZDRAPKA
 ========================= */
 
 function setupScratch() {
-
-    scratchCanvas =
-        document.getElementById(
-            "scratchCanvas"
-        );
 
     const container =
         document.querySelector(
@@ -1754,18 +1664,81 @@ function setupScratch() {
         );
 
 
-    /* RESET ZDRAPKI
-       DZIAŁA DLA KAŻDEGO GRACZA */
+    /*
+       NAJWAŻNIEJSZA ZMIANA:
 
-    scratchCanvas.style.display =
-        "block";
+       Za każdym razem usuwamy
+       poprzedni canvas i tworzymy
+       całkowicie nowy.
 
-    scratchCanvas.style.opacity =
+       Dzięki temu każdy gracz
+       dostaje świeżą zdrapkę.
+    */
+
+    const oldCanvas =
+        document.getElementById(
+            "scratchCanvas"
+        );
+
+    if(oldCanvas) {
+        oldCanvas.remove();
+    }
+
+
+    // NOWY CANVAS
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+    canvas.id =
+        "scratchCanvas";
+
+
+    canvas.style.position =
+        "absolute";
+
+    canvas.style.left =
+        "0";
+
+    canvas.style.top =
+        "0";
+
+    canvas.style.width =
+        "100%";
+
+    canvas.style.height =
+        "100%";
+
+    canvas.style.touchAction =
+        "none";
+
+    canvas.style.cursor =
+        "grab";
+
+    canvas.style.opacity =
         "1";
 
-    scratchCanvas.style.pointerEvents =
+    canvas.style.display =
+        "block";
+
+    canvas.style.pointerEvents =
         "auto";
 
+
+    container.appendChild(
+        canvas
+    );
+
+
+    // ZAPISZ NOWY CANVAS
+
+    scratchCanvas =
+        canvas;
+
+
+    // ROZMIAR
 
     scratchCanvas.width =
         container.clientWidth;
@@ -1773,6 +1746,8 @@ function setupScratch() {
     scratchCanvas.height =
         container.clientHeight;
 
+
+    // KONTEKST
 
     scratchCtx =
         scratchCanvas.getContext(
@@ -1784,7 +1759,11 @@ function setupScratch() {
         "source-over";
 
 
-    /* FIOLETOWA WARSTWA */
+    scratching = false;
+    scratchFinished = false;
+
+
+    // FIOLETOWY GRADIENT
 
     const gradient =
         scratchCtx.createLinearGradient(
@@ -1794,13 +1773,14 @@ function setupScratch() {
             scratchCanvas.height
         );
 
+
     gradient.addColorStop(
         0,
         "#6d28d9"
     );
 
     gradient.addColorStop(
-        .5,
+        0.5,
         "#a855f7"
     );
 
@@ -1809,8 +1789,10 @@ function setupScratch() {
         "#7c3aed"
     );
 
+
     scratchCtx.fillStyle =
         gradient;
+
 
     scratchCtx.fillRect(
         0,
@@ -1820,16 +1802,18 @@ function setupScratch() {
     );
 
 
-    /* DROBNE KROPKI */
+    // DROBNE KROPKI
 
     scratchCtx.fillStyle =
         "rgba(255,255,255,.09)";
+
 
     for(let i = 0; i < 120; i++) {
 
         scratchCtx.beginPath();
 
         scratchCtx.arc(
+
             Math.random() *
                 scratchCanvas.width,
 
@@ -1840,13 +1824,14 @@ function setupScratch() {
 
             0,
             Math.PI * 2
+
         );
 
         scratchCtx.fill();
     }
 
 
-    /* NAPIS */
+    // NAPIS
 
     scratchCtx.fillStyle =
         "white";
@@ -1860,26 +1845,19 @@ function setupScratch() {
     scratchCtx.textBaseline =
         "middle";
 
+
     scratchCtx.fillText(
+
         "ZDRAP MNIE 👆",
+
         scratchCanvas.width / 2,
+
         scratchCanvas.height / 2
+
     );
 
 
-    scratching = false;
-    scratchFinished = false;
-
-
-    /* USUWAMY STARE ZDARZENIA */
-
-    scratchCanvas.onpointerdown = null;
-    scratchCanvas.onpointermove = null;
-    scratchCanvas.onpointerup = null;
-    scratchCanvas.onpointercancel = null;
-
-
-    /* NOWE ZDARZENIA */
+    // EVENTY
 
     scratchCanvas.onpointerdown =
         scratchStart;
@@ -1903,9 +1881,13 @@ function scratchStart(event) {
 
     scratching = true;
 
-    scratchCanvas.setPointerCapture(
-        event.pointerId
-    );
+    try {
+
+        scratchCanvas.setPointerCapture(
+            event.pointerId
+        );
+
+    } catch(e) {}
 
     scratchMove(event);
 }
@@ -1920,12 +1902,19 @@ function scratchMove(event) {
     if(!scratching)
         return;
 
+    if(!scratchCanvas ||
+       !scratchCtx)
+        return;
+
+
     const rect =
         scratchCanvas.getBoundingClientRect();
+
 
     const x =
         event.clientX -
         rect.left;
+
 
     const y =
         event.clientY -
@@ -1938,13 +1927,17 @@ function scratchMove(event) {
 
     scratchCtx.beginPath();
 
+
     scratchCtx.arc(
+
         x,
         y,
         30,
         0,
         Math.PI * 2
+
     );
+
 
     scratchCtx.fill();
 
@@ -1972,18 +1965,26 @@ function checkScratch() {
     if(scratchFinished)
         return;
 
+    if(!scratchCanvas ||
+       !scratchCtx)
+        return;
+
 
     const data =
         scratchCtx.getImageData(
+
             0,
             0,
+
             scratchCanvas.width,
             scratchCanvas.height
+
         ).data;
 
 
     let transparent = 0;
     let total = 0;
+
 
     const step = 12;
 
@@ -2007,7 +2008,9 @@ function checkScratch() {
                     x
                 ) * 4;
 
+
             total++;
+
 
             if(
                 data[index + 3] < 100
@@ -2020,10 +2023,12 @@ function checkScratch() {
 
 
     const percent =
-        transparent / total * 100;
+        transparent /
+        total *
+        100;
 
 
-    /* 65% ZDRAPANE */
+    // 65% ZDRAPANE
 
     if(percent >= 65) {
 
@@ -2041,11 +2046,17 @@ function finishScratch() {
     if(scratchFinished)
         return;
 
+
     scratchFinished = true;
+
+
+    if(!scratchCanvas)
+        return;
 
 
     scratchCanvas.style.transition =
         "opacity .4s ease";
+
 
     scratchCanvas.style.opacity =
         "0";
@@ -2108,10 +2119,12 @@ function startVoting() {
 
     selectedVote = null;
 
+
     const list =
         document.getElementById(
             "voteList"
         );
+
 
     list.innerHTML = "";
 
@@ -2124,8 +2137,10 @@ function startVoting() {
                     "button"
                 );
 
+
             button.className =
                 "vote-btn";
+
 
             button.textContent =
                 player;
@@ -2135,6 +2150,7 @@ function startVoting() {
 
                 selectedVote =
                     index;
+
 
                 document
                     .querySelectorAll(
@@ -2148,15 +2164,18 @@ function startVoting() {
                                 )
                     );
 
+
                 button.classList.add(
                     "selected"
                 );
+
             };
 
 
             list.appendChild(
                 button
             );
+
         }
     );
 
@@ -2220,27 +2239,29 @@ function finishVoting() {
 function restartGame() {
 
     players = [];
+
     impostors = [];
 
     secretWord = "";
+
     secretCategory = "";
 
     currentPlayer = 0;
 
     scratchFinished = false;
+
     scratching = false;
 
 
+    // USUŃ STARĄ ZDRAPKĘ
+
     if(scratchCanvas) {
 
-        scratchCanvas.style.opacity =
-            "1";
+        scratchCanvas.remove();
 
-        scratchCanvas.style.display =
-            "block";
+        scratchCanvas = null;
 
-        scratchCanvas.style.pointerEvents =
-            "auto";
+        scratchCtx = null;
     }
 
 
@@ -2252,4 +2273,4 @@ function restartGame() {
 </script>
 
 </body>
-    </html>
+</html>
