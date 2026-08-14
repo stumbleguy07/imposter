@@ -3380,123 +3380,54 @@ function finishVoting() {
 }
 
 
-/* =====================================================
+/* =========================
    RESTART
-===================================================== */
+========================= */
 
 function restartGame() {
 
     players = [];
-
     impostors = [];
 
     secretWord = "";
-
     secretCategory = "";
 
     currentPlayer = 0;
 
-    starterPlayer = 0;
-
-    selectedVote = null;
-
     scratchFinished = false;
-
     scratching = false;
 
+    if (scratchCanvas) {
 
-    if(scratchCanvas) {
-
-        scratchCanvas.style.opacity =
-            "1";
-
-        scratchCanvas.style.display =
-            "block";
-
-        scratchCanvas.style.pointerEvents =
-            "auto";
+        scratchCanvas.style.opacity = "1";
+        scratchCanvas.style.display = "block";
+        scratchCanvas.style.pointerEvents = "auto";
 
     }
 
-
-    showScreen(
-        "home"
-    );
-
+    showScreen("home");
 }
 
 
-/* =====================================================
+/* =========================
    SERVICE WORKER
-===================================================== */
+========================= */
 
-if(
-    "serviceWorker" in navigator
-) {
+if ("serviceWorker" in navigator) {
 
-    window.addEventListener(
-        "load",
-        () => {
+    window.addEventListener("load", function () {
 
-            navigator
-                .serviceWorker
-                .register(
-                    "./sw.js"
-                )
-                .then(
-                    registration => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(function () {
+                console.log("Service Worker działa!");
+            })
+            .catch(function (error) {
+                console.log("Błąd Service Workera:", error);
+            });
 
-                        console.log(
-                            "Service Worker działa!",
-                            registration
-                        );
-
-                    }
-                )
-                .catch(
-                    error => {
-
-                        console.error(
-                            "Błąd Service Workera:",
-                            error
-                        );
-
-                    }
-                );
-
-        }
-    );
+    });
 
 }
-
-
-/* =====================================================
-   PAMIĘTANIE USTAWIEŃ
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        const saved =
-            JSON.parse(
-                localStorage.getItem(
-                    "impostorPlayers"
-                ) || "[]"
-            );
-
-
-        if(saved.length) {
-
-            console.log(
-                "Zapisani gracze:",
-                saved
-            );
-
-        }
-
-    }
-);
 
 </script>
 
