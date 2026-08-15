@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "IMPOSTOR",
-  "short_name": "IMPOSTOR",
-  "description": "Gra towarzyska, w której musisz odkryć Impostora.",
+  "name": "Oszust – Gra Słowna",
+  "short_name": "Oszust",
+  "description": "Imprezowa gra słowna z ukrytymi hasłami i podstępnymi wskazówkami.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
