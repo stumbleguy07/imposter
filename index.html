@@ -3,536 +3,697 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0f18">
+<meta name="theme-color" content="#080b12">
+
 <title>Impostor</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+}
 
 :root{
---bg:#080b12;
---card:#141a26;
---card2:#1b2230;
---text:#f5f7fb;
---muted:#929bad;
---blue:#4c8dff;
---purple:#8b5cf6;
---green:#32d17c;
---red:#ff5364;
---yellow:#ffc857;
+    --bg:#080b12;
+    --card:#141a26;
+    --card2:#1c2433;
+    --border:#283143;
+    --text:#f5f7fb;
+    --muted:#929bad;
+    --blue:#4c8dff;
+    --purple:#8b5cf6;
+    --green:#32d17c;
+    --red:#ff5364;
+    --yellow:#ffc857;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+button,
+input{
+    font:inherit;
 }
 
 button{
-font:inherit;
-color:inherit;
-border:0;
-cursor:pointer;
+    border:0;
+    color:inherit;
+    cursor:pointer;
 }
 
 .app{
-width:100%;
-max-width:520px;
-min-height:100vh;
-margin:auto;
-padding:22px 18px 35px;
-background:linear-gradient(180deg,#0d111b 0%,#080b12 100%);
+    width:100%;
+    max-width:520px;
+    min-height:100vh;
+    margin:auto;
+    padding:22px 18px 35px;
+    background:
+        linear-gradient(
+            180deg,
+            #0d111b 0%,
+            #080b12 100%
+        );
 }
 
-.screen{display:none}
-.screen.active{display:block}
+.screen{
+    display:none;
+}
 
-.header{margin-bottom:25px}
+.screen.active{
+    display:block;
+}
+
+.header{
+    margin-bottom:25px;
+}
 
 .title{
-font-size:30px;
-font-weight:800;
-letter-spacing:-.7px;
+    font-size:30px;
+    font-weight:850;
+    letter-spacing:-0.8px;
 }
 
 .sub{
-color:var(--muted);
-font-size:13px;
-line-height:1.5;
-margin-top:7px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.55;
+    margin-top:7px;
 }
 
 .card{
-background:rgba(20,26,38,.96);
-border:1px solid #252d3d;
-border-radius:22px;
-padding:18px;
-margin-bottom:14px;
-box-shadow:0 12px 30px rgba(0,0,0,.18);
+    background:rgba(20,26,38,.97);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:18px;
+    margin-bottom:14px;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.18);
 }
 
 .section-title{
-font-size:18px;
-font-weight:800;
-margin-bottom:14px;
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:15px;
 }
 
 .row{
-display:flex;
-align-items:center;
-gap:13px;
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.grow{flex:1}
+.grow{
+    flex:1;
+}
+
+.center{
+    text-align:center;
+}
+
+/* IKONY SVG */
 
 .iconbox{
-width:50px;
-height:50px;
-border-radius:15px;
-display:grid;
-place-items:center;
-background:#20283a;
-color:#dce5f5;
-flex:none;
+    width:50px;
+    height:50px;
+    flex:none;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    background:#20283a;
+    color:#dce5f5;
 }
 
 .iconbox svg{
-width:26px;
-height:26px;
-stroke:currentColor;
-fill:none;
-stroke-width:1.8;
-stroke-linecap:round;
-stroke-linejoin:round;
+    width:26px;
+    height:26px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
-
-.primary{
-width:100%;
-padding:16px;
-border-radius:17px;
-background:linear-gradient(135deg,#4c8dff,#7c5cff);
-font-weight:800;
-margin-top:8px;
-box-shadow:0 10px 25px rgba(76,141,255,.22);
-}
-
-.secondary{
-width:100%;
-padding:14px;
-border-radius:15px;
-background:#20283a;
-font-weight:700;
-margin-top:10px;
-}
-
-.mode-arrow{
-width:45px;
-height:45px;
-border-radius:14px;
-background:#20283a;
-font-size:27px;
-display:grid;
-place-items:center;
-}
-
-.center{text-align:center}
 
 .step-icon{
-width:56px;
-height:56px;
-margin:0 auto 12px;
-border-radius:18px;
-background:#1d2b43;
-color:#65a0ff;
-display:grid;
-place-items:center;
+    width:58px;
+    height:58px;
+    margin:0 auto 12px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    background:#1d2b43;
+    color:#65a0ff;
 }
 
 .step-icon svg{
-width:29px;
-height:29px;
-stroke:currentColor;
-fill:none;
-stroke-width:1.8;
-stroke-linecap:round;
-stroke-linejoin:round;
+    width:30px;
+    height:30px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
-.player{
-display:flex;
-align-items:center;
-gap:13px;
-padding:13px 0;
-border-bottom:1px solid #252d3b;
-cursor:pointer;
+/* PRZYCISKI */
+
+.primary{
+    width:100%;
+    padding:16px;
+    margin-top:8px;
+    border-radius:17px;
+    background:
+        linear-gradient(
+            135deg,
+            #4c8dff,
+            #7c5cff
+        );
+    font-weight:800;
+    box-shadow:
+        0 10px 25px rgba(76,141,255,.22);
 }
 
-.player:last-child{border-bottom:0}
-
-.avatar{
-width:48px;
-height:48px;
-border-radius:50%;
-display:grid;
-place-items:center;
-font-weight:800;
-font-size:18px;
-background:linear-gradient(135deg,#8b5cf6,#348bff);
+.secondary{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border-radius:15px;
+    background:#20283a;
+    font-weight:700;
 }
 
-.name{font-weight:700}
-
-.small{
-font-size:12px;
-color:var(--muted);
+.mode-arrow{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:#20283a;
+    font-size:26px;
 }
 
-.number{
-font-size:11px;
-font-weight:800;
-color:#8eb6ff;
-margin-bottom:4px;
-}
-
-.step{
-text-align:center;
-padding:20px 6px;
-border-bottom:1px solid #252d3b;
-}
-
-.step:last-child{border-bottom:0}
-
-.scratch{
-height:190px;
-border-radius:22px;
-background:linear-gradient(145deg,#858e9f,#4e5869);
-display:grid;
-place-items:center;
-position:relative;
-overflow:hidden;
-border:2px solid #343d4d;
-cursor:pointer;
-user-select:none;
-}
-
-.scratch:before{
-content:"";
-position:absolute;
-inset:0;
-background-image:radial-gradient(#b7bec8 1px,transparent 1px);
-background-size:8px 8px;
-opacity:.35;
-}
-
-.scratch span{
-font-weight:900;
-letter-spacing:1px;
-position:relative;
-z-index:2;
-}
-
-.revealed{
-display:none;
-width:100%;
-position:relative;
-z-index:3;
-}
-
-.result{
-padding:20px;
-border-radius:20px;
-text-align:center;
-margin-top:14px;
-background:#111722;
-}
-
-.result.impostor{
-border:2px solid var(--red);
-}
-
-.result.normal{
-border:2px solid var(--green);
-}
-
-.result .square{
-width:54px;
-height:54px;
-margin:0 auto 12px;
-border-radius:15px;
-background:#20283a;
-display:grid;
-place-items:center;
-}
-
-.word{
-font-size:25px;
-font-weight:900;
-margin:8px 0;
-}
-
-.red{color:var(--red)}
-.green{color:var(--green)}
-
-.hint{
-margin-top:14px;
-padding:15px;
-border:2px solid var(--yellow);
-border-radius:16px;
-color:#ffe09a;
-background:#211d12;
-}
-
-.hint-icon{
-width:30px;
-height:30px;
-margin:0 auto 8px;
-}
-
-.hint-icon svg{
-width:30px;
-height:30px;
-stroke:#ffc857;
-fill:none;
-stroke-width:1.8;
-stroke-linecap:round;
-stroke-linejoin:round;
-}
-
-.vote-player{
-padding:14px;
-border-radius:16px;
-background:#171e2c;
-margin-top:9px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-cursor:pointer;
-}
-
-.vote-player.selected{
-outline:2px solid var(--blue);
-background:#1b2942;
-}
-
-.vote{
-width:34px;
-height:34px;
-border-radius:50%;
-background:#252f42;
-display:grid;
-place-items:center;
-font-size:20px;
-}
-
-.vote-player.selected .vote{
-background:var(--blue);
-}
-
-.nav{
-position:sticky;
-bottom:10px;
-margin-top:22px;
-background:#151b28ee;
-border:1px solid #283143;
-border-radius:22px;
-padding:8px;
-display:flex;
-gap:6px;
-backdrop-filter:blur(14px);
-}
-
-.nav button{
-flex:1;
-padding:11px 8px;
-border-radius:15px;
-background:transparent;
-color:#7f8a9e;
-font-size:11px;
-font-weight:700;
-}
-
-.nav button.active{
-background:#253047;
-color:white;
-}
-
-.hidden{display:none!important}
+/* LICZNIKI */
 
 .counter{
-display:flex;
-align-items:center;
-justify-content:space-between;
-background:#20283a;
-border-radius:16px;
-padding:8px;
-margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:13px;
+    padding:8px;
+    border-radius:16px;
+    background:#20283a;
 }
 
 .counter button{
-width:42px;
-height:42px;
-border-radius:12px;
-background:#2b3548;
-font-size:24px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#2b3548;
+    font-size:24px;
 }
 
 .counter-value{
-font-size:20px;
-font-weight:800;
+    font-size:20px;
+    font-weight:800;
 }
 
-.input{
-width:100%;
-padding:14px;
-margin-top:8px;
-border-radius:14px;
-border:1px solid #303a4e;
-background:#0e131d;
-color:white;
-outline:none;
-font-size:15px;
-}
-
-.input:focus{
-border-color:var(--blue);
-}
+/* KATEGORIE */
 
 .category-list{
-display:flex;
-gap:8px;
-overflow-x:auto;
-padding-bottom:3px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:4px 1px 3px;
+}
+
+.category-list::-webkit-scrollbar{
+    display:none;
 }
 
 .category{
-white-space:nowrap;
-padding:10px 14px;
-border-radius:13px;
-background:#20283a;
-font-size:13px;
+    white-space:nowrap;
+    padding:10px 14px;
+    border-radius:13px;
+    background:#20283a;
+    font-size:13px;
 }
 
 .category.active{
-background:#4c8dff;
+    background:var(--blue);
 }
 
-.message{
-text-align:center;
-padding:12px;
-color:var(--muted);
-font-size:12px;
+/* GRACZE */
+
+.player{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:14px 0;
+    border-bottom:1px solid #252d3b;
+    cursor:pointer;
 }
+
+.player:last-child{
+    border-bottom:0;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+    flex:none;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #348bff
+        );
+    font-size:18px;
+    font-weight:800;
+}
+
+.name{
+    font-weight:700;
+}
+
+.small{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ZDRAPKA */
+
+.scratch{
+    position:relative;
+    height:190px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    border:2px solid #3b4556;
+    border-radius:22px;
+    background:
+        linear-gradient(
+            145deg,
+            #858e9f,
+            #4e5869
+        );
+    cursor:pointer;
+    user-select:none;
+}
+
+.scratch::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(
+            #c5cad2 1px,
+            transparent 1px
+        );
+    background-size:8px 8px;
+    opacity:.35;
+}
+
+.scratch-label{
+    position:relative;
+    z-index:2;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.revealed{
+    display:none;
+    position:relative;
+    z-index:3;
+    width:100%;
+}
+
+/* ROLE */
+
+.result{
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    background:#111722;
+}
+
+.result.impostor{
+    border:2px solid var(--red);
+}
+
+.result.normal{
+    border:2px solid var(--green);
+}
+
+.role-square{
+    width:56px;
+    height:56px;
+    margin:0 auto 13px;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    background:#20283a;
+}
+
+.role-square svg{
+    width:27px;
+    height:27px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+}
+
+.red{
+    color:var(--red);
+}
+
+.green{
+    color:var(--green);
+}
+
+.word{
+    margin:9px 0;
+    font-size:26px;
+    font-weight:900;
+}
+
+/* WSKAZÓWKA */
+
+.hint{
+    margin-top:15px;
+    padding:16px;
+    border:2px solid var(--yellow);
+    border-radius:17px;
+    color:#ffe09a;
+    background:#211d12;
+}
+
+.hint-icon{
+    width:32px;
+    height:32px;
+    margin:0 auto 8px;
+}
+
+.hint-icon svg{
+    width:32px;
+    height:32px;
+    fill:none;
+    stroke:var(--yellow);
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+/* ETAPY */
+
+.step{
+    padding:22px 6px;
+    text-align:center;
+    border-bottom:1px solid #252d3b;
+}
+
+.step:last-child{
+    border-bottom:0;
+}
+
+.number{
+    margin-bottom:4px;
+    color:#8eb6ff;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* GŁOSOWANIE */
+
+.vote-player{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px;
+    margin-top:9px;
+    border-radius:16px;
+    background:#171e2c;
+    cursor:pointer;
+}
+
+.vote-player.selected{
+    outline:2px solid var(--blue);
+    background:#1b2942;
+}
+
+.vote-circle{
+    width:34px;
+    height:34px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#252f42;
+}
+
+.vote-circle svg{
+    width:18px;
+    height:18px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+}
+
+/* WYNIK */
 
 .final-icon{
-width:80px;
-height:80px;
-margin:0 auto 18px;
-border-radius:25px;
-background:linear-gradient(135deg,#263b67,#382d67);
-display:grid;
-place-items:center;
+    width:80px;
+    height:80px;
+    margin:0 auto 18px;
+    display:grid;
+    place-items:center;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            135deg,
+            #263b67,
+            #382d67
+        );
 }
 
 .final-icon svg{
-width:42px;
-height:42px;
-stroke:#fff;
-fill:none;
-stroke-width:1.5;
-stroke-linecap:round;
-stroke-linejoin:round;
+    width:42px;
+    height:42px;
+    fill:none;
+    stroke:#fff;
+    stroke-width:1.5;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
-@media(max-width:360px){
-.app{padding-left:13px;padding-right:13px}
-.title{font-size:27px}
-.card{padding:15px}
+/* NAVIGACJA */
+
+.nav{
+    position:sticky;
+    bottom:10px;
+    display:flex;
+    gap:6px;
+    margin-top:22px;
+    padding:8px;
+    border:1px solid #283143;
+    border-radius:22px;
+    background:#151b28ee;
+    backdrop-filter:blur(14px);
 }
+
+.nav button{
+    flex:1;
+    padding:11px 8px;
+    border-radius:15px;
+    background:transparent;
+    color:#7f8a9e;
+    font-size:11px;
+    font-weight:700;
+}
+
+.nav button.active{
+    background:#253047;
+    color:#fff;
+}
+
+.hidden{
+    display:none!important;
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-<!-- ========================= -->
-<!-- USTAWIENIA -->
-<!-- ========================= -->
+
+<!-- ================================= -->
+<!-- USTAWIENIA GRY -->
+<!-- ================================= -->
 
 <section id="setup" class="screen active">
 
 <div class="header">
-<div class="title">Ustawienia gry</div>
-<div class="sub">Przygotujcie grę przed rozpoczęciem.</div>
+
+<div class="title">
+Ustawienia gry
 </div>
 
+<div class="sub">
+Przygotujcie grę przed rozpoczęciem.
+</div>
+
+</div>
+
+
+<!-- ILU GRACZY -->
 
 <div class="card">
 
 <div class="row">
 
 <div class="iconbox">
+
 <svg viewBox="0 0 24 24">
+
 <circle cx="9" cy="8" r="3"/>
+
 <circle cx="17" cy="9" r="2.5"/>
+
 <path d="M3.5 19c.5-3 2.5-4.5 5.5-4.5s5 1.5 5.5 4.5"/>
+
 <path d="M14.5 15c2.7-.2 4.8 1.1 5.5 3.5"/>
+
 </svg>
+
 </div>
+
 
 <div class="grow">
-<b>Ilu Graczy?</b>
-<div class="small" id="playerCountText">3 ludzi</div>
+
+<b>
+Ilu Graczy?
+</b>
+
+<div
+class="small"
+id="playerCountText">
+
+3 ludzi
+
 </div>
 
 </div>
+
+</div>
+
 
 <div class="counter">
 
-<button onclick="changePlayers(-1)">−</button>
+<button onclick="changePlayers(-1)">
+−
+</button>
 
-<div class="counter-value" id="playerCount">3</div>
+<div
+class="counter-value"
+id="playerCount">
 
-<button onclick="changePlayers(1)">+</button>
+3
+
+</div>
+
+<button onclick="changePlayers(1)">
++
+</button>
 
 </div>
 
 </div>
 
+
+<!-- ILU OSZUSTÓW -->
 
 <div class="card">
 
 <div class="row">
 
 <div class="iconbox">
+
 <svg viewBox="0 0 24 24">
+
 <circle cx="9" cy="8" r="3"/>
+
 <path d="M4 19c.5-3 2.2-4.5 5-4.5"/>
+
 <circle cx="17" cy="17" r="4"/>
+
 <path d="m20 20 2 2"/>
+
 </svg>
+
 </div>
+
 
 <div class="grow">
-<b>Ilu Oszustów?</b>
-<div class="small" id="impostorCountText">1 osoba</div>
+
+<b>
+Ilu Oszustów?
+</b>
+
+<div
+class="small"
+id="impostorCountText">
+
+1 osoba
+
 </div>
 
 </div>
+
+</div>
+
 
 <div class="counter">
 
-<button onclick="changeImpostors(-1)">−</button>
+<button onclick="changeImpostors(-1)">
+−
+</button>
 
-<div class="counter-value" id="impostorCount">1</div>
+<div
+class="counter-value"
+id="impostorCount">
 
-<button onclick="changeImpostors(1)">+</button>
+1
+
+</div>
+
+<button onclick="changeImpostors(1)">
++
+</button>
 
 </div>
 
 </div>
 
+
+<!-- TRYB GRY -->
 
 <div class="card">
 
@@ -540,37 +701,64 @@ stroke-linejoin:round;
 Tryb Gry
 </div>
 
+
 <div class="row">
 
-<button class="mode-arrow" onclick="toggleMode()">‹</button>
+<button
+class="mode-arrow"
+onclick="toggleMode()">
+
+‹
+
+</button>
+
 
 <div class="grow center">
 
 <div class="step-icon">
 
-<svg id="modeSvg" viewBox="0 0 24 24">
+<svg viewBox="0 0 24 24">
+
 <path d="M5 6h14"/>
 <path d="M5 10h9"/>
 <path d="M5 14h14"/>
 <path d="M5 18h7"/>
+
 </svg>
 
 </div>
 
-<b id="modeName">Gra Słowna</b>
 
-<div id="modeDesc" class="small">
+<b id="modeName">
+Gra Słowna
+</b>
+
+
+<div
+class="small"
+id="modeDesc">
+
 Znajdź kto nie zna tajnego słowa
-</div>
-
-</div>
-
-<button class="mode-arrow" onclick="toggleMode()">›</button>
 
 </div>
 
 </div>
 
+
+<button
+class="mode-arrow"
+onclick="toggleMode()">
+
+›
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KATEGORIE -->
 
 <div class="card">
 
@@ -579,124 +767,233 @@ Znajdź kto nie zna tajnego słowa
 <div class="iconbox">
 
 <svg viewBox="0 0 24 24">
+
 <rect x="4" y="4" width="6" height="6"/>
+
 <circle cx="17" cy="7" r="3"/>
+
 <path d="M5 16h5l-2.5 4z"/>
+
 </svg>
 
 </div>
 
+
 <div class="grow">
 
-<b>Kategorie</b>
+<b>
+Kategorie
+</b>
 
-<div class="small" id="categoryText">
+<div
+class="small"
+id="categoryText">
+
 Jedzenie
-</div>
-
-</div>
-
-<b style="font-size:25px">›</b>
-
-</div>
-
-<div class="category-list" style="margin-top:14px">
-
-<button class="category active" onclick="setCategory(this,'Jedzenie')">Jedzenie</button>
-<button class="category" onclick="setCategory(this,'Zwierzęta')">Zwierzęta</button>
-<button class="category" onclick="setCategory(this,'Kraje')">Kraje</button>
-<button class="category" onclick="setCategory(this,'Szkoła')">Szkoła</button>
-<button class="category" onclick="setCategory(this,'Hobby')">Hobby</button>
-<button class="category" onclick="setCategory(this,'Miasta')">Miasta</button>
 
 </div>
 
 </div>
 
+
+<b style="font-size:25px">
+›
+</b>
+
+</div>
+
+
+<div
+class="category-list"
+style="margin-top:14px">
+
+<button
+class="category active"
+onclick="setCategory(this,'Jedzenie')">
+
+Jedzenie
+
+</button>
+
+<button
+class="category"
+onclick="setCategory(this,'Zwierzęta')">
+
+Zwierzęta
+
+</button>
+
+<button
+class="category"
+onclick="setCategory(this,'Kraje')">
+
+Kraje
+
+</button>
+
+<button
+class="category"
+onclick="setCategory(this,'Szkoła')">
+
+Szkoła
+
+</button>
+
+<button
+class="category"
+onclick="setCategory(this,'Hobby')">
+
+Hobby
+
+</button>
+
+<button
+class="category"
+onclick="setCategory(this,'Miasta')">
+
+Miasta
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- OPCJE -->
 
 <div class="card">
+
 
 <div class="row">
 
 <div class="iconbox">
 
 <svg viewBox="0 0 24 24">
+
 <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/>
+
 <circle cx="12" cy="12" r="2.5"/>
+
 </svg>
 
 </div>
 
+
 <div class="grow">
-<b>Pokaż Kategorie Oszustowi</b>
+
+<b>
+Pokaż Kategorie Oszustowi
+</b>
+
 </div>
 
-<input id="showCategory" type="checkbox" checked>
+
+<input
+id="showCategory"
+type="checkbox"
+checked>
 
 </div>
 
 
-<div class="row" style="margin-top:15px">
+<div
+class="row"
+style="margin-top:15px">
 
 <div class="iconbox">
 
 <svg viewBox="0 0 24 24">
+
 <path d="M9 18h6"/>
+
 <path d="M10 21h4"/>
+
 <path d="M8 14a6 6 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/>
+
 </svg>
 
 </div>
 
+
 <div class="grow">
-<b>Pokaż Wskazówkę Oszustowi</b>
+
+<b>
+Pokaż Wskazówkę Oszustowi
+</b>
+
 </div>
 
-<input id="showHint" type="checkbox" checked>
+
+<input
+id="showHint"
+type="checkbox"
+checked>
 
 </div>
 
 
-<div class="row" style="margin-top:15px">
+<div
+class="row"
+style="margin-top:15px">
 
 <div class="iconbox">
 
 <svg viewBox="0 0 24 24">
+
 <circle cx="8" cy="8" r="3"/>
+
 <circle cx="16" cy="8" r="3"/>
+
 <path d="M3 19c.4-3 2-4.5 5-4.5s4.6 1.5 5 4.5"/>
+
 <path d="M11 19c.4-3 2-4.5 5-4.5s4.6 1.5 5 4.5"/>
+
 </svg>
 
 </div>
 
+
 <div class="grow">
-<b>Oszuści znają się nawzajem</b>
-</div>
 
-<input id="knowEachOther" type="checkbox">
-
-</div>
+<b>
+Oszuści znają się nawzajem
+</b>
 
 </div>
 
 
-<button class="primary" onclick="startGame()">
+<input
+id="knowEachOther"
+type="checkbox">
+
+</div>
+
+</div>
+
+
+<button
+class="primary"
+onclick="startGame()">
+
 Rozpocznij grę
+
 </button>
 
 </section>
 
 
-<!-- ========================= -->
+<!-- ================================= -->
 <!-- GRACZE -->
-<!-- ========================= -->
+<!-- ================================= -->
 
 <section id="players" class="screen">
 
 <div class="header">
 
-<div class="title">Gracze</div>
+<div class="title">
+Gracze
+</div>
 
 <div class="sub">
 Dotknij swojego imienia, aby zobaczyć słowo, a następnie przekaż urządzenie następnemu graczowi.
@@ -705,29 +1002,58 @@ Dotknij swojego imienia, aby zobaczyć słowo, a następnie przekaż urządzenie
 </div>
 
 
-<div class="card" id="playerList"></div>
+<div
+class="card"
+id="playerList">
+</div>
 
 
-<div id="scratchArea" class="card hidden">
+<div
+id="scratchArea"
+class="card hidden">
 
-<div class="section-title" id="scratchName"></div>
+<div
+class="section-title"
+id="scratchName">
+</div>
 
-<div class="small" style="margin-bottom:12px">
+
+<div
+class="small"
+style="margin-bottom:12px">
+
 Zdrap kartę, aby zobaczyć swoją rolę.
-</div>
-
-
-<div class="scratch" id="scratch">
-
-<span>ZDRAP</span>
-
-<div class="revealed" id="scratchResult"></div>
 
 </div>
 
 
-<button class="secondary" onclick="nextPlayer()">
+<div
+class="scratch"
+id="scratch">
+
+<div
+class="scratch-label"
+id="scratchLabel">
+
+ZDRAP
+
+</div>
+
+
+<div
+class="revealed"
+id="scratchResult">
+</div>
+
+</div>
+
+
+<button
+class="secondary"
+onclick="nextPlayer()">
+
 Przekaż urządzenie następnemu graczowi
+
 </button>
 
 </div>
@@ -735,15 +1061,17 @@ Przekaż urządzenie następnemu graczowi
 </section>
 
 
-<!-- ========================= -->
-<!-- GŁOSOWANIE -->
-<!-- ========================= -->
+<!-- ================================= -->
+<!-- FAZA GŁOSOWANIA -->
+<!-- ================================= -->
 
 <section id="voting" class="screen">
 
 <div class="header">
 
-<div class="title">Faza Głosowania</div>
+<div class="title">
+Faza Głosowania
+</div>
 
 <div class="sub">
 Przejdźcie przez kolejne etapy gry.
@@ -755,122 +1083,205 @@ Przejdźcie przez kolejne etapy gry.
 <div class="card">
 
 
+<!-- 1 -->
+
 <div class="step">
 
 <div class="step-icon">
 
 <svg viewBox="0 0 24 24">
+
 <circle cx="12" cy="8" r="4"/>
+
 <path d="M5 20c.5-4 2.5-6 7-6s6.5 2 7 6"/>
+
 </svg>
 
 </div>
 
-<div class="number">1</div>
 
-<h2>Gracz Rozpoczynający</h2>
+<div class="number">
+1
+</div>
+
+
+<h2>
+Gracz Rozpoczynający
+</h2>
+
 
 <div class="sub">
-<b id="starterName">Leon rozpoczyna rundę</b>
-</div>
+
+<b id="starterName">
+Gracz 1 rozpoczyna rundę
+</b>
 
 </div>
 
+</div>
+
+
+<!-- 2 -->
 
 <div class="step">
 
 <div class="step-icon">
 
 <svg viewBox="0 0 24 24">
+
 <circle cx="12" cy="7" r="3"/>
+
 <circle cx="5.5" cy="10" r="2.2"/>
+
 <circle cx="18.5" cy="10" r="2.2"/>
+
 <path d="M7 20c.4-3 2-4.5 5-4.5s4.6 1.5 5 4.5"/>
+
 <path d="M1.8 20c.3-2.5 1.5-3.7 3.7-3.7"/>
+
 <path d="M18.5 16.3c2.2 0 3.4 1.2 3.7 3.7"/>
+
 </svg>
 
 </div>
 
-<div class="number">2</div>
 
-<h2>Dyskusja Grupowa</h2>
+<div class="number">
+2
+</div>
+
+
+<h2>
+Dyskusja Grupowa
+</h2>
+
 
 <div class="sub">
+
 Kontynuujcie zgodnie z ruchem wskazówek zegara.
-</div>
 
 </div>
 
+</div>
+
+
+<!-- 3 -->
 
 <div class="step">
 
 <div class="step-icon">
 
 <svg viewBox="0 0 24 24">
-<rect x="5" y="5" width="14" height="14" rx="2"/>
+
+<rect
+x="5"
+y="5"
+width="14"
+height="14"
+rx="2"/>
+
 <path d="M8 9h8"/>
+
 <path d="M8 13h5"/>
+
 <path d="m16 16 2 2 3-3"/>
+
 </svg>
 
 </div>
 
-<div class="number">3</div>
 
-<h2>Czas Głosowania</h2>
+<div class="number">
+3
+</div>
+
+
+<h2>
+Czas Głosowania
+</h2>
+
 
 <div class="sub">
+
 Każdy gracz mówi słowo związane z sekretem.
+
 <br><br>
+
 Zróbcie dwie lub trzy rundy.
-</div>
 
 </div>
 
+</div>
+
+
+<!-- 4 -->
 
 <div class="step">
 
 <div class="step-icon">
 
 <svg viewBox="0 0 24 24">
+
 <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/>
+
 <circle cx="12" cy="12" r="2.5"/>
+
 </svg>
 
 </div>
 
-<div class="number">4</div>
 
-<h2>Faza Ujawniania</h2>
+<div class="number">
+4
+</div>
+
+
+<h2>
+Faza Ujawniania
+</h2>
+
 
 <div class="sub">
+
 Głosujcie na gracza, którego uważacie za oszusta.
+
 <br><br>
-Następnie kliknijcie przycisk „Ujawnij wyniki”.
-</div>
+
+Następnie kliknijcie przycisk
+<b>
+Ujawnij wyniki
+</b>
+aby zobaczyć, kto był oszustem.
 
 </div>
 
 </div>
 
+</div>
 
-<button class="primary" onclick="showVotes()">
+
+<button
+class="primary"
+onclick="showVotes()">
+
 Przejdź do głosowania
+
 </button>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- WYBÓR GŁOSU -->
-<!-- ========================= -->
+<!-- ================================= -->
+<!-- GŁOSOWANIE -->
+<!-- ================================= -->
 
 <section id="votes" class="screen">
 
 <div class="header">
 
-<div class="title">Głosowanie</div>
+<div class="title">
+Głosowanie
+</div>
 
 <div class="sub">
 Wybierzcie gracza, którego podejrzewacie.
@@ -879,25 +1290,34 @@ Wybierzcie gracza, którego podejrzewacie.
 </div>
 
 
-<div class="card" id="voteList"></div>
+<div
+class="card"
+id="voteList">
+</div>
 
 
-<button class="primary" onclick="showFinal()">
+<button
+class="primary"
+onclick="showFinal()">
+
 Ujawnij wyniki
+
 </button>
 
 </section>
 
 
-<!-- ========================= -->
+<!-- ================================= -->
 <!-- WYNIK -->
-<!-- ========================= -->
+<!-- ================================= -->
 
 <section id="final" class="screen">
 
 <div class="header">
 
-<div class="title">Wynik gry</div>
+<div class="title">
+Wynik gry
+</div>
 
 <div class="sub">
 Sprawdźcie, kto był oszustem.
@@ -906,7 +1326,10 @@ Sprawdźcie, kto był oszustem.
 </div>
 
 
-<div class="card center" style="padding:30px 18px">
+<div
+class="card center"
+style="padding:30px 18px">
+
 
 <div class="final-icon">
 
@@ -924,10 +1347,13 @@ OSZUST
 </div>
 
 
-<div id="finalImpostor"
+<div
+id="finalImpostor"
 class="title red"
 style="margin-top:7px">
-Leon
+
+Gracz 1
+
 </div>
 
 
@@ -939,8 +1365,12 @@ TAJNE SŁOWO
 </div>
 
 
-<div id="finalWord" class="word">
+<div
+id="finalWord"
+class="word">
+
 Pizza
+
 </div>
 
 
@@ -951,625 +1381,816 @@ Dziękujemy za grę.
 </div>
 
 
-<button class="primary" onclick="location.reload()">
+<button
+class="primary"
+onclick="location.reload()">
+
 Zagraj ponownie
+
 </button>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- NAWIGACJA -->
-<!-- ========================= -->
+<!-- ================================= -->
+<!-- DOLNA NAWIGACJA -->
+<!-- ================================= -->
 
 <div class="nav">
 
-<button class="active" onclick="go('setup',this)">
+<button
+class="active"
+onclick="go('setup',this)">
+
 Ustawienia
+
 </button>
 
-<button onclick="go('players',this)">
+
+<button
+onclick="go('players',this)">
+
 Gracze
+
 </button>
 
-<button onclick="go('voting',this)">
+
+<button
+onclick="go('voting',this)">
+
 Głosowanie
+
 </button>
 
 </div>
+
 
 </div>
 
 
 <script>
 
-/* ========================= */
-/* USTAWIENIA GRY */
-/* ========================= */
+/* ================================= */
+/* ZMIENNE */
+/* ================================= */
 
-let playerCount=3;
-let impostorCount=1;
-let mode=0;
+let playerCount = 3;
 
-let selectedCategory="Jedzenie";
+let impostorCount = 1;
 
-let currentPlayer=0;
+let mode = 0;
 
-let players=[];
+let selectedCategory = "Jedzenie";
 
-let impostors=[];
+let currentPlayer = 0;
 
-let secretWord="Pizza";
+let players = [];
 
-let secretHint="Ser";
+let impostors = [];
 
-let selectedVote=null;
+let secretWord = "Pizza";
+
+let secretHint = "Ser";
+
+let selectedVote = null;
 
 
-/* ========================= */
-/* ZMIANA LICZBY GRACZY */
-/* ========================= */
+/* ================================= */
+/* LICZBA GRACZY */
+/* ================================= */
 
 function changePlayers(value){
 
-playerCount+=value;
+    playerCount += value;
 
-if(playerCount<2)
-playerCount=2;
+    if(playerCount < 2){
+        playerCount = 2;
+    }
 
-if(playerCount>10)
-playerCount=10;
+    if(playerCount > 10){
+        playerCount = 10;
+    }
 
-if(impostorCount>=playerCount)
-impostorCount=playerCount-1;
+    if(impostorCount >= playerCount){
+        impostorCount = playerCount - 1;
+    }
 
-document.getElementById("playerCount").textContent=playerCount;
-
-document.getElementById("playerCountText").textContent=
-playerCount+" "+(playerCount===1?"osoba":"ludzi");
-
-document.getElementById("impostorCount").textContent=impostorCount;
-
-document.getElementById("impostorCountText").textContent=
-impostorCount+" "+(impostorCount===1?"osoba":"osoby");
+    updateCounters();
 
 }
 
 
-/* ========================= */
-/* ZMIANA OSZUSTÓW */
-/* ========================= */
+/* ================================= */
+/* LICZBA OSZUSTÓW */
+/* ================================= */
 
 function changeImpostors(value){
 
-impostorCount+=value;
+    impostorCount += value;
 
-if(impostorCount<1)
-impostorCount=1;
+    if(impostorCount < 1){
+        impostorCount = 1;
+    }
 
-if(impostorCount>=playerCount)
-impostorCount=playerCount-1;
+    if(impostorCount >= playerCount){
+        impostorCount = playerCount - 1;
+    }
 
-document.getElementById("impostorCount").textContent=impostorCount;
-
-document.getElementById("impostorCountText").textContent=
-impostorCount+" "+(impostorCount===1?"osoba":"osoby");
+    updateCounters();
 
 }
 
 
-/* ========================= */
+/* ================================= */
+/* LICZNIKI */
+/* ================================= */
+
+function updateCounters(){
+
+    document.getElementById("playerCount").textContent =
+        playerCount;
+
+    document.getElementById("playerCountText").textContent =
+        playerCount === 1
+        ? "1 osoba"
+        : playerCount + " ludzi";
+
+
+    document.getElementById("impostorCount").textContent =
+        impostorCount;
+
+    document.getElementById("impostorCountText").textContent =
+        impostorCount === 1
+        ? "1 osoba"
+        : impostorCount + " osoby";
+
+}
+
+
+/* ================================= */
 /* TRYB GRY */
-/* ========================= */
+/* ================================= */
 
 function toggleMode(){
 
-mode=mode===0?1:0;
+    mode = mode === 0 ? 1 : 0;
 
-if(mode===0){
+    if(mode === 0){
 
-document.getElementById("modeName").textContent="Gra Słowna";
+        document.getElementById("modeName").textContent =
+            "Gra Słowna";
 
-document.getElementById("modeDesc").textContent=
-"Znajdź kto nie zna tajnego słowa";
+        document.getElementById("modeDesc").textContent =
+            "Znajdź kto nie zna tajnego słowa";
 
-}else{
+    }else{
 
-document.getElementById("modeName").textContent="Gra Pytaniowa";
+        document.getElementById("modeName").textContent =
+            "Gra Pytaniowa";
 
-document.getElementById("modeDesc").textContent=
-"Znajdź kto dostał inne pytanie";
+        document.getElementById("modeDesc").textContent =
+            "Znajdź kto dostał inne pytanie";
+
+    }
 
 }
 
-}
 
-
-/* ========================= */
+/* ================================= */
 /* KATEGORIA */
-/* ========================= */
+/* ================================= */
 
 function setCategory(button,name){
 
-document
-.querySelectorAll(".category")
-.forEach(x=>x.classList.remove("active"));
+    document
+        .querySelectorAll(".category")
+        .forEach(function(item){
 
-button.classList.add("active");
+            item.classList.remove("active");
 
-selectedCategory=name;
+        });
 
-document.getElementById("categoryText").textContent=name;
+
+    button.classList.add("active");
+
+
+    selectedCategory = name;
+
+
+    document.getElementById("categoryText").textContent =
+        name;
 
 }
 
 
-/* ========================= */
+/* ================================= */
 /* LOSOWANIE */
-/* ========================= */
+/* ================================= */
 
 function randomInt(max){
 
-return Math.floor(Math.random()*max);
+    return Math.floor(
+        Math.random() * max
+    );
 
 }
 
+
+/* ================================= */
+/* TWORZENIE GRACZY */
+/* ================================= */
 
 function generatePlayers(){
 
-players=[];
+    players = [];
 
-for(let i=0;i<playerCount;i++){
+    for(let i = 0; i < playerCount; i++){
 
-players.push({
+        players.push({
 
-name:"Gracz "+(i+1),
+            name:"Gracz " + (i + 1),
 
-initial:String(i+1)
+            initial:String(i + 1)
 
-});
+        });
+
+    }
 
 }
 
-}
 
-
-/* ========================= */
+/* ================================= */
 /* LOSOWANIE OSZUSTÓW */
-/* ========================= */
+/* ================================= */
 
 function generateImpostors(){
 
-impostors=[];
+    impostors = [];
 
-while(impostors.length<impostorCount){
+    while(impostors.length < impostorCount){
 
-let number=randomInt(playerCount);
+        let number =
+            randomInt(playerCount);
 
-if(!impostors.includes(number))
-impostors.push(number);
+        if(!impostors.includes(number)){
+
+            impostors.push(number);
+
+        }
+
+    }
 
 }
 
-}
 
-
-/* ========================= */
+/* ================================= */
 /* START GRY */
-/* ========================= */
+/* ================================= */
 
 function startGame(){
 
-generatePlayers();
+    generatePlayers();
 
-generateImpostors();
+    generateImpostors();
 
-currentPlayer=0;
+    currentPlayer = 0;
 
-buildPlayers();
+    buildPlayers();
 
-document.getElementById("starterName").textContent=
-players[0].name+" rozpoczyna rundę";
 
-go(
-"players",
-document.querySelectorAll(".nav button")[1]
-);
+    document.getElementById("starterName").textContent =
+        players[0].name + " rozpoczyna rundę";
+
+
+    go(
+        "players",
+        document.querySelectorAll(".nav button")[1]
+    );
 
 }
 
 
-/* ========================= */
-/* EKRAN GRACZY */
-/* ========================= */
+/* ================================= */
+/* LISTA GRACZY */
+/* ================================= */
 
 function buildPlayers(){
 
-const list=document.getElementById("playerList");
+    const list =
+        document.getElementById("playerList");
 
-list.innerHTML="";
 
-players.forEach((player,index)=>{
+    list.innerHTML = "";
 
-const div=document.createElement("div");
 
-div.className="player";
+    players.forEach(function(player,index){
 
-div.innerHTML=`
+        const div =
+            document.createElement("div");
 
-<div class="avatar">
-${player.initial}
-</div>
 
-<div class="grow">
+        div.className = "player";
 
-<div class="name">
-${player.name}
-</div>
 
-<div class="small">
-Dotknij, aby odkryć swoją rolę
-</div>
+        div.innerHTML = `
 
-</div>
+            <div class="avatar">
+                ${player.initial}
+            </div>
 
-<b style="font-size:25px">
-›
-</b>
+            <div class="grow">
 
-`;
+                <div class="name">
+                    ${player.name}
+                </div>
 
-div.onclick=()=>openScratch(index);
+                <div class="small">
+                    Dotknij, aby odkryć swoją rolę
+                </div>
 
-list.appendChild(div);
+            </div>
 
-});
+            <b style="font-size:25px">
+                ›
+            </b>
+
+        `;
+
+
+        div.onclick = function(){
+
+            openScratch(index);
+
+        };
+
+
+        list.appendChild(div);
+
+    });
 
 }
 
 
-/* ========================= */
-/* ZDRAPKA */
-/* ========================= */
+/* ================================= */
+/* OTWARCIE ZDRAPKI */
+/* ================================= */
 
 function openScratch(index){
 
-currentPlayer=index;
+    currentPlayer = index;
 
-document
-.getElementById("scratchArea")
-.classList.remove("hidden");
 
-document
-.getElementById("scratchName")
-.textContent=players[index].name;
+    document
+        .getElementById("scratchArea")
+        .classList.remove("hidden");
 
-document
-.getElementById("scratch")
-.querySelector("span")
-.style.display="block";
 
-document
-.getElementById("scratchResult")
-.style.display="none";
+    document
+        .getElementById("scratchName")
+        .textContent =
+        players[index].name;
+
+
+    document
+        .getElementById("scratchLabel")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("scratchResult")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("scratch")
+        .style.borderColor =
+        "#3b4556";
 
 }
 
 
-/* ========================= */
+/* ================================= */
 /* ODKRYCIE ROLI */
-/* ========================= */
+/* ================================= */
 
 function revealRole(){
 
-const result=document.getElementById("scratchResult");
-
-const isImpostor=
-impostors.includes(currentPlayer);
-
-result.style.display="block";
+    const result =
+        document.getElementById("scratchResult");
 
 
-if(isImpostor){
+    const isImpostor =
+        impostors.includes(currentPlayer);
 
-let hintHTML="";
 
-if(document.getElementById("showHint").checked){
+    result.style.display = "block";
 
-hintHTML=`
 
-<div class="hint">
+    if(isImpostor){
 
-<div class="hint-icon">
+        let hintHTML = "";
 
-<svg viewBox="0 0 24 24">
 
-<path d="M9 18h6"/>
-<path d="M10 21h4"/>
-<path d="M8 14a6 6 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/>
+        if(
+            document.getElementById("showHint").checked
+        ){
 
-</svg>
+            hintHTML = `
 
-</div>
+                <div class="hint">
 
-<b>Twoja wskazówka</b>
+                    <div class="hint-icon">
 
-<br><br>
+                        <svg viewBox="0 0 24 24">
 
-${secretHint}
+                            <path d="M9 18h6"/>
 
-<br><br>
+                            <path d="M10 21h4"/>
 
-<span class="small">
-Użyj tego, aby wtopić się w pierwszej rundzie.
-</span>
+                            <path d="M8 14a6 6 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/>
 
-</div>
+                        </svg>
 
-`;
+                    </div>
+
+                    <b>
+                        Twoja wskazówka
+                    </b>
+
+                    <br><br>
+
+                    ${secretHint}
+
+                    <br><br>
+
+                    <span class="small">
+                        Użyj tego, aby wtopić się
+                        w pierwszej rundzie.
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+
+
+        result.innerHTML = `
+
+            <div class="result impostor">
+
+                <div class="role-square">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <rect
+                            x="5"
+                            y="5"
+                            width="14"
+                            height="14"
+                            rx="3"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <b class="red">
+                    OSZUST
+                </b>
+
+                ${hintHTML}
+
+            </div>
+
+        `;
+
+
+        document
+            .getElementById("scratch")
+            .style.borderColor =
+            "#ff5364";
+
+
+    }else{
+
+
+        let categoryHTML = "";
+
+
+        if(
+            document.getElementById("showCategory").checked
+        ){
+
+            categoryHTML = `
+
+                <div class="small">
+                    Kategoria: ${selectedCategory}
+                </div>
+
+            `;
+
+        }
+
+
+        result.innerHTML = `
+
+            <div class="result normal">
+
+                <div class="role-square">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <rect
+                            x="5"
+                            y="5"
+                            width="14"
+                            height="14"
+                            rx="3"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <b class="green">
+                    TAJNE SŁOWO
+                </b>
+
+                <div class="word green">
+                    ${secretWord}
+                </div>
+
+                ${categoryHTML}
+
+            </div>
+
+        `;
+
+
+        document
+            .getElementById("scratch")
+            .style.borderColor =
+            "#32d17c";
+
+    }
+
+
+    document
+        .getElementById("scratchLabel")
+        .style.display =
+        "none";
 
 }
 
-result.innerHTML=`
 
-<div class="result impostor">
-
-<div class="square">
-
-<svg viewBox="0 0 24 24" width="25">
-
-<rect
-x="5"
-y="5"
-width="14"
-height="14"
-rx="3"
-fill="none"
-stroke="currentColor"
-stroke-width="2"/>
-
-</svg>
-
-</div>
-
-<b class="red">
-OSZUST
-</b>
-
-${hintHTML}
-
-</div>
-
-`;
-
-}else{
-
-result.innerHTML=`
-
-<div class="result normal">
-
-<div class="square">
-
-<svg viewBox="0 0 24 24" width="25">
-
-<rect
-x="5"
-y="5"
-width="14"
-height="14"
-rx="3"
-fill="none"
-stroke="currentColor"
-stroke-width="2"/>
-
-</svg>
-
-</div>
-
-<b class="green">
-TAJNE SŁOWO
-</b>
-
-<div class="word green">
-${secretWord}
-</div>
-
-<div class="small">
-Kategoria: ${selectedCategory}
-</div>
-
-</div>
-
-`;
-
-}
+/* ================================= */
+/* KLIKNIĘCIE ZDRAPKI */
+/* ================================= */
 
 document
-.getElementById("scratch")
-.querySelector("span")
-.style.display="none";
-
-}
-
-
-/* Kliknięcie zdrapki */
-
-document
-.getElementById("scratch")
-.addEventListener("click",revealRole);
+    .getElementById("scratch")
+    .addEventListener(
+        "click",
+        revealRole
+    );
 
 
-/* ========================= */
+/* ================================= */
 /* NASTĘPNY GRACZ */
-/* ========================= */
+/* ================================= */
 
 function nextPlayer(){
 
-document
-.getElementById("scratchArea")
-.classList.add("hidden");
+    document
+        .getElementById("scratchArea")
+        .classList.add("hidden");
 
-if(currentPlayer<players.length-1){
 
-currentPlayer++;
+    if(currentPlayer < players.length - 1){
 
-}else{
+        currentPlayer++;
 
-go(
-"voting",
-document.querySelectorAll(".nav button")[2]
-);
+    }else{
+
+        go(
+            "voting",
+            document.querySelectorAll(".nav button")[2]
+        );
+
+    }
 
 }
 
-}
 
-
-/* ========================= */
-/* ZMIANA EKRANU */
-/* ========================= */
+/* ================================= */
+/* PRZEŁĄCZANIE EKRANÓW */
+/* ================================= */
 
 function go(id,button){
 
-document
-.querySelectorAll(".screen")
-.forEach(screen=>{
-screen.classList.remove("active");
-});
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(screen){
 
-document
-.getElementById(id)
-.classList.add("active");
+            screen.classList.remove("active");
+
+        });
 
 
-if(button){
+    document
+        .getElementById(id)
+        .classList.add("active");
 
-document
-.querySelectorAll(".nav button")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
 
-button.classList.add("active");
+    if(button){
+
+        document
+            .querySelectorAll(".nav button")
+            .forEach(function(btn){
+
+                btn.classList.remove("active");
+
+            });
+
+
+        button.classList.add("active");
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
-}
-
-
-/* ========================= */
+/* ================================= */
 /* GŁOSOWANIE */
-/* ========================= */
+/* ================================= */
 
 function showVotes(){
 
-const list=document.getElementById("voteList");
+    const list =
+        document.getElementById("voteList");
 
-list.innerHTML="";
 
-selectedVote=null;
+    list.innerHTML = "";
 
-players.forEach((player,index)=>{
 
-const div=document.createElement("div");
+    selectedVote = null;
 
-div.className="vote-player";
 
-div.innerHTML=`
+    players.forEach(function(player,index){
 
-<div class="row">
+        const div =
+            document.createElement("div");
 
-<div
-class="avatar"
-style="
-width:42px;
-height:42px;
-font-size:15px;
-">
 
-${player.initial}
+        div.className =
+            "vote-player";
 
-</div>
 
-<b>
-${player.name}
-</b>
+        div.innerHTML = `
 
-</div>
+            <div class="row">
 
-<div class="vote">
-○
-</div>
+                <div
+                    class="avatar"
+                    style="
+                        width:42px;
+                        height:42px;
+                        font-size:15px;
+                    "
+                >
+                    ${player.initial}
+                </div>
 
-`;
+                <b>
+                    ${player.name}
+                </b>
 
-div.onclick=()=>{
+            </div>
 
-document
-.querySelectorAll(".vote-player")
-.forEach(x=>{
-x.classList.remove("selected");
-x.querySelector(".vote").textContent="○";
-});
 
-div.classList.add("selected");
+            <div class="vote-circle">
 
-div.querySelector(".vote").textContent="✓";
+                <svg viewBox="0 0 24 24">
 
-selectedVote=index;
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="8"
+                    />
 
-};
+                </svg>
 
-list.appendChild(div);
+            </div>
 
-});
+        `;
 
-go("votes");
+
+        div.onclick = function(){
+
+            document
+                .querySelectorAll(".vote-player")
+                .forEach(function(item){
+
+                    item.classList.remove("selected");
+
+                    const circle =
+                        item.querySelector(".vote-circle");
+
+                    circle.innerHTML = `
+
+                        <svg viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="8"
+                            />
+
+                        </svg>
+
+                    `;
+
+                });
+
+
+            div.classList.add("selected");
+
+
+            div.querySelector(".vote-circle").innerHTML = `
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M5 12l4 4L19 6"/>
+
+                </svg>
+
+            `;
+
+
+            selectedVote = index;
+
+        };
+
+
+        list.appendChild(div);
+
+    });
+
+
+    go("votes");
 
 }
 
 
-/* ========================= */
-/* WYNIK */
-/* ========================= */
+/* ================================= */
+/* WYNIK KOŃCOWY */
+/* ================================= */
 
 function showFinal(){
 
-let impostorNames=[];
+    let names = [];
 
-impostors.forEach(index=>{
-impostorNames.push(players[index].name);
-});
 
-document.getElementById("finalImpostor").textContent=
-impostorNames.join(", ");
+    impostors.forEach(function(index){
 
-document.getElementById("finalWord").textContent=
-secretWord;
+        names.push(
+            players[index].name
+        );
 
-go("final");
+    });
+
+
+    document
+        .getElementById("finalImpostor")
+        .textContent =
+        names.join(", ");
+
+
+    document
+        .getElementById("finalWord")
+        .textContent =
+        secretWord;
+
+
+    go("final");
 
 }
 
 
-/* ========================= */
-/* START */
-/* ========================= */
+/* ================================= */
+/* START LICZNIKÓW */
+/* ================================= */
 
-document.getElementById("playerCount").textContent=playerCount;
-
-document.getElementById("playerCountText").textContent=
-playerCount+" ludzi";
-
-document.getElementById("impostorCount").textContent=impostorCount;
-
-document.getElementById("impostorCountText").textContent=
-impostorCount+" osoba";
+updateCounters();
 
 </script>
 
