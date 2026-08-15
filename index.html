@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a0f">
+<meta name="theme-color" content="#08050f">
 
 <title>Oszust — Gra Słowna</title>
 
@@ -15,17 +16,21 @@
 }
 
 :root{
-    --bg:#080a0f;
-    --card:#11151d;
-    --card2:#171c26;
-    --border:#252c38;
+    --bg:#08050f;
+    --bg2:#0e0819;
+    --card:#130d20;
+    --card2:#1b1230;
+    --border:#302044;
+
     --text:#ffffff;
-    --muted:#8993a3;
-    --blue:#4d8dff;
-    --purple:#8b6cff;
-    --blue2:#6b5cff;
-    --green:#35d27d;
-    --red:#ff5264;
+    --muted:#a79bbd;
+
+    --purple:#8b5cf6;
+    --purple2:#b56cff;
+    --purple3:#6d3cff;
+
+    --green:#39e58c;
+    --red:#ff526d;
     --yellow:#ffc857;
 }
 
@@ -33,12 +38,21 @@ html,
 body{
     margin:0;
     padding:0;
+    width:100%;
     min-height:100%;
 }
 
 body{
-    background:#080a0f;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(139,92,246,.22),
+            transparent 38%
+        ),
+        #08050f;
+
     color:var(--text);
+
     font-family:
         Inter,
         system-ui,
@@ -62,25 +76,31 @@ button{
     width:100%;
     max-width:520px;
     min-height:100vh;
+
     margin:auto;
-    padding:24px 18px 35px;
+
+    padding:
+        22px
+        18px
+        35px;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(112,92,255,.14),
-            transparent 32%
+            rgba(139,92,246,.12),
+            transparent 35%
         ),
         linear-gradient(
             180deg,
-            #0c1017 0%,
-            #080a0f 100%
+            #0d0716,
+            #08050f
         );
 }
 
-/* =========================
+
+/* =====================================
    EKRANY
-========================= */
+===================================== */
 
 .screen{
     display:none;
@@ -90,21 +110,28 @@ button{
     display:block;
 }
 
-/* =========================
+
+/* =====================================
    START
-========================= */
+===================================== */
 
 .start-screen{
-    min-height:calc(100vh - 60px);
+    min-height:calc(100vh - 57px);
 
     display:flex;
     flex-direction:column;
+
     justify-content:center;
+}
+
+.start-content{
+    width:100%;
 }
 
 .logo-area{
     text-align:center;
-    margin-bottom:42px;
+
+    margin-bottom:35px;
 }
 
 .logo-mark{
@@ -113,21 +140,22 @@ button{
 
     margin:0 auto 25px;
 
-    border-radius:28px;
-
     display:flex;
     align-items:center;
     justify-content:center;
 
+    border-radius:28px;
+
     background:
         linear-gradient(
             135deg,
-            #4d8dff,
-            #765cff
+            #7541dc,
+            #a35cff
         );
 
     box-shadow:
-        0 18px 45px rgba(77,141,255,.25);
+        0 0 35px rgba(139,92,246,.32),
+        0 20px 60px rgba(0,0,0,.4);
 }
 
 .logo-mark svg{
@@ -135,8 +163,10 @@ button{
     height:48px;
 
     fill:none;
+
     stroke:white;
-    stroke-width:1.8;
+
+    stroke-width:1.7;
 
     stroke-linecap:round;
     stroke-linejoin:round;
@@ -146,61 +176,78 @@ button{
     font-size:43px;
     line-height:1;
 
-    font-weight:900;
+    font-weight:950;
 
     letter-spacing:-2px;
 }
 
-.game-type{
-    margin-top:11px;
+.logo-game{
+    margin-top:12px;
 
-    color:#9177ff;
+    color:#a96cff;
 
-    font-size:18px;
+    font-size:16px;
+
     font-weight:800;
+
+    letter-spacing:.5px;
 }
 
 .logo-sub{
-    max-width:310px;
+    margin-top:10px;
 
-    margin:12px auto 0;
-
-    color:#a0a9b8;
+    color:#9184a8;
 
     font-size:13px;
-    line-height:1.6;
+
+    line-height:1.55;
 }
 
 .start-card{
-    padding:20px;
+    padding:21px;
 
-    border:1px solid var(--border);
-    border-radius:24px;
+    border:1px solid #302044;
 
-    background:rgba(17,21,29,.94);
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27,17,45,.97),
+            rgba(15,9,24,.98)
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.28);
 }
 
 .start-description{
     text-align:center;
 
-    color:#aeb6c5;
+    color:#b8aec8;
 
     font-size:14px;
+
     line-height:1.6;
 
     margin-bottom:20px;
 }
 
-/* =========================
-   HEADER
-========================= */
+
+/* =====================================
+   NAGŁÓWEK
+===================================== */
 
 .header{
-    padding:5px 2px 23px;
+    padding:
+        7px
+        2px
+        23px;
 }
 
 .title{
     font-size:31px;
+
     line-height:1.05;
 
     font-weight:900;
@@ -214,21 +261,14 @@ button{
     color:var(--muted);
 
     font-size:13px;
+
     line-height:1.55;
 }
 
-.small{
-    margin-top:5px;
 
-    color:var(--muted);
-
-    font-size:12px;
-    line-height:1.45;
-}
-
-/* =========================
+/* =====================================
    KARTY
-========================= */
+===================================== */
 
 .card{
     padding:18px;
@@ -236,20 +276,28 @@ button{
     margin-bottom:14px;
 
     border:1px solid var(--border);
+
     border-radius:22px;
 
-    background:rgba(17,21,29,.97);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22,13,35,.97),
+            rgba(15,9,24,.97)
+        );
 }
 
 .section-title{
     margin-bottom:16px;
 
     font-size:18px;
-    font-weight:800;
+
+    font-weight:850;
 }
 
 .row{
     display:flex;
+
     align-items:center;
 
     gap:13px;
@@ -263,9 +311,20 @@ button{
     text-align:center;
 }
 
-/* =========================
+.small{
+    margin-top:4px;
+
+    color:#8f849f;
+
+    font-size:12px;
+
+    line-height:1.45;
+}
+
+
+/* =====================================
    IKONY SVG
-========================= */
+===================================== */
 
 .iconbox{
     width:48px;
@@ -279,8 +338,11 @@ button{
 
     border-radius:15px;
 
-    background:#1d2430;
-    color:#dce5f5;
+    color:#c9aaff;
+
+    background:#211532;
+
+    border:1px solid #38234f;
 }
 
 .iconbox svg{
@@ -288,6 +350,7 @@ button{
     height:25px;
 
     fill:none;
+
     stroke:currentColor;
 
     stroke-width:1.8;
@@ -297,8 +360,8 @@ button{
 }
 
 .mode-icon{
-    width:64px;
-    height:64px;
+    width:66px;
+    height:66px;
 
     margin:0 auto 12px;
 
@@ -306,10 +369,18 @@ button{
     align-items:center;
     justify-content:center;
 
-    border-radius:20px;
+    border-radius:21px;
 
-    background:#1d2a42;
-    color:#70a7ff;
+    color:#c095ff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #291642,
+            #1a1029
+        );
+
+    border:1px solid #452861;
 }
 
 .mode-icon svg{
@@ -317,17 +388,19 @@ button{
     height:32px;
 
     fill:none;
+
     stroke:currentColor;
 
-    stroke-width:1.8;
+    stroke-width:1.7;
 
     stroke-linecap:round;
     stroke-linejoin:round;
 }
 
-/* =========================
+
+/* =====================================
    PRZYCISKI
-========================= */
+===================================== */
 
 .primary{
     width:100%;
@@ -343,19 +416,22 @@ button{
     background:
         linear-gradient(
             135deg,
-            var(--blue),
-            var(--blue2)
+            #7440dc,
+            #a65cff
         );
 
     font-size:15px;
-    font-weight:800;
+
+    font-weight:850;
 
     box-shadow:
-        0 12px 30px rgba(77,141,255,.22);
+        0 12px 35px rgba(139,92,246,.25);
+
+    transition:.18s;
 }
 
 .primary:active{
-    transform:scale(.98);
+    transform:scale(.97);
 }
 
 .secondary{
@@ -369,9 +445,11 @@ button{
 
     color:white;
 
-    background:#202735;
+    background:#211731;
 
-    font-weight:700;
+    border:1px solid #332147;
+
+    font-weight:750;
 }
 
 .secondary:active{
@@ -388,27 +466,35 @@ button{
 
     border-radius:14px;
 
-    color:#dce5f5;
-    background:#202735;
+    color:#d9c9ed;
+
+    background:#211731;
+
+    border:1px solid #332147;
 
     font-size:24px;
 }
 
-/* =========================
+
+/* =====================================
    LICZNIK
-========================= */
+===================================== */
 
 .counter{
     display:flex;
+
     align-items:center;
     justify-content:space-between;
 
     margin-top:14px;
+
     padding:7px;
 
     border-radius:16px;
 
-    background:#1b222e;
+    background:#171021;
+
+    border:1px solid #281a39;
 }
 
 .counter button{
@@ -418,81 +504,59 @@ button{
     border-radius:12px;
 
     color:white;
-    background:#293346;
+
+    background:#2a1c3d;
 
     font-size:24px;
 }
 
 .counter-value{
     font-size:20px;
+
     font-weight:900;
 }
 
-/* =========================
+
+/* =====================================
    KATEGORIE
-========================= */
+===================================== */
 
 .category-list{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0,1fr));
+    display:flex;
 
     gap:8px;
 
-    max-height:280px;
-
-    overflow-y:auto;
+    overflow-x:auto;
 
     margin-top:15px;
 
-    padding-right:2px;
+    padding-bottom:4px;
+
+    scrollbar-width:none;
 }
 
 .category-list::-webkit-scrollbar{
-    width:4px;
-}
-
-.category-list::-webkit-scrollbar-thumb{
-    background:#30394a;
-    border-radius:10px;
+    display:none;
 }
 
 .category{
-    min-height:48px;
+    white-space:nowrap;
 
-    display:flex;
-    align-items:center;
+    padding:10px 14px;
 
-    gap:9px;
+    border-radius:13px;
 
-    padding:10px 12px;
+    color:#aaa0b8;
 
-    border-radius:14px;
+    background:#211731;
 
-    color:#b8c1d0;
-
-    background:#202735;
+    border:1px solid #302043;
 
     font-size:13px;
-    font-weight:700;
 
-    text-align:left;
-}
+    font-weight:750;
 
-.category svg{
-    width:20px;
-    height:20px;
-
-    flex:none;
-
-    fill:none;
-    stroke:currentColor;
-
-    stroke-width:1.8;
-
-    stroke-linecap:round;
-    stroke-linejoin:round;
+    transition:.15s;
 }
 
 .category.active{
@@ -501,17 +565,20 @@ button{
     background:
         linear-gradient(
             135deg,
-            #4d8dff,
-            #6b5cff
+            #7440dc,
+            #9957ed
         );
 
+    border-color:#9a63ec;
+
     box-shadow:
-        0 7px 18px rgba(77,141,255,.16);
+        0 5px 20px rgba(139,92,246,.18);
 }
 
-/* =========================
+
+/* =====================================
    TOGGLE
-========================= */
+===================================== */
 
 .toggle{
     position:relative;
@@ -528,11 +595,12 @@ button{
 
 .slider{
     position:absolute;
+
     inset:0;
 
     border-radius:20px;
 
-    background:#30394a;
+    background:#30273b;
 }
 
 .slider:before{
@@ -554,26 +622,28 @@ button{
 }
 
 .toggle input:checked + .slider{
-    background:var(--blue);
+    background:#8b5cf6;
 }
 
 .toggle input:checked + .slider:before{
     transform:translateX(20px);
 }
 
-/* =========================
+
+/* =====================================
    GRACZE
-========================= */
+===================================== */
 
 .player{
     display:flex;
+
     align-items:center;
 
     gap:13px;
 
     padding:14px 2px;
 
-    border-bottom:1px solid #252c38;
+    border-bottom:1px solid #2b2036;
 }
 
 .player:last-child{
@@ -587,6 +657,7 @@ button{
     flex:none;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -597,102 +668,230 @@ button{
     background:
         linear-gradient(
             135deg,
-            #6d5cff,
-            #3c8bff
+            #7144d9,
+            #a05cff
         );
 
     font-size:17px;
+
     font-weight:900;
+
+    box-shadow:
+        0 6px 20px rgba(139,92,246,.15);
 }
 
-/* =========================
+
+/* =====================================
    ZDRAPKA
-========================= */
+===================================== */
+
+.scratch-wrapper{
+    position:relative;
+}
 
 .scratch{
     position:relative;
 
-    height:195px;
+    height:210px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     overflow:hidden;
 
-    border:2px solid #394454;
-    border-radius:23px;
+    border:2px solid #49345c;
+
+    border-radius:24px;
 
     background:
         linear-gradient(
             135deg,
-            #858e9e,
-            #4d5666
+            #9a91a7,
+            #625a6d
         );
 
     cursor:pointer;
+
+    box-shadow:
+        inset 0 0 35px rgba(0,0,0,.18);
 }
 
-.scratch:before{
-    content:"";
-
+.scratch-texture{
     position:absolute;
-    inset:0;
+
+    inset:-50%;
+
+    width:200%;
+    height:200%;
 
     background-image:
         radial-gradient(
-            #d5d9df 1px,
-            transparent 1px
+            circle,
+            rgba(255,255,255,.42) 1px,
+            transparent 1.5px
         );
 
     background-size:8px 8px;
 
-    opacity:.4;
+    transform:rotate(-8deg);
+
+    opacity:.65;
+}
+
+.scratch-shine{
+    position:absolute;
+
+    top:-40%;
+
+    left:-80%;
+
+    width:45%;
+    height:180%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+        );
+
+    transform:rotate(25deg);
+
+    animation:
+        shine 2.8s infinite;
+}
+
+@keyframes shine{
+
+    0%{
+        left:-80%;
+    }
+
+    60%{
+        left:140%;
+    }
+
+    100%{
+        left:140%;
+    }
+
 }
 
 .scratch-label{
     position:relative;
 
-    z-index:3;
+    z-index:5;
 
     color:white;
 
-    font-size:20px;
-    font-weight:900;
+    font-size:18px;
+
+    font-weight:950;
 
     letter-spacing:3px;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.35);
+
+    pointer-events:none;
 }
 
-.revealed{
+.scratch-label-small{
+    display:block;
+
+    margin-top:7px;
+
+    color:#eee;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    font-weight:600;
+}
+
+.scratch-result{
+    position:absolute;
+
+    inset:0;
+
+    z-index:10;
+
     display:none;
 
-    position:relative;
+    align-items:center;
+    justify-content:center;
 
-    z-index:5;
+    padding:15px;
 
-    width:100%;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(139,92,246,.18),
+            transparent 60%
+        ),
+        #100a18;
 }
 
-/* =========================
+.scratch.scratched
+.scratch-texture{
+    animation:
+        scratchDisappear .8s forwards;
+}
+
+@keyframes scratchDisappear{
+
+    0%{
+        opacity:.65;
+        transform:rotate(-8deg) scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:rotate(-8deg) scale(1.15);
+    }
+
+}
+
+.scratch.scratched
+.scratch-label{
+    opacity:0;
+    transform:scale(.7);
+    transition:.3s;
+}
+
+
+/* =====================================
    ROLE
-========================= */
+===================================== */
 
 .result{
+    width:100%;
+
     padding:21px;
 
     border-radius:20px;
 
     text-align:center;
 
-    background:#10151d;
+    background:#130d1d;
 }
 
 .result.impostor{
     border:2px solid var(--red);
+
+    box-shadow:
+        0 0 25px rgba(255,82,109,.12);
 }
 
 .result.normal{
     border:2px solid var(--green);
+
+    box-shadow:
+        0 0 25px rgba(57,229,140,.1);
 }
 
 .role-square{
@@ -702,12 +901,13 @@ button{
     margin:0 auto 13px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border-radius:16px;
 
-    background:#202837;
+    background:#241933;
 }
 
 .role-square svg{
@@ -715,9 +915,13 @@ button{
     height:28px;
 
     fill:none;
+
     stroke:currentColor;
 
     stroke-width:1.8;
+
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
 .red{
@@ -732,86 +936,21 @@ button{
     margin:9px 0;
 
     font-size:27px;
-    font-weight:900;
+
+    font-weight:950;
 }
 
-/* =========================
-   JAK GRAĆ
-========================= */
 
-.how-card{
-    padding:0;
-    overflow:hidden;
-}
-
-.how-step{
-    padding:22px 18px;
-
-    border-bottom:1px solid #252c38;
-}
-
-.how-step:last-child{
-    border-bottom:0;
-}
-
-.how-icon{
-    width:55px;
-    height:55px;
-
-    margin-bottom:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:18px;
-
-    background:#1d2940;
-    color:#78aaff;
-}
-
-.how-icon svg{
-    width:29px;
-    height:29px;
-
-    fill:none;
-    stroke:currentColor;
-
-    stroke-width:1.8;
-
-    stroke-linecap:round;
-    stroke-linejoin:round;
-}
-
-.how-number{
-    color:#8b78ff;
-
-    font-size:11px;
-    font-weight:900;
-
-    letter-spacing:1px;
-}
-
-.how-step h2{
-    margin:6px 0 6px;
-
-    font-size:19px;
-}
-
-.back-button{
-    margin-bottom:16px;
-}
-
-/* =========================
+/* =====================================
    GŁOSOWANIE
-========================= */
+===================================== */
 
 .step{
     padding:23px 5px;
 
     text-align:center;
 
-    border-bottom:1px solid #252d39;
+    border-bottom:1px solid #2a2035;
 }
 
 .step:last-child{
@@ -825,13 +964,17 @@ button{
     margin:0 auto 11px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border-radius:18px;
 
-    background:#1c2940;
-    color:#69a1ff;
+    background:#241638;
+
+    color:#b78aff;
+
+    border:1px solid #3a2550;
 }
 
 .step-icon svg{
@@ -839,6 +982,7 @@ button{
     height:30px;
 
     fill:none;
+
     stroke:currentColor;
 
     stroke-width:1.8;
@@ -848,10 +992,11 @@ button{
 }
 
 .number{
-    color:#8fb8ff;
+    color:#a978ff;
 
     font-size:11px;
-    font-weight:900;
+
+    font-weight:950;
 }
 
 .step h2{
@@ -862,6 +1007,7 @@ button{
 
 .vote-player{
     display:flex;
+
     align-items:center;
     justify-content:space-between;
 
@@ -871,13 +1017,15 @@ button{
 
     border-radius:17px;
 
-    background:#171e2b;
+    background:#171021;
+
+    border:1px solid #291c38;
 }
 
 .vote-player.selected{
-    outline:2px solid var(--blue);
+    outline:2px solid var(--purple);
 
-    background:#1b2942;
+    background:#24153a;
 }
 
 .vote-circle{
@@ -885,12 +1033,15 @@ button{
     height:35px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border-radius:50%;
 
-    background:#273144;
+    background:#292039;
+
+    color:#bca2dd;
 }
 
 .vote-circle svg{
@@ -898,6 +1049,7 @@ button{
     height:19px;
 
     fill:none;
+
     stroke:currentColor;
 
     stroke-width:2;
@@ -906,9 +1058,10 @@ button{
     stroke-linejoin:round;
 }
 
-/* =========================
+
+/* =====================================
    WYNIK
-========================= */
+===================================== */
 
 .final-icon{
     width:80px;
@@ -917,6 +1070,7 @@ button{
     margin:0 auto 18px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -925,9 +1079,12 @@ button{
     background:
         linear-gradient(
             135deg,
-            #263b67,
-            #382d67
+            #5935a0,
+            #8c51d4
         );
+
+    box-shadow:
+        0 0 35px rgba(139,92,246,.25);
 }
 
 .final-icon svg{
@@ -935,35 +1092,43 @@ button{
     height:42px;
 
     fill:none;
+
     stroke:white;
 
     stroke-width:1.5;
 }
 
-/* =========================
-   NAV
-========================= */
+
+/* =====================================
+   NAWIGACJA
+===================================== */
 
 .nav{
+    display:none;
+
     position:sticky;
 
     bottom:10px;
 
     z-index:20;
 
-    display:flex;
-
     gap:6px;
 
     margin-top:22px;
+
     padding:8px;
 
-    border:1px solid #283143;
+    border:1px solid #332442;
+
     border-radius:22px;
 
-    background:rgba(21,27,40,.94);
+    background:
+        rgba(24,15,35,.94);
 
     backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.3);
 }
 
 .nav button{
@@ -973,2094 +1138,1220 @@ button{
 
     border-radius:15px;
 
-    color:#7f8a9e;
+    color:#81768f;
+
     background:transparent;
 
     font-size:11px;
-    font-weight:700;
+
+    font-weight:750;
 }
 
 .nav button.active{
     color:white;
 
-    background:#253047;
+    background:#302044;
 }
 
 .hidden{
     display:none!important;
 }
 
+
+/* =====================================
+   ANIMACJE PRZEJŚCIA
+===================================== */
+
+.screen.active{
+    animation:
+        screenIn .25s ease;
+}
+
+@keyframes screenIn{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-<!-- =================================
+
+<!-- =====================================
      START
-================================= -->
+===================================== -->
 
-<section id="home" class="screen active start-screen">
+<section
+    id="home"
+    class="screen active start-screen">
 
-    <div class="logo-area">
+<div class="start-content">
 
-        <div class="logo-mark">
+<div class="logo-area">
 
-            <svg viewBox="0 0 24 24">
-                <path d="M7 5h10"/>
-                <path d="M6 5l1 13h10l1-13"/>
-                <path d="M9 9h6"/>
-                <path d="M9 13h6"/>
-            </svg>
+<div class="logo-mark">
 
-        </div>
+<svg viewBox="0 0 24 24">
 
-        <div class="logo">
-            Oszust
-        </div>
+<path d="M7 5h10"/>
 
-        <div class="game-type">
-            Gra Słowna
-        </div>
+<path d="M6 5l1 13h10l1-13"/>
 
-        <div class="logo-sub">
-            Imprezowa gra z ukrytymi hasłami
-            i podstępnymi wskazówkami
-        </div>
+<path d="M9 9h6"/>
 
-    </div>
+<path d="M9 13h6"/>
 
-    <div class="start-card">
-
-        <div class="start-description">
-            Znajdźcie oszusta, który nie zna
-            tajnego słowa.
-        </div>
-
-        <button class="primary"
-                onclick="openSetup()">
-            Zacznij grę
-        </button>
-
-        <button class="secondary"
-                onclick="openHowToPlay()">
-            Jak Grać
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =================================
-     JAK GRAĆ
-================================= -->
-
-<section id="how" class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Jak Grać
-        </div>
-
-        <div class="sub">
-            Proste zasady. Dużo blefowania.
-        </div>
-
-    </div>
-
-    <button class="secondary back-button"
-            onclick="goHome()">
-        Wróć
-    </button>
-
-    <div class="card how-card">
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="9" cy="8" r="3"/>
-                    <circle cx="17" cy="9" r="2.5"/>
-
-                    <path d="
-                        M3.5 19
-                        c.5-3
-                        2.5-4.5
-                        5.5-4.5
-                        s5 1.5
-                        5.5 4.5
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                01
-            </div>
-
-            <h2>
-                Wybierzcie graczy
-            </h2>
-
-            <div class="sub">
-                Ustawcie liczbę graczy oraz liczbę
-                oszustów.
-            </div>
-
-        </div>
-
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M5 6h14"/>
-                    <path d="M5 10h9"/>
-                    <path d="M5 14h14"/>
-                    <path d="M5 18h7"/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                02
-            </div>
-
-            <h2>
-                Odkryjcie swoje role
-            </h2>
-
-            <div class="sub">
-                Każdy gracz po kolei bierze telefon
-                i odkrywa swoją rolę.
-            </div>
-
-        </div>
-
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M4 5h16v12H4z"/>
-                    <path d="M8 21h8"/>
-                    <path d="M12 17v4"/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                03
-            </div>
-
-            <h2>
-                Poznajcie słowo
-            </h2>
-
-            <div class="sub">
-                Większość graczy zobaczy tajne
-                słowo. Oszust go nie zna.
-            </div>
-
-        </div>
-
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M3 6h18"/>
-                    <path d="M5 6v12h14V6"/>
-                    <path d="M8 10h8"/>
-                    <path d="M8 14h5"/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                04
-            </div>
-
-            <h2>
-                Dyskutujcie
-            </h2>
-
-            <div class="sub">
-                Każdy daje wskazówkę dotyczącą
-                słowa. Nie zdradźcie go zbyt łatwo.
-            </div>
-
-        </div>
-
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12" cy="12" r="8"/>
-                    <path d="M12 8v8"/>
-                    <path d="M8 12h8"/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                05
-            </div>
-
-            <h2>
-                Zagłosujcie
-            </h2>
-
-            <div class="sub">
-                Wybierzcie osobę, którą podejrzewacie
-                o bycie oszustem.
-            </div>
-
-        </div>
-
-
-        <div class="how-step">
-
-            <div class="how-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M12 3
-                        l2.8 5.7
-                        6.2.9
-                        -4.5 4.4
-                        1.1 6.2
-                        -5.6-3
-                        -5.6 3
-                        1.1-6.2
-                        L3 9.6
-                        l6.2-.9z
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="how-number">
-                06
-            </div>
-
-            <h2>
-                Sprawdźcie wynik
-            </h2>
-
-            <div class="sub">
-                Zobaczcie, kto był oszustem
-                i jakie było tajne słowo.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =================================
-     USTAWIENIA
-================================= -->
-
-<section id="setup" class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Ustawienia gry
-        </div>
-
-        <div class="sub">
-            Przygotujcie grę przed rozpoczęciem.
-        </div>
-
-    </div>
-
-
-    <!-- GRACZE -->
-
-    <div class="card">
-
-        <div class="row">
-
-            <div class="iconbox">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="9" cy="8" r="3"/>
-                    <circle cx="17" cy="9" r="2.5"/>
-
-                    <path d="
-                        M3.5 19
-                        c.5-3
-                        2.5-4.5
-                        5.5-4.5
-                        s5 1.5
-                        5.5 4.5
-                    "/>
-
-                    <path d="
-                        M14.5 15
-                        c2.7-.2
-                        4.8 1.1
-                        5.5 3.5
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="grow">
-
-                <b>
-                    Ilu Graczy?
-                </b>
-
-                <div class="small"
-                     id="playerCountText">
-                    3 osoby
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="counter">
-
-            <button onclick="changePlayers(-1)">
-                −
-            </button>
-
-            <div class="counter-value"
-                 id="playerCount">
-                3
-            </div>
-
-            <button onclick="changePlayers(1)">
-                +
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- OSZUŚCI -->
-
-    <div class="card">
-
-        <div class="row">
-
-            <div class="iconbox">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="9" cy="8" r="3"/>
-
-                    <path d="
-                        M4 19
-                        c.5-3
-                        2.2-4.5
-                        5-4.5
-                    "/>
-
-                    <circle cx="17" cy="17" r="4"/>
-
-                    <path d="
-                        m20 20
-                        2 2
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="grow">
-
-                <b>
-                    Ilu Oszustów?
-                </b>
-
-                <div class="small"
-                     id="impostorCountText">
-                    1 osoba
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="counter">
-
-            <button onclick="changeImpostors(-1)">
-                −
-            </button>
-
-            <div class="counter-value"
-                 id="impostorCount">
-                1
-            </div>
-
-            <button onclick="changeImpostors(1)">
-                +
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- TRYB GRY -->
-
-    <div class="card">
-
-        <div class="section-title">
-            Tryb Gry
-        </div>
-
-        <div class="row">
-
-            <button class="mode-arrow"
-                    onclick="toggleMode()">
-                ←
-            </button>
-
-            <div class="grow center">
-
-                <div class="mode-icon"
-                     id="modeIcon">
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path d="M5 6h14"/>
-                        <path d="M5 10h9"/>
-                        <path d="M5 14h14"/>
-                        <path d="M5 18h7"/>
-
-                    </svg>
-
-                </div>
-
-                <b id="modeName">
-                    Gra Słowna
-                </b>
-
-                <div class="small"
-                     id="modeDesc">
-                    Znajdź kto nie zna tajnego słowa
-                </div>
-
-            </div>
-
-            <button class="mode-arrow"
-                    onclick="toggleMode()">
-                →
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- KATEGORIE -->
-
-    <div class="card">
-
-        <div class="row">
-
-            <div class="iconbox">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="4" y="4"
-                          width="6" height="6"/>
-
-                    <circle cx="17"
-                            cy="7"
-                            r="3"/>
-
-                    <path d="
-                        M5 16
-                        h5
-                        l-2.5 4z
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="grow">
-
-                <b>
-                    Kategorie
-                </b>
-
-                <div class="small"
-                     id="categoryText">
-                    Wszystko
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="category-list"
-             id="categoryList">
-
-
-            <!-- WSZYSTKO -->
-
-            <button class="category active"
-                    onclick="setCategory(this,'Wszystko')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="8"/>
-
-                    <path d="M12 4v16"/>
-                    <path d="M4 12h16"/>
-
-                </svg>
-
-                Wszystko
-
-            </button>
-
-
-            <!-- JEDZENIE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Jedzenie')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M6 3v8"/>
-                    <path d="M9 3v8"/>
-                    <path d="M6 7h3"/>
-                    <path d="M7.5 11v10"/>
-
-                    <path d="
-                        M15 3
-                        c3 2
-                        3 6
-                        0 8
-                        v10
-                    "/>
-
-                </svg>
-
-                Jedzenie
-
-            </button>
-
-
-            <!-- NAPOJE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Napoje')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M6 4
-                        h12
-                        l-1 16
-                        H7z
-                    "/>
-
-                    <path d="M6 9h12"/>
-
-                </svg>
-
-                Napoje
-
-            </button>
-
-
-            <!-- ZWIERZĘTA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Zwierzęta')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="8" cy="8" r="2"/>
-                    <circle cx="16" cy="8" r="2"/>
-                    <circle cx="6" cy="13" r="2"/>
-                    <circle cx="18" cy="13" r="2"/>
-
-                    <path d="
-                        M8 17
-                        c1.5-3
-                        6.5-3
-                        8 0
-                    "/>
-
-                </svg>
-
-                Zwierzęta
-
-            </button>
-
-
-            <!-- KRAJE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Kraje')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="9"/>
-
-                    <path d="
-                        M3 12
-                        h18
-                    "/>
-
-                    <path d="
-                        M12 3
-                        c3 3
-                        3 15
-                        0 18
-                    "/>
-
-                </svg>
-
-                Kraje
-
-            </button>
-
-
-            <!-- MIASTA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Miasta')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M4 21
-                        V7
-                        l7-4
-                        9 5
-                        v13
-                    "/>
-
-                    <path d="M8 21v-5h4v5"/>
-                    <path d="M15 10h2"/>
-                    <path d="M15 14h2"/>
-
-                </svg>
-
-                Miasta
-
-            </button>
-
-
-            <!-- SZKOŁA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Szkoła')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M3 9
-                        l9-5
-                        9 5
-                        -9 5z
-                    "/>
-
-                    <path d="
-                        M6 12
-                        v5
-                        c4 2
-                        8 2
-                        12 0
-                        v-5
-                    "/>
-
-                </svg>
-
-                Szkoła
-
-            </button>
-
-
-            <!-- HOBBY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Hobby')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="8"/>
-
-                    <path d="
-                        M8 14
-                        c2 3
-                        6 3
-                        8 0
-                    "/>
-
-                    <path d="
-                        M9 9
-                        h.01
-                    "/>
-
-                    <path d="
-                        M15 9
-                        h.01
-                    "/>
-
-                </svg>
-
-                Hobby
-
-            </button>
-
-
-            <!-- SPORT -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Sport')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="9"/>
-
-                    <path d="
-                        M4 8
-                        l16 8
-                    "/>
-
-                    <path d="
-                        M8 4
-                        l8 16
-                    "/>
-
-                </svg>
-
-                Sport
-
-            </button>
-
-
-            <!-- GRY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Gry')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="3"
-                          y="7"
-                          width="18"
-                          height="11"
-                          rx="4"/>
-
-                    <path d="
-                        M8 11
-                        v4
-                    "/>
-
-                    <path d="
-                        M6 13
-                        h4
-                    "/>
-
-                    <circle cx="16"
-                            cy="12"
-                            r="1"/>
-
-                    <circle cx="18"
-                            cy="15"
-                            r="1"/>
-
-                </svg>
-
-                Gry
-
-            </button>
-
-
-            <!-- FILMY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Filmy')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="3"
-                          y="5"
-                          width="18"
-                          height="14"
-                          rx="2"/>
-
-                    <path d="
-                        M10 9
-                        l6 3
-                        -6 3z
-                    "/>
-
-                </svg>
-
-                Filmy
-
-            </button>
-
-
-            <!-- SERIALE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Seriale')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="3"
-                          y="5"
-                          width="18"
-                          height="14"
-                          rx="2"/>
-
-                    <path d="
-                        M7 9
-                        h10
-                    "/>
-
-                    <path d="
-                        M7 13
-                        h6
-                    "/>
-
-                </svg>
-
-                Seriale
-
-            </button>
-
-
-            <!-- MUZYKA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Muzyka')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M9 18
-                        V5
-                        l10-2
-                        v13
-                    "/>
-
-                    <circle cx="6"
-                            cy="18"
-                            r="3"/>
-
-                    <circle cx="16"
-                            cy="16"
-                            r="3"/>
-
-                </svg>
-
-                Muzyka
-
-            </button>
-
-
-            <!-- TECHNOLOGIA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Technologia')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="3"
-                          y="4"
-                          width="18"
-                          height="13"
-                          rx="2"/>
-
-                    <path d="
-                        M8 21
-                        h8
-                    "/>
-
-                    <path d="
-                        M12 17
-                        v4
-                    "/>
-
-                </svg>
-
-                Technologia
-
-            </button>
-
-
-            <!-- INTERNET -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Internet')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="9"/>
-
-                    <path d="
-                        M3 12
-                        h18
-                    "/>
-
-                    <path d="
-                        M12 3
-                        c-3 3
-                        -3 15
-                        0 18
-                    "/>
-
-                </svg>
-
-                Internet
-
-            </button>
-
-
-            <!-- APLIKACJE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Aplikacje')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="4"
-                          y="4"
-                          width="6"
-                          height="6"
-                          rx="1"/>
-
-                    <rect x="14"
-                          y="4"
-                          width="6"
-                          height="6"
-                          rx="1"/>
-
-                    <rect x="4"
-                          y="14"
-                          width="6"
-                          height="6"
-                          rx="1"/>
-
-                    <rect x="14"
-                          y="14"
-                          width="6"
-                          height="6"
-                          rx="1"/>
-
-                </svg>
-
-                Aplikacje
-
-            </button>
-
-
-            <!-- MOTORYZACJA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Motoryzacja')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M5 16
-                        l2-6
-                        h10
-                        l2 6
-                    "/>
-
-                    <path d="
-                        M4 16
-                        h16
-                        v3
-                        H4z
-                    "/>
-
-                    <circle cx="7"
-                            cy="19"
-                            r="1.5"/>
-
-                    <circle cx="17"
-                            cy="19"
-                            r="1.5"/>
-
-                </svg>
-
-                Motoryzacja
-
-            </button>
-
-
-            <!-- PODRÓŻE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Podróże')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M3 20
-                        l18-16
-                    "/>
-
-                    <path d="
-                        M9 15
-                        l-1 6
-                    "/>
-
-                    <path d="
-                        M14 10
-                        l6 1
-                    "/>
-
-                </svg>
-
-                Podróże
-
-            </button>
-
-
-            <!-- UBRANIA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Ubrania')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M9 4
-                        l3 3
-                        3-3
-                        5 4
-                        -3 4
-                        -2-2
-                        v10
-                        H9
-                        V10
-                        l-2 2
-                        -3-4z
-                    "/>
-
-                </svg>
-
-                Ubrania
-
-            </button>
-
-
-            <!-- ZAWODY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Zawody')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="3"
-                          y="7"
-                          width="18"
-                          height="13"
-                          rx="2"/>
-
-                    <path d="
-                        M8 7
-                        V5
-                        h8
-                        v2
-                    "/>
-
-                    <path d="
-                        M3 12
-                        h18
-                    "/>
-
-                </svg>
-
-                Zawody
-
-            </button>
-
-
-            <!-- NATURA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Natura')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M12 20
-                        C12 12 8 8 4 6
-                        C4 14 7 19 12 20
-                    "/>
-
-                    <path d="
-                        M12 20
-                        C12 12 16 8 20 6
-                        C20 14 17 19 12 20
-                    "/>
-
-                </svg>
-
-                Natura
-
-            </button>
-
-
-            <!-- NAUKA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Nauka')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M9 3
-                        v7
-                        l-5 9
-                        c-.5 1
-                        .5 2
-                        2 2
-                        h12
-                        c1.5 0
-                        2.5-1
-                        2-2
-                        l-5-9
-                        V3
-                    "/>
-
-                    <path d="
-                        M8 3
-                        h8
-                    "/>
-
-                    <path d="
-                        M7 15
-                        h10
-                    "/>
-
-                </svg>
-
-                Nauka
-
-            </button>
-
-
-            <!-- HISTORIA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Historia')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M4 20
-                        h16
-                    "/>
-
-                    <path d="
-                        M5 20
-                        V9
-                    "/>
-
-                    <path d="
-                        M9 20
-                        V9
-                    "/>
-
-                    <path d="
-                        M15 20
-                        V9
-                    "/>
-
-                    <path d="
-                        M19 20
-                        V9
-                    "/>
-
-                    <path d="
-                        M3 9
-                        l9-5
-                        9 5
-                    "/>
-
-                </svg>
-
-                Historia
-
-            </button>
-
-
-            <!-- KOSMOS -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Kosmos')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="3"/>
-
-                    <ellipse cx="12"
-                             cy="12"
-                             rx="9"
-                             ry="4"/>
-
-                    <ellipse cx="12"
-                             cy="12"
-                             rx="4"
-                             ry="9"/>
-
-                </svg>
-
-                Kosmos
-
-            </button>
-
-
-            <!-- FANTASY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Fantasy')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M12 3
-                        l2.5 5
-                        5.5.8
-                        -4 4
-                        .9 5.5
-                        -4.9-2.6
-                        -4.9 2.6
-                        .9-5.5
-                        -4-4
-                        5.5-.8z
-                    "/>
-
-                </svg>
-
-                Fantasy
-
-            </button>
-
-
-            <!-- PRZEDMIOTY -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Przedmioty')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="5"
-                          y="5"
-                          width="14"
-                          height="14"
-                          rx="2"/>
-
-                    <path d="
-                        M8 9
-                        h8
-                    "/>
-
-                    <path d="
-                        M8 13
-                        h5
-                    "/>
-
-                </svg>
-
-                Przedmioty
-
-            </button>
-
-
-            <!-- ZABAWKI -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Zabawki')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="8"
-                            cy="9"
-                            r="3"/>
-
-                    <circle cx="16"
-                            cy="9"
-                            r="3"/>
-
-                    <path d="
-                        M6 15
-                        c2-2
-                        10-2
-                        12 0
-                    "/>
-
-                </svg>
-
-                Zabawki
-
-            </button>
-
-
-            <!-- ŚWIĘTA -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Święta')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M12 3
-                        l1.5 5
-                        5 .5
-                        -4 3.5
-                        1.2 5
-                        -3.7-2.5
-                        -3.7 2.5
-                        1.2-5
-                        -4-3.5
-                        5-.5z
-                    "/>
-
-                </svg>
-
-                Święta
-
-            </button>
-
-
-            <!-- PRZEKĄSKI -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Przekąski')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M5 8
-                        h14
-                        l-2 12
-                        H7z
-                    "/>
-
-                    <path d="
-                        M8 8
-                        c0-3 8-3 8 0
-                    "/>
-
-                </svg>
-
-                Przekąski
-
-            </button>
-
-
-            <!-- FAST FOOD -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Fast food')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M4 10
-                        h16
-                        l-1 9
-                        H5z
-                    "/>
-
-                    <path d="
-                        M7 10
-                        c0-5 10-5 10 0
-                    "/>
-
-                    <path d="
-                        M8 14
-                        h8
-                    "/>
-
-                </svg>
-
-                Fast food
-
-            </button>
-
-
-            <!-- CIEKAWOSTKI -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Ciekawostki')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="12"
-                            r="9"/>
-
-                    <path d="
-                        M9.5 9
-                        a2.5 2.5 0 1 1
-                        4.3 1.8
-                        c-1.2 1
-                        -1.8 1.4
-                        -1.8 2.7
-                    "/>
-
-                    <path d="
-                        M12 17
-                        h.01
-                    "/>
-
-                </svg>
-
-                Ciekawostki
-
-            </button>
-
-
-            <!-- LOSOWE -->
-
-            <button class="category"
-                    onclick="setCategory(this,'Losowe')">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="4"
-                          y="4"
-                          width="16"
-                          height="16"
-                          rx="3"/>
-
-                    <circle cx="8"
-                            cy="8"
-                            r="1"/>
-
-                    <circle cx="16"
-                            cy="8"
-                            r="1"/>
-
-                    <circle cx="8"
-                            cy="16"
-                            r="1"/>
-
-                    <circle cx="16"
-                            cy="16"
-                            r="1"/>
-
-                </svg>
-
-                Losowe
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- OPCJE -->
-
-    <div class="card">
-
-        <div class="row">
-
-            <div class="grow">
-
-                <b>
-                    Pokaż kategorię oszustowi
-                </b>
-
-                <div class="small">
-                    Oszust zobaczy wybraną kategorię.
-                </div>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    id="showCategory"
-                    type="checkbox"
-                    checked>
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-
-        <div class="row"
-             style="margin-top:20px">
-
-            <div class="grow">
-
-                <b>
-                    Pokaż wskazówkę oszustowi
-                </b>
-
-                <div class="small">
-                    Oszust otrzyma pomocną wskazówkę.
-                </div>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    id="showHint"
-                    type="checkbox"
-                    checked>
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-
-        <div class="row"
-             style="margin-top:20px">
-
-            <div class="grow">
-
-                <b>
-                    Oszuści znają się nawzajem
-                </b>
-
-                <div class="small">
-                    Oszuści będą wiedzieć o sobie.
-                </div>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    id="knowEachOther"
-                    type="checkbox">
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-    </div>
-
-
-    <button class="primary"
-            onclick="startGame()">
-        Rozpocznij grę
-    </button>
-
-</section>
-
-
-<!-- =================================
-     GRACZE
-================================= -->
-
-<section id="players" class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Gracze
-        </div>
-
-        <div class="sub">
-            Wybierzcie gracza, aby zobaczyć
-            jego rolę. Następnie przekażcie
-            urządzenie dalej.
-        </div>
-
-    </div>
-
-    <div class="card"
-         id="playerList">
-    </div>
-
-
-    <div id="scratchArea"
-         class="card hidden">
-
-        <div class="section-title"
-             id="scratchName">
-        </div>
-
-        <div class="small"
-             style="margin-bottom:12px">
-
-            Dotknij karty, aby odkryć swoją rolę.
-
-        </div>
-
-
-        <div class="scratch"
-             id="scratch">
-
-            <div class="scratch-label"
-                 id="scratchLabel">
-
-                ODKRYJ
-
-            </div>
-
-            <div class="revealed"
-                 id="scratchResult">
-            </div>
-
-        </div>
-
-
-        <button class="secondary"
-                onclick="nextPlayer()">
-
-            Przekaż urządzenie
-            następnemu graczowi
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =================================
-     FAZA GŁOSOWANIA
-================================= -->
-
-<section id="voting"
-         class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Faza Głosowania
-        </div>
-
-        <div class="sub">
-            Porozmawiajcie i spróbujcie
-            znaleźć oszusta.
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="step">
-
-            <div class="step-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="7"
-                            r="4"/>
-
-                    <path d="
-                        M5 20
-                        c.5-4
-                        2.5-6
-                        7-6
-                        s6.5 2
-                        7 6
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="number">
-                01
-            </div>
-
-            <h2>
-                Gracz rozpoczynający
-            </h2>
-
-            <div class="sub">
-
-                <b id="starterName">
-                    Gracz 1 rozpoczyna rundę
-                </b>
-
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle cx="12"
-                            cy="7"
-                            r="3"/>
-
-                    <circle cx="5.5"
-                            cy="10"
-                            r="2.2"/>
-
-                    <circle cx="18.5"
-                            cy="10"
-                            r="2.2"/>
-
-                    <path d="
-                        M7 20
-                        c.4-3
-                        2-4.5
-                        5-4.5
-                        s4.6 1.5
-                        5 4.5
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="number">
-                02
-            </div>
-
-            <h2>
-                Dyskusja grupowa
-            </h2>
-
-            <div class="sub">
-                Każdy gracz podaje swoją odpowiedź.
-                Spróbujcie wykryć osobę, która
-                nie zna słowa.
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect x="5"
-                          y="5"
-                          width="14"
-                          height="14"
-                          rx="2"/>
-
-                    <path d="M8 9h8"/>
-                    <path d="M8 13h5"/>
-
-                    <path d="
-                        m16 16
-                        2 2
-                        3-3
-                    "/>
-
-                </svg>
-
-            </div>
-
-            <div class="number">
-                03
-            </div>
-
-            <h2>
-                Głosowanie
-            </h2>
-
-            <div class="sub">
-                Wybierzcie gracza,
-                którego podejrzewacie.
-            </div>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                        M2 12
-                        s3.5-6
-                        10-6
-                        10 6
-                        10 6
-                        -3.5 6
-                        -10 6
-                        -10-6
-                        -10-6z
-                    "/>
-
-                    <circle cx="12"
-                            cy="12"
-                            r="2.5"/>
-
-                </svg>
-
-            </div>
-
-            <div class="number">
-                04
-            </div>
-
-            <h2>
-                Ujawnienie
-            </h2>
-
-            <div class="sub">
-                Po głosowaniu sprawdźcie,
-                kto był oszustem.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <button class="primary"
-            onclick="showVotes()">
-
-        Przejdź do głosowania
-
-    </button>
-
-</section>
-
-
-<!-- =================================
-     GŁOSOWANIE
-================================= -->
-
-<section id="votes"
-         class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Głosowanie
-        </div>
-
-        <div class="sub">
-            Wybierzcie gracza,
-            którego podejrzewacie.
-        </div>
-
-    </div>
-
-
-    <div class="card"
-         id="voteList">
-    </div>
-
-
-    <button class="primary"
-            onclick="showFinal()">
-
-        Ujawnij wyniki
-
-    </button>
-
-</section>
-
-
-<!-- =================================
-     WYNIK
-================================= -->
-
-<section id="final"
-         class="screen">
-
-    <div class="header">
-
-        <div class="title">
-            Wynik gry
-        </div>
-
-        <div class="sub">
-            Sprawdźcie, kto był oszustem.
-        </div>
-
-    </div>
-
-
-    <div class="card center"
-         style="padding:30px 18px">
-
-        <div class="final-icon">
-
-            <svg viewBox="0 0 24 24">
-
-                <path d="
-                    M12 3
-                    l2.8 5.7
-                    6.2.9
-                    -4.5 4.4
-                    1.1 6.2
-                    -5.6-3
-                    -5.6 3
-                    1.1-6.2
-                    L3 9.6
-                    l6.2-.9z
-                "/>
-
-            </svg>
-
-        </div>
-
-
-        <div class="small">
-            OSZUST
-        </div>
-
-
-        <div id="finalImpostor"
-             class="title red"
-             style="margin-top:7px">
-
-            Gracz 1
-
-        </div>
-
-
-        <div style="height:20px">
-        </div>
-
-
-        <div class="small">
-            TAJNE SŁOWO
-        </div>
-
-
-        <div id="finalWord"
-             class="word">
-
-            Pizza
-
-        </div>
-
-
-        <div class="sub">
-            Dziękujemy za grę.
-        </div>
-
-    </div>
-
-
-    <button class="primary"
-            onclick="location.reload()">
-
-        Zagraj ponownie
-
-    </button>
-
-</section>
-
-
-<!-- =================================
-     NAVIGACJA
-================================= -->
-
-<div class="nav"
-     id="bottomNav">
-
-    <button
-        class="active"
-        onclick="go('setup',this)">
-
-        Ustawienia
-
-    </button>
-
-
-    <button
-        onclick="go('players',this)">
-
-        Gracze
-
-    </button>
-
-
-    <button
-        onclick="go('voting',this)">
-
-        Głosowanie
-
-    </button>
+</svg>
 
 </div>
+
+<div class="logo">
+Oszust
+</div>
+
+<div class="logo-game">
+Gra Słowna
+</div>
+
+<div class="logo-sub">
+Imprezowa gra z ukrytymi hasłami
+i podstępnymi wskazówkami
+</div>
+
+</div>
+
+
+<div class="start-card">
+
+<div class="start-description">
+Wybierzcie graczy, ustawcie zasady
+i sprawdźcie, kto nie zna tajnego słowa.
+</div>
+
+<button
+    class="primary"
+    onclick="openSetup()">
+
+Rozpocznij grę
+
+</button>
+
+<button
+    class="secondary"
+    onclick="showHowToPlay()">
+
+Jak grać
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================
+     JAK GRAĆ
+===================================== -->
+
+<section
+    id="howto"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Jak grać?
+</div>
+
+<div class="sub">
+Proste zasady. Jedno tajne słowo.
+Jeden lub kilku oszustów.
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+<path d="M5 7h14"/>
+<path d="M5 12h10"/>
+<path d="M5 17h14"/>
+</svg>
+
+</div>
+
+<h2>
+Ustawcie grę
+</h2>
+
+<div class="sub">
+Wybierzcie liczbę graczy,
+oszustów, tryb oraz kategorię.
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+<rect x="4" y="4" width="16" height="16" rx="3"/>
+<path d="M8 8h8"/>
+<path d="M8 12h8"/>
+<path d="M8 16h4"/>
+</svg>
+
+</div>
+
+<h2>
+Odkryjcie swoje role
+</h2>
+
+<div class="sub">
+Każdy gracz po kolei zdrapuje swoją
+kartę i sprawdza, co otrzymał.
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="8"/>
+<path d="M8 12h8"/>
+</svg>
+
+</div>
+
+<h2>
+Dyskutujcie
+</h2>
+
+<div class="sub">
+Podawajcie wskazówki i próbujcie
+znaleźć osobę, która nie zna słowa.
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+<path d="M5 6h14v12H5z"/>
+<path d="m8 12 2.5 2.5L16 9"/>
+</svg>
+
+</div>
+
+<h2>
+Głosujcie
+</h2>
+
+<div class="sub">
+Wybierzcie osobę, którą podejrzewacie.
+Na końcu poznacie prawdę.
+</div>
+
+</div>
+
+</div>
+
+<button
+    class="primary"
+    onclick="openSetup()">
+
+Zacznij grę
+
+</button>
+
+<button
+    class="secondary"
+    onclick="go('home')">
+
+Wróć
+
+</button>
+
+</section>
+
+
+<!-- =====================================
+     USTAWIENIA
+===================================== -->
+
+<section
+    id="setup"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Ustawienia gry
+</div>
+
+<div class="sub">
+Przygotujcie grę przed rozpoczęciem.
+</div>
+
+</div>
+
+
+<!-- GRACZE -->
+
+<div class="card">
+
+<div class="row">
+
+<div class="iconbox">
+
+<svg viewBox="0 0 24 24">
+
+<circle cx="9" cy="8" r="3"/>
+
+<circle cx="17" cy="9" r="2.5"/>
+
+<path d="M3.5 19c.5-3 2.5-4.5 5.5-4.5s5 1.5 5.5 4.5"/>
+
+<path d="M14.5 15c2.7-.2 4.8 1.1 5.5 3.5"/>
+
+</svg>
+
+</div>
+
+<div class="grow">
+
+<b>Ilu Graczy?</b>
+
+<div class="small"
+     id="playerCountText">
+3 osoby
+</div>
+
+</div>
+
+</div>
+
+<div class="counter">
+
+<button onclick="changePlayers(-1)">
+−
+</button>
+
+<div
+    class="counter-value"
+    id="playerCount">
+
+3
+
+</div>
+
+<button onclick="changePlayers(1)">
++
+</button>
+
+</div>
+
+</div>
+
+
+<!-- OSZUŚCI -->
+
+<div class="card">
+
+<div class="row">
+
+<div class="iconbox">
+
+<svg viewBox="0 0 24 24">
+
+<circle cx="9" cy="8" r="3"/>
+
+<path d="M4 19c.5-3 2.2-4.5 5-4.5"/>
+
+<circle cx="17" cy="17" r="4"/>
+
+<path d="m20 20 2 2"/>
+
+</svg>
+
+</div>
+
+<div class="grow">
+
+<b>Ilu Oszustów?</b>
+
+<div
+    class="small"
+    id="impostorCountText">
+
+1 osoba
+
+</div>
+
+</div>
+
+</div>
+
+<div class="counter">
+
+<button onclick="changeImpostors(-1)">
+−
+</button>
+
+<div
+    class="counter-value"
+    id="impostorCount">
+
+1
+
+</div>
+
+<button onclick="changeImpostors(1)">
++
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TRYB -->
+
+<div class="card">
+
+<div class="section-title">
+Tryb Gry
+</div>
+
+<div class="row">
+
+<button
+    class="mode-arrow"
+    onclick="toggleMode()">
+
+‹
+
+</button>
+
+<div class="grow center">
+
+<div
+    class="mode-icon"
+    id="modeIcon">
+
+<svg viewBox="0 0 24 24">
+
+<path d="M5 6h14"/>
+<path d="M5 10h9"/>
+<path d="M5 14h14"/>
+<path d="M5 18h7"/>
+
+</svg>
+
+</div>
+
+<b id="modeName">
+Gra Słowna
+</b>
+
+<div
+    class="small"
+    id="modeDesc">
+
+Znajdź kto nie zna tajnego słowa
+
+</div>
+
+</div>
+
+<button
+    class="mode-arrow"
+    onclick="toggleMode()">
+
+›
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KATEGORIE -->
+
+<div class="card">
+
+<div class="row">
+
+<div class="iconbox">
+
+<svg viewBox="0 0 24 24">
+
+<rect
+    x="4"
+    y="4"
+    width="6"
+    height="6"/>
+
+<circle
+    cx="17"
+    cy="7"
+    r="3"/>
+
+<path d="M5 16h5l-2.5 4z"/>
+
+</svg>
+
+</div>
+
+<div class="grow">
+
+<b>Kategorie</b>
+
+<div
+    class="small"
+    id="categoryText">
+
+Wszystko
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+    class="category-list"
+    id="categoryList">
+
+
+<button
+    class="category active"
+    onclick="setCategory(this,'Wszystko')">
+
+Wszystko
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Jedzenie')">
+
+Jedzenie
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Napoje')">
+
+Napoje
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Zwierzęta')">
+
+Zwierzęta
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Kraje')">
+
+Kraje
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Miasta')">
+
+Miasta
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Szkoła')">
+
+Szkoła
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Hobby')">
+
+Hobby
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Sport')">
+
+Sport
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Technologia')">
+
+Technologia
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Gry')">
+
+Gry
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Filmy i Seriale')">
+
+Filmy i Seriale
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Muzyka')">
+
+Muzyka
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Zawody')">
+
+Zawody
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Przedmioty')">
+
+Przedmioty
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Miejsca')">
+
+Miejsca
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Natura')">
+
+Natura
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Transport')">
+
+Transport
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Internet')">
+
+Internet
+
+</button>
+
+
+<button
+    class="category"
+    onclick="setCategory(this,'Człowiek')">
+
+Człowiek
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- OPCJE -->
+
+<div class="card">
+
+<div class="row">
+
+<div class="grow">
+
+<b>Pokaż kategorię oszustowi</b>
+
+<div class="small">
+Oszust zobaczy wybraną kategorię.
+</div>
+
+</div>
+
+<label class="toggle">
+
+<input
+    id="showCategory"
+    type="checkbox"
+    checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div
+    class="row"
+    style="margin-top:20px">
+
+<div class="grow">
+
+<b>Pokaż wskazówkę oszustowi</b>
+
+<div class="small">
+Oszust otrzyma pomocną wskazówkę.
+</div>
+
+</div>
+
+<label class="toggle">
+
+<input
+    id="showHint"
+    type="checkbox"
+    checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div
+    class="row"
+    style="margin-top:20px">
+
+<div class="grow">
+
+<b>Oszuści znają się nawzajem</b>
+
+<div class="small">
+Oszuści będą wiedzieć o sobie.
+</div>
+
+</div>
+
+<label class="toggle">
+
+<input
+    id="knowEachOther"
+    type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+
+<button
+    class="primary"
+    onclick="startGame()">
+
+Rozpocznij grę
+
+</button>
+
+</section>
+
+
+<!-- =====================================
+     GRACZE
+===================================== -->
+
+<section
+    id="players"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Gracze
+</div>
+
+<div class="sub">
+Wybierzcie gracza, aby zobaczyć jego rolę.
+Następnie przekażcie urządzenie dalej.
+</div>
+
+</div>
+
+<div
+    class="card"
+    id="playerList">
+</div>
+
+
+<div
+    id="scratchArea"
+    class="card hidden">
+
+<div
+    class="section-title"
+    id="scratchName">
+</div>
+
+<div
+    class="small"
+    style="margin-bottom:12px">
+
+Dotknij zdrapki i odkryj swoją rolę.
+
+</div>
+
+
+<div
+    class="scratch"
+    id="scratch">
+
+<div class="scratch-texture"></div>
+
+<div class="scratch-shine"></div>
+
+<div
+    class="scratch-label"
+    id="scratchLabel">
+
+ODKRYJ
+
+<span class="scratch-label-small">
+ZDRAP KARTĘ
+</span>
+
+</div>
+
+
+<div
+    class="scratch-result"
+    id="scratchResult">
+</div>
+
+</div>
+
+
+<button
+    class="secondary"
+    onclick="nextPlayer()">
+
+Przekaż urządzenie następnemu graczowi
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================
+     FAZA GŁOSOWANIA
+===================================== -->
+
+<section
+    id="voting"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Faza Głosowania
+</div>
+
+<div class="sub">
+Porozmawiajcie i spróbujcie znaleźć oszusta.
+</div>
+
+</div>
+
+<div class="card">
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+
+<circle cx="12" cy="7" r="4"/>
+
+<path d="M5 20c.5-4 2.5-6 7-6s6.5 2 7 6"/>
+
+</svg>
+
+</div>
+
+<div class="number">
+01
+</div>
+
+<h2>
+Gracz rozpoczynający
+</h2>
+
+<div class="sub">
+
+<b id="starterName">
+Gracz 1 rozpoczyna rundę
+</b>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+
+<circle cx="12" cy="7" r="3"/>
+
+<circle cx="5.5" cy="10" r="2.2"/>
+
+<circle cx="18.5" cy="10" r="2.2"/>
+
+<path d="M7 20c.4-3 2-4.5 5-4.5s4.6 1.5 5 4.5"/>
+
+</svg>
+
+</div>
+
+<div class="number">
+02
+</div>
+
+<h2>
+Dyskusja grupowa
+</h2>
+
+<div class="sub">
+Każdy gracz podaje swoją odpowiedź.
+Spróbujcie wykryć osobę, która nie zna słowa.
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+
+<rect
+    x="5"
+    y="5"
+    width="14"
+    height="14"
+    rx="2"/>
+
+<path d="M8 9h8"/>
+
+<path d="M8 13h5"/>
+
+<path d="m16 16 2 2 3-3"/>
+
+</svg>
+
+</div>
+
+<div class="number">
+03
+</div>
+
+<h2>
+Głosowanie
+</h2>
+
+<div class="sub">
+Wybierzcie gracza, którego podejrzewacie.
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">
+
+<svg viewBox="0 0 24 24">
+
+<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/>
+
+<circle cx="12" cy="12" r="2.5"/>
+
+</svg>
+
+</div>
+
+<div class="number">
+04
+</div>
+
+<h2>
+Ujawnienie
+</h2>
+
+<div class="sub">
+Po głosowaniu sprawdźcie, kto był oszustem.
+</div>
+
+</div>
+
+</div>
+
+
+<button
+    class="primary"
+    onclick="showVotes()">
+
+Przejdź do głosowania
+
+</button>
+
+</section>
+
+
+<!-- =====================================
+     GŁOSOWANIE
+===================================== -->
+
+<section
+    id="votes"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Głosowanie
+</div>
+
+<div class="sub">
+Wybierzcie gracza, którego podejrzewacie.
+</div>
+
+</div>
+
+<div
+    class="card"
+    id="voteList">
+</div>
+
+<button
+    class="primary"
+    onclick="showFinal()">
+
+Ujawnij wyniki
+
+</button>
+
+</section>
+
+
+<!-- =====================================
+     WYNIK
+===================================== -->
+
+<section
+    id="final"
+    class="screen">
+
+<div class="header">
+
+<div class="title">
+Wynik gry
+</div>
+
+<div class="sub">
+Sprawdźcie, kto był oszustem.
+</div>
+
+</div>
+
+<div
+    class="card center"
+    style="padding:30px 18px">
+
+<div class="final-icon">
+
+<svg viewBox="0 0 24 24">
+
+<path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
+
+</svg>
+
+</div>
+
+<div class="small">
+OSZUST
+</div>
+
+<div
+    id="finalImpostor"
+    class="title red"
+    style="margin-top:7px">
+
+Gracz 1
+
+</div>
+
+<div style="height:20px"></div>
+
+<div class="small">
+TAJNE SŁOWO
+</div>
+
+<div
+    id="finalWord"
+    class="word">
+
+Pizza
+
+</div>
+
+<div class="sub">
+Dziękujemy za grę.
+</div>
+
+</div>
+
+<button
+    class="primary"
+    onclick="location.reload()">
+
+Zagraj ponownie
+
+</button>
+
+</section>
+
+
+<!-- =====================================
+     NAV
+===================================== -->
+
+<div class="nav">
+
+<button
+    class="active"
+    onclick="go('setup',this)">
+
+Ustawienia
+
+</button>
+
+<button
+    onclick="go('players',this)">
+
+Gracze
+
+</button>
+
+<button
+    onclick="go('voting',this)">
+
+Głosowanie
+
+</button>
+
+</div>
+
 
 </div>
 
 
 <script>
 
-/* =========================
-   USTAWIENIA
-========================= */
+/* =====================================
+   ZMIENNE
+===================================== */
 
 let playerCount = 3;
 
 let impostorCount = 1;
 
 let mode = 0;
-
-/* DOMYŚLNIE WSZYSTKO */
 
 let selectedCategory = "Wszystko";
 
@@ -3070,536 +2361,280 @@ let players = [];
 
 let impostors = [];
 
-let secretWord = "";
-
-let secretHint = "";
-
 let selectedVote = null;
 
 
-/* =========================
-   BAZY SŁÓW
-========================= */
+/* =====================================
+   BAZA SŁÓW
+===================================== */
 
-const wordPools = {
+const wordDatabase = {
 
-    "Jedzenie":[
+    Jedzenie:[
         "Pizza",
-        "Hamburger",
-        "Kebab",
+        "Burger",
         "Spaghetti",
         "Naleśniki",
-        "Zupa",
+        "Kebab",
         "Frytki",
-        "Sushi",
-        "Tost",
-        "Pierogi"
+        "Czekolada",
+        "Ser",
+        "Jabłko",
+        "Zupa",
+        "Lody",
+        "Kanapka"
     ],
 
-    "Napoje":[
+    Napoje:[
         "Cola",
         "Woda",
-        "Herbata",
-        "Kawa",
         "Sok",
+        "Kawa",
+        "Herbata",
         "Lemoniada",
         "Kakao",
-        "Milkshake"
+        "Mleko"
     ],
 
-    "Zwierzęta":[
+    Zwierzęta:[
         "Pies",
         "Kot",
         "Lew",
         "Tygrys",
         "Słoń",
         "Żyrafa",
-        "Małpa",
+        "Koń",
         "Rekin",
-        "Delfin",
-        "Pingwin"
+        "Pingwin",
+        "Małpa"
     ],
 
-    "Kraje":[
+    Kraje:[
         "Polska",
         "Niemcy",
         "Francja",
-        "Hiszpania",
         "Włochy",
+        "Hiszpania",
         "Japonia",
-        "USA",
         "Kanada",
+        "Australia",
         "Brazylia",
-        "Australia"
+        "Norwegia"
     ],
 
-    "Miasta":[
+    Miasta:[
         "Warszawa",
         "Kraków",
         "Gdańsk",
         "Wrocław",
-        "Paryż",
+        "Poznań",
         "Londyn",
-        "Rzym",
+        "Paryż",
         "Tokio",
-        "Nowy Jork"
+        "Nowy Jork",
+        "Rzym"
     ],
 
-    "Szkoła":[
+    Szkoła:[
         "Matematyka",
         "Historia",
         "Biologia",
         "Geografia",
-        "Chemia",
-        "Fizyka",
-        "Tablica",
         "Plecak",
-        "Lekcja"
+        "Tablica",
+        "Nauczyciel",
+        "Sprawdzian",
+        "Lekcja",
+        "Przerwa"
     ],
 
-    "Hobby":[
-        "Rysowanie",
+    Hobby:[
+        "Wędkarstwo",
         "Fotografia",
         "Gotowanie",
-        "Wędkowanie",
+        "Rysowanie",
         "Czytanie",
-        "Granie",
-        "Kolekcjonowanie",
-        "Majsterkowanie"
+        "Gaming",
+        "Muzyka",
+        "Kolekcjonowanie"
     ],
 
-    "Sport":[
+    Sport:[
         "Piłka nożna",
         "Koszykówka",
         "Tenis",
-        "Siatkówka",
         "Pływanie",
         "Boks",
-        "Skoki narciarskie",
+        "Siatkówka",
+        "Narciarstwo",
         "Formuła 1"
     ],
 
-    "Gry":[
+    Technologia:[
+        "Telefon",
+        "Komputer",
+        "Laptop",
+        "Tablet",
+        "Procesor",
+        "Klawiatura",
+        "Myszka",
+        "Monitor",
+        "Internet",
+        "Robot"
+    ],
+
+    Gry:[
         "Fortnite",
         "Minecraft",
         "Roblox",
         "Among Us",
         "Brawl Stars",
         "Rocket League",
-        "FIFA",
-        "Terraria"
+        "PlayStation",
+        "Xbox",
+        "Nintendo"
     ],
 
-    "Filmy":[
-        "Harry Potter",
-        "Avatar",
-        "Titanic",
-        "Shrek",
-        "Avengers",
-        "Spider-Man",
-        "Jurassic Park"
+    "Filmy i Seriale":[
+        "Film",
+        "Serial",
+        "Aktor",
+        "Superbohater",
+        "Komedia",
+        "Horror",
+        "Marvel",
+        "Disney"
     ],
 
-    "Seriale":[
-        "Stranger Things",
-        "Wednesday",
-        "The Office",
-        "Squid Game",
-        "The Last of Us",
-        "Breaking Bad"
-    ],
-
-    "Muzyka":[
+    Muzyka:[
         "Gitara",
-        "Fortepian",
+        "Pianino",
         "Perkusja",
-        "Rap",
-        "Rock",
-        "Pop",
         "Koncert",
-        "DJ"
+        "Piosenka",
+        "Mikrofon",
+        "DJ",
+        "Słuchawki"
     ],
 
-    "Technologia":[
-        "Telefon",
-        "Komputer",
-        "Laptop",
-        "Tablet",
-        "Smartwatch",
-        "Słuchawki",
-        "Klawiatura",
-        "Myszka",
-        "Monitor",
-        "Procesor"
-    ],
-
-    "Internet":[
-        "YouTube",
-        "TikTok",
-        "Instagram",
-        "Discord",
-        "Streamer",
-        "Hashtag",
-        "Komentarz",
-        "Subskrypcja"
-    ],
-
-    "Aplikacje":[
-        "WhatsApp",
-        "Snapchat",
-        "Spotify",
-        "Canva",
-        "Google Maps",
-        "Messenger",
-        "Chrome"
-    ],
-
-    "Motoryzacja":[
-        "Samochód",
-        "Motocykl",
-        "Ferrari",
-        "BMW",
-        "Audi",
-        "Tesla",
-        "Autobus",
-        "Taksówka"
-    ],
-
-    "Podróże":[
-        "Samolot",
-        "Hotel",
-        "Walizka",
-        "Lotnisko",
-        "Paszport",
-        "Pociąg",
-        "Statek"
-    ],
-
-    "Ubrania":[
-        "Koszulka",
-        "Bluza",
-        "Spodnie",
-        "Kurtka",
-        "Czapka",
-        "Buty",
-        "Skarpetki"
-    ],
-
-    "Zawody":[
+    Zawody:[
         "Lekarz",
         "Policjant",
         "Strażak",
         "Nauczyciel",
         "Kucharz",
-        "Programista",
+        "Pilot",
         "Mechanik",
-        "Pilot"
+        "Programista"
     ],
 
-    "Natura":[
+    Przedmioty:[
+        "Krzesło",
+        "Stół",
+        "Lampa",
+        "Telefon",
+        "Zegarek",
+        "Okulary",
+        "Plecak",
+        "Książka"
+    ],
+
+    Miejsca:[
+        "Hotel",
+        "Szpital",
+        "Szkoła",
+        "Lotnisko",
+        "Park",
+        "Plaża",
+        "Sklep",
+        "Kino"
+    ],
+
+    Natura:[
         "Las",
         "Góra",
         "Rzeka",
-        "Jezioro",
-        "Wodospad",
+        "Morze",
         "Drzewo",
         "Kwiat",
-        "Plaża"
-    ],
-
-    "Nauka":[
-        "Atom",
-        "DNA",
-        "Grawitacja",
-        "Planeta",
-        "Elektryczność",
-        "Komórka",
-        "Laboratorium"
-    ],
-
-    "Historia":[
-        "Król",
-        "Zamek",
-        "Rycerz",
-        "Wojna",
-        "Rewolucja",
-        "Królestwo",
-        "Faraon"
-    ],
-
-    "Kosmos":[
-        "Słońce",
-        "Księżyc",
-        "Mars",
-        "Ziemia",
-        "Rakieta",
-        "Astronauta",
-        "Galaktyka",
-        "Czarna dziura"
-    ],
-
-    "Fantasy":[
-        "Smok",
-        "Czarodziej",
-        "Elf",
-        "Rycerz",
-        "Magia",
-        "Potwór",
-        "Zamek"
-    ],
-
-    "Przedmioty":[
-        "Krzesło",
-        "Stół",
-        "Telefon",
-        "Lampa",
-        "Zegar",
-        "Lustro",
-        "Parasol"
-    ],
-
-    "Zabawki":[
-        "Lego",
-        "Pluszak",
-        "Piłka",
-        "Klocki",
-        "Samochodzik",
-        "Puzzle",
-        "Lalka"
-    ],
-
-    "Święta":[
-        "Choinka",
-        "Mikołaj",
-        "Prezent",
-        "Wielkanoc",
-        "Bombka",
-        "Piernik",
-        "Śnieg"
-    ],
-
-    "Przekąski":[
-        "Chipsy",
-        "Popcorn",
-        "Paluszki",
-        "Żelki",
-        "Czekolada",
-        "Baton",
-        "Orzeszki"
-    ],
-
-    "Fast food":[
-        "Burger",
-        "Pizza",
-        "Kebab",
-        "Hot dog",
-        "Frytki",
-        "Nuggetsy"
-    ],
-
-    "Ciekawostki":[
-        "Dinozaur",
         "Wulkan",
-        "Rekin",
-        "Kosmos",
-        "Piramida",
-        "Ośmiornica"
+        "Chmura"
     ],
 
-    "Losowe":[
-        "Telefon",
-        "Smok",
-        "Pizza",
+    Transport:[
+        "Samochód",
+        "Autobus",
+        "Pociąg",
         "Samolot",
-        "Fortnite",
-        "Pies",
-        "Zamek",
-        "Księżyc"
+        "Statek",
+        "Rower",
+        "Motocykl",
+        "Metro"
+    ],
+
+    Internet:[
+        "YouTube",
+        "TikTok",
+        "Discord",
+        "Instagram",
+        "Streamer",
+        "Influencer",
+        "Komentarz",
+        "Subskrypcja"
+    ],
+
+    Człowiek:[
+        "Głowa",
+        "Ręka",
+        "Oko",
+        "Serce",
+        "Włosy",
+        "Buty",
+        "Uśmiech",
+        "Głos"
     ]
 
 };
 
 
-/* =========================
-   LOSOWANIE SŁOWA
-========================= */
+/* =====================================
+   AKTUALNE SŁOWO
+===================================== */
 
-function getWordsForCategory(){
+let secretWord = "Pizza";
 
-    if(selectedCategory === "Wszystko"){
-
-        let all = [];
-
-        Object.keys(wordPools).forEach(
-            category => {
-
-                if(category !== "Losowe"){
-
-                    all =
-                        all.concat(
-                            wordPools[category]
-                        );
-
-                }
-
-            }
-        );
-
-        return all;
-    }
+let secretHint = "Zwykle znajduje się na talerzu.";
 
 
-    return wordPools[
-        selectedCategory
-    ] || wordPools["Losowe"];
-}
-
-
-function chooseSecretWord(){
-
-    const words =
-        getWordsForCategory();
-
-    secretWord =
-        words[
-            randomInt(words.length)
-        ];
-
-    secretHint =
-        createHint(secretWord);
-}
-
-
-/* =========================
-   WSKAZÓWKA
-========================= */
-
-function createHint(word){
-
-    const hints = {
-
-        "Pizza":"Ser",
-        "Hamburger":"Bułka",
-        "Kebab":"Mięso",
-        "Spaghetti":"Makaron",
-        "Fortnite":"Gra",
-        "Minecraft":"Klocki",
-        "Roblox":"Gra",
-        "Telefon":"Ekran",
-        "Komputer":"Technologia",
-        "Pies":"Zwierzę",
-        "Kot":"Zwierzę",
-        "Polska":"Europa",
-        "Warszawa":"Stolica",
-        "Samolot":"Podróż",
-        "Smok":"Fantasy",
-        "Księżyc":"Kosmos"
-
-    };
-
-    return hints[word] || "Pomyśl o tym słowie";
-}
-
-
-/* =========================
-   RANDOM
-========================= */
-
-function randomInt(max){
-
-    return Math.floor(
-        Math.random() * max
-    );
-}
-
-
-/* =========================
-   START / HOME
-========================= */
-
-function goHome(){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            screen =>
-                screen.classList.remove(
-                    "active"
-                )
-        );
-
-    document
-        .getElementById("home")
-        .classList.add("active");
-
-    document
-        .getElementById("bottomNav")
-        .style.display = "none";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-
+/* =====================================
+   OTWÓRZ USTAWIENIA
+===================================== */
 
 function openSetup(){
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            screen =>
-                screen.classList.remove(
-                    "active"
-                )
-        );
+    go("setup");
 
     document
-        .getElementById("setup")
-        .classList.add("active");
-
-    document
-        .getElementById("bottomNav")
+        .querySelector(".nav")
         .style.display = "flex";
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+}
+
+
+/* =====================================
+   JAK GRAĆ
+===================================== */
+
+function showHowToPlay(){
+
+    go("howto");
 
 }
 
 
-function openHowToPlay(){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(
-            screen =>
-                screen.classList.remove(
-                    "active"
-                )
-        );
-
-    document
-        .getElementById("how")
-        .classList.add("active");
-
-    document
-        .getElementById("bottomNav")
-        .style.display = "none";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
-/* =========================
+/* =====================================
    LICZBA GRACZY
-========================= */
+===================================== */
 
 function changePlayers(value){
 
@@ -3621,12 +2656,13 @@ function changePlayers(value){
     }
 
     updateCounters();
+
 }
 
 
-/* =========================
+/* =====================================
    OSZUŚCI
-========================= */
+===================================== */
 
 function changeImpostors(value){
 
@@ -3644,12 +2680,13 @@ function changeImpostors(value){
     }
 
     updateCounters();
+
 }
 
 
-/* =========================
+/* =====================================
    LICZNIKI
-========================= */
+===================================== */
 
 function updateCounters(){
 
@@ -3681,9 +2718,9 @@ function updateCounters(){
 }
 
 
-/* =========================
-   TRYB
-========================= */
+/* =====================================
+   TRYB GRY
+===================================== */
 
 function toggleMode(){
 
@@ -3691,6 +2728,7 @@ function toggleMode(){
         mode === 0
         ? 1
         : 0;
+
 
     const icon =
         document.getElementById(
@@ -3709,6 +2747,7 @@ function toggleMode(){
             .getElementById("modeDesc")
             .textContent =
                 "Znajdź kto nie zna tajnego słowa";
+
 
         icon.innerHTML = `
 
@@ -3735,6 +2774,7 @@ function toggleMode(){
             .textContent =
                 "Znajdź kto dostał inne pytanie";
 
+
         icon.innerHTML = `
 
             <svg viewBox="0 0 24 24">
@@ -3746,66 +2786,167 @@ function toggleMode(){
 
                 <path
                     d="
-                        M9.5 9
-                        a2.5 2.5 0 1 1
-                        4.3 1.8
-                        c-1.2 1
-                        -1.8 1.4
-                        -1.8 2.7
+                    M9.5 9
+                    a2.5 2.5 0 1 1
+                    4.3 1.8
+                    c-1.2 1-1.8 1.4-1.8 2.7
                     "/>
 
-                <path
-                    d="
-                        M12 17
-                        h.01
-                    "/>
+                <path d="M12 17h.01"/>
 
             </svg>
 
         `;
+
     }
 
 }
 
 
-/* =========================
+/* =====================================
    KATEGORIA
-========================= */
+===================================== */
 
 function setCategory(button,name){
 
     document
         .querySelectorAll(".category")
-        .forEach(
-            item =>
-                item.classList.remove(
-                    "active"
-                )
-        );
+        .forEach(item=>{
+
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
 
     button.classList.add("active");
 
     selectedCategory = name;
 
+
     document
         .getElementById("categoryText")
-        .textContent =
-            name;
+        .textContent = name;
 
 }
 
 
-/* =========================
-   GRACZE
-========================= */
+/* =====================================
+   LOSOWANIE
+===================================== */
+
+function randomInt(max){
+
+    return Math.floor(
+        Math.random() * max
+    );
+
+}
+
+
+/* =====================================
+   WYBÓR SŁOWA
+===================================== */
+
+function chooseWord(){
+
+    let words = [];
+
+
+    if(selectedCategory === "Wszystko"){
+
+        Object.values(wordDatabase)
+            .forEach(categoryWords=>{
+
+                words.push(
+                    ...categoryWords
+                );
+
+            });
+
+    }else{
+
+        words =
+            wordDatabase[
+                selectedCategory
+            ] || [];
+
+    }
+
+
+    if(words.length === 0){
+
+        secretWord = "Pizza";
+
+    }else{
+
+        secretWord =
+            words[
+                randomInt(words.length)
+            ];
+
+    }
+
+
+    secretHint =
+        createHint(secretWord);
+
+}
+
+
+/* =====================================
+   WSKAZÓWKA
+===================================== */
+
+function createHint(word){
+
+    const hints = {
+
+        Pizza:"Często je się ją w kawałkach.",
+
+        Burger:"Popularne jedzenie w bułce.",
+
+        Spaghetti:"Długie i często podawane z sosem.",
+
+        Pies:"Często jest najlepszym przyjacielem człowieka.",
+
+        Kot:"Lubi spać i często chodzi własnymi drogami.",
+
+        Polska:"Kraj w Europie Środkowej.",
+
+        Warszawa:"Stolica Polski.",
+
+        Telefon:"Ma ekran i zwykle nosimy go przy sobie.",
+
+        Fortnite:"Popularna gra z trybem Battle Royale.",
+
+        Minecraft:"Gra zbudowana z bloków.",
+
+        Samochód:"Ma cztery koła i służy do przemieszczania się.",
+
+        Piłka:"Można nią grać w wiele sportów."
+
+    };
+
+
+    return hints[word] ||
+        "Spróbuj opisać to słowo, ale nie zdradzaj go wprost.";
+
+}
+
+
+/* =====================================
+   GENEROWANIE GRACZY
+===================================== */
 
 function generatePlayers(){
 
     players = [];
 
     for(
-        let i = 0;
-        i < playerCount;
+        let i=0;
+        i<playerCount;
         i++
     ){
 
@@ -3825,13 +2966,14 @@ function generatePlayers(){
 }
 
 
-/* =========================
-   OSZUŚCI
-========================= */
+/* =====================================
+   GENEROWANIE OSZUSTÓW
+===================================== */
 
 function generateImpostors(){
 
     impostors = [];
+
 
     while(
         impostors.length <
@@ -3839,19 +2981,14 @@ function generateImpostors(){
     ){
 
         let number =
-            randomInt(
-                playerCount
-            );
+            randomInt(playerCount);
+
 
         if(
-            !impostors.includes(
-                number
-            )
+            !impostors.includes(number)
         ){
 
-            impostors.push(
-                number
-            );
+            impostors.push(number);
 
         }
 
@@ -3860,51 +2997,45 @@ function generateImpostors(){
 }
 
 
-/* =========================
+/* =====================================
    START GRY
-========================= */
+===================================== */
 
 function startGame(){
+
+    chooseWord();
 
     generatePlayers();
 
     generateImpostors();
-
-    chooseSecretWord();
 
     currentPlayer = 0;
 
     buildPlayers();
 
 
-    const starter =
-        randomInt(
-            players.length
-        );
-
     document
-        .getElementById(
-            "starterName"
-        )
+        .getElementById("starterName")
         .textContent =
-            players[starter].name +
+            players[
+                randomInt(players.length)
+            ].name +
             " rozpoczyna rundę";
 
 
     go(
         "players",
-        document
-            .querySelectorAll(
-                ".nav button"
-            )[1]
+        document.querySelectorAll(
+            ".nav button"
+        )[1]
     );
 
 }
 
 
-/* =========================
+/* =====================================
    LISTA GRACZY
-========================= */
+===================================== */
 
 function buildPlayers(){
 
@@ -3912,6 +3043,7 @@ function buildPlayers(){
         document.getElementById(
             "playerList"
         );
+
 
     list.innerHTML = "";
 
@@ -3923,6 +3055,7 @@ function buildPlayers(){
                 document.createElement(
                     "div"
                 );
+
 
             div.className =
                 "player";
@@ -3950,9 +3083,9 @@ function buildPlayers(){
 
                 <div style="
                     font-size:22px;
-                    color:#7e8a9e;
+                    color:#8d7ca1;
                 ">
-                    →
+                    ›
                 </div>
 
             `;
@@ -3961,9 +3094,7 @@ function buildPlayers(){
             div.onclick =
                 function(){
 
-                    openScratch(
-                        index
-                    );
+                    openScratch(index);
 
                 };
 
@@ -3976,64 +3107,93 @@ function buildPlayers(){
 }
 
 
-/* =========================
-   ZDRAPKA
-========================= */
+/* =====================================
+   OTWÓRZ ZDRAPKĘ
+===================================== */
 
 function openScratch(index){
 
-    currentPlayer =
-        index;
+    currentPlayer = index;
 
 
     document
-        .getElementById(
-            "scratchArea"
-        )
+        .getElementById("scratchArea")
         .classList.remove(
             "hidden"
         );
 
 
     document
-        .getElementById(
-            "scratchName"
-        )
+        .getElementById("scratchName")
         .textContent =
             players[index].name;
 
 
+    const scratch =
+        document.getElementById(
+            "scratch"
+        );
+
+
+    scratch.classList.remove(
+        "scratched"
+    );
+
+
     document
-        .getElementById(
-            "scratchLabel"
-        )
+        .getElementById("scratchLabel")
         .style.display =
             "block";
 
 
     document
-        .getElementById(
-            "scratchResult"
-        )
+        .getElementById("scratchResult")
         .style.display =
             "none";
 
 
     document
-        .getElementById(
-            "scratch"
-        )
-        .style.borderColor =
-            "#394454";
+        .getElementById("scratchResult")
+        .innerHTML = "";
+
+
+    document
+        .getElementById("scratchArea")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
 
 }
 
 
-/* =========================
+/* =====================================
    ODKRYCIE ROLI
-========================= */
+===================================== */
 
 function revealRole(){
+
+    const scratch =
+        document.getElementById(
+            "scratch"
+        );
+
+
+    if(
+        scratch.classList.contains(
+            "scratched"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    scratch.classList.add(
+        "scratched"
+    );
+
 
     const result =
         document.getElementById(
@@ -4047,219 +3207,190 @@ function revealRole(){
         );
 
 
-    result.style.display =
-        "block";
+    setTimeout(
+        function(){
 
+            result.style.display =
+                "flex";
 
-    if(isImpostor){
 
-        let hintHTML = "";
+            if(isImpostor){
 
+                let hintHTML = "";
 
-        if(
-            document
-                .getElementById(
-                    "showHint"
-                )
-                .checked
-        ){
 
-            hintHTML = `
+                if(
+                    document
+                        .getElementById(
+                            "showHint"
+                        ).checked
+                ){
 
-                <div class="card"
-                     style="
-                        margin-top:16px;
-                        border-color:#ffc857;
-                        color:#ffe39a;
-                     ">
+                    hintHTML = `
 
-                    <b>
-                        Wskazówka
-                    </b>
+                        <div
+                            class="small"
+                            style="
+                                margin-top:12px;
+                                color:#ffd980;
+                            ">
 
-                    <br><br>
+                            Wskazówka:
+                            ${secretHint}
 
-                    ${secretHint}
+                        </div>
 
-                </div>
+                    `;
 
-            `;
+                }
 
-        }
 
+                result.innerHTML = `
 
-        let categoryHTML = "";
+                    <div class="
+                        result
+                        impostor
+                    ">
 
+                        <div
+                            class="role-square red">
 
-        if(
-            document
-                .getElementById(
-                    "showCategory"
-                )
-                .checked
-        ){
+                            <svg
+                                viewBox="0 0 24 24">
 
-            categoryHTML = `
+                                <path
+                                    d="
+                                    M12 3
+                                    l8 4
+                                    v5
+                                    c0 4.5
+                                    -3.2 7.5
+                                    -8 9
+                                    c-4.8-1.5
+                                    -8-4.5
+                                    -8-9
+                                    V7z
+                                    "/>
 
-                <div class="small"
-                     style="margin-top:10px">
+                                <path
+                                    d="M9 12h6"/>
 
-                    Kategoria:
-                    ${selectedCategory}
+                            </svg>
 
-                </div>
+                        </div>
 
-            `;
+                        <b class="red">
+                            OSZUST
+                        </b>
 
-        }
+                        ${hintHTML}
 
+                    </div>
 
-        result.innerHTML = `
+                `;
 
-            <div class="result impostor">
 
-                <div class="role-square">
+            }else{
 
-                    <svg viewBox="0 0 24 24">
+                let categoryHTML = "";
 
-                        <rect
-                            x="5"
-                            y="5"
-                            width="14"
-                            height="14"
-                            rx="3"/>
 
-                    </svg>
+                if(
+                    document
+                        .getElementById(
+                            "showCategory"
+                        ).checked
+                ){
 
-                </div>
+                    categoryHTML = `
 
-                <b class="red">
-                    OSZUST
-                </b>
+                        <div class="small">
 
-                ${categoryHTML}
+                            Kategoria:
+                            ${
+                                selectedCategory
+                            }
 
-                ${hintHTML}
+                        </div>
 
-            </div>
+                    `;
 
-        `;
+                }
 
 
-        document
-            .getElementById(
-                "scratch"
-            )
-            .style.borderColor =
-                "#ff5364";
+                result.innerHTML = `
 
+                    <div class="
+                        result
+                        normal
+                    ">
 
-    }else{
+                        <div
+                            class="role-square green">
 
-        let categoryHTML = "";
+                            <svg
+                                viewBox="0 0 24 24">
 
+                                <path
+                                    d="
+                                    M5 12
+                                    l4 4
+                                    L19 6
+                                    "/>
 
-        if(
-            document
-                .getElementById(
-                    "showCategory"
-                )
-                .checked
-        ){
+                            </svg>
 
-            categoryHTML = `
+                        </div>
 
-                <div class="small">
+                        <b class="green">
+                            TAJNE SŁOWO
+                        </b>
 
-                    Kategoria:
-                    ${selectedCategory}
+                        <div
+                            class="
+                                word
+                                green
+                            ">
 
-                </div>
+                            ${secretWord}
 
-            `;
+                        </div>
 
-        }
+                        ${categoryHTML}
 
+                    </div>
 
-        result.innerHTML = `
+                `;
 
-            <div class="result normal">
+            }
 
-                <div class="role-square">
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path d="
-                            M6 6
-                            h12
-                            v12
-                            h-12
-                            z
-                        "/>
-
-                    </svg>
-
-                </div>
-
-                <b class="green">
-                    TAJNE SŁOWO
-                </b>
-
-                <div class="word green">
-                    ${secretWord}
-                </div>
-
-                ${categoryHTML}
-
-            </div>
-
-        `;
-
-
-        document
-            .getElementById(
-                "scratch"
-            )
-            .style.borderColor =
-                "#35d27d";
-
-    }
-
-
-    document
-        .getElementById(
-            "scratchLabel"
-        )
-        .style.display =
-            "none";
+        },
+        700
+    );
 
 }
 
 
-/* =========================
-   KLIKNIĘCIE ZDRAPKI
-========================= */
+/* =====================================
+   ZDRAPKA CLICK
+===================================== */
 
 document
-    .getElementById(
-        "scratch"
-    )
+    .getElementById("scratch")
     .addEventListener(
         "click",
         revealRole
     );
 
 
-/* =========================
+/* =====================================
    NASTĘPNY GRACZ
-========================= */
+===================================== */
 
 function nextPlayer(){
 
     document
-        .getElementById(
-            "scratchArea"
-        )
+        .getElementById("scratchArea")
         .classList.add(
             "hidden"
         );
@@ -4276,10 +3407,9 @@ function nextPlayer(){
 
         go(
             "voting",
-            document
-                .querySelectorAll(
-                    ".nav button"
-                )[2]
+            document.querySelectorAll(
+                ".nav button"
+            )[2]
         );
 
     }
@@ -4287,29 +3417,35 @@ function nextPlayer(){
 }
 
 
-/* =========================
+/* =====================================
    ZMIANA EKRANU
-========================= */
+===================================== */
 
 function go(id,button){
 
     document
-        .querySelectorAll(
-            ".screen"
-        )
-        .forEach(
-            screen =>
-                screen.classList.remove(
-                    "active"
-                )
-        );
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+
+            screen.classList.remove(
+                "active"
+            );
+
+        });
 
 
-    document
-        .getElementById(id)
-        .classList.add(
-            "active"
-        );
+    const target =
+        document.getElementById(id);
+
+
+    if(!target){
+        return;
+    }
+
+
+    target.classList.add(
+        "active"
+    );
 
 
     if(button){
@@ -4318,12 +3454,13 @@ function go(id,button){
             .querySelectorAll(
                 ".nav button"
             )
-            .forEach(
-                btn =>
-                    btn.classList.remove(
-                        "active"
-                    )
-            );
+            .forEach(btn=>{
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            });
 
 
         button.classList.add(
@@ -4333,32 +3470,17 @@ function go(id,button){
     }
 
 
-    if(
-        id !== "home" &&
-        id !== "how"
-    ){
-
-        document
-            .getElementById(
-                "bottomNav"
-            )
-            .style.display =
-                "flex";
-
-    }
-
-
     window.scrollTo({
         top:0,
-        behavior:"smooth"
+        behavior:"instant"
     });
 
 }
 
 
-/* =========================
+/* =====================================
    GŁOSOWANIE
-========================= */
+===================================== */
 
 function showVotes(){
 
@@ -4366,6 +3488,7 @@ function showVotes(){
         document.getElementById(
             "voteList"
         );
+
 
     list.innerHTML = "";
 
@@ -4379,6 +3502,7 @@ function showVotes(){
                 document.createElement(
                     "div"
                 );
+
 
             div.className =
                 "vote-player";
@@ -4394,9 +3518,10 @@ function showVotes(){
                             width:42px;
                             height:42px;
                             font-size:15px;
-                        "
-                    >
+                        ">
+
                         ${player.initial}
+
                     </div>
 
                     <b>
@@ -4407,7 +3532,8 @@ function showVotes(){
 
                 <div class="vote-circle">
 
-                    <svg viewBox="0 0 24 24">
+                    <svg
+                        viewBox="0 0 24 24">
 
                         <circle
                             cx="12"
@@ -4428,23 +3554,22 @@ function showVotes(){
                         .querySelectorAll(
                             ".vote-player"
                         )
-                        .forEach(
-                            item => {
+                        .forEach(item=>{
 
-                                item
-                                    .classList
-                                    .remove(
-                                        "selected"
-                                    );
+                            item.classList
+                                .remove(
+                                    "selected"
+                                );
 
-                                item
-                                    .querySelector(
-                                        ".vote-circle"
-                                    )
-                                    .innerHTML = `
+                            item
+                                .querySelector(
+                                    ".vote-circle"
+                                )
+                                .innerHTML = `
 
                                     <svg
-                                        viewBox="0 0 24 24">
+                                        viewBox="
+                                        0 0 24 24">
 
                                         <circle
                                             cx="12"
@@ -4455,8 +3580,7 @@ function showVotes(){
 
                                 `;
 
-                            }
-                        );
+                        });
 
 
                     div.classList.add(
@@ -4470,23 +3594,23 @@ function showVotes(){
                         )
                         .innerHTML = `
 
-                        <svg
-                            viewBox="0 0 24 24">
+                            <svg
+                                viewBox="
+                                0 0 24 24">
 
-                            <path
-                                d="
+                                <path
+                                    d="
                                     M5 12
                                     l4 4
                                     L19 6
-                                "/>
+                                    "/>
 
-                        </svg>
+                            </svg>
 
-                    `;
+                        `;
 
 
-                    selectedVote =
-                        index;
+                    selectedVote = index;
 
                 };
 
@@ -4497,14 +3621,16 @@ function showVotes(){
     );
 
 
-    go("votes");
+    go(
+        "votes"
+    );
 
 }
 
 
-/* =========================
+/* =====================================
    WYNIK
-========================= */
+===================================== */
 
 function showFinal(){
 
@@ -4543,17 +3669,9 @@ function showFinal(){
 }
 
 
-/* =========================
+/* =====================================
    STARTOWE USTAWIENIA
-========================= */
-
-document
-    .getElementById(
-        "bottomNav"
-    )
-    .style.display =
-        "none";
-
+===================================== */
 
 updateCounters();
 
